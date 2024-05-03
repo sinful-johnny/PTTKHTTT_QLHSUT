@@ -1,0 +1,70 @@
+﻿<Window x:Class="UI_Prototype.ThongTinDoanhNghiep"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI_Prototype"
+        mc:Ignorable="d"
+        Title="Thông tin doanh nghiệp" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <Label Content="Danh sách doanh nghiệp đã đăng kí: "/>
+        </StackPanel>
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+            <TextBox x:Name="SearchBox" Text="Tên doanh nghiệp" Width="250" Height="25" VerticalContentAlignment="Center"/>
+            <Button x:Name="SearchButton" Content="Tìm" Height="25" Width="50" Click="SearchButton_Click"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="TTDoanhNghiepDataGrid" SelectionChanged="TTDoanhNghiepDataGrid_SelectionChanged"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0">
+                <Button x:Name="DangKiButton" Content="Đăng kí DN" Width="90" Height="30" Click="DangKiButton_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="2" VerticalAlignment="Center">
+            <TextBlock>
+                Thông tin các hợp đồng của doanh nghiệp: <Run d:Text="Thọ Phát" FontWeight="Bold"/>
+            </TextBlock>
+        </StackPanel>
+        <DataGrid Grid.Row="3" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="HDTuyenDungDataGrid"/>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0">
+                <Button x:Name="TaoMoiHDButton" Content="Tạo HD" Width="90" Height="30" Click="TaoMoiHDButton_Click"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
+                <Button x:Name="ChinhSuaHDButton" Content="Chỉnh sửa HD" Width="90" Height="30" Click="ChinhSuaHDButton_Click"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2">
+                <Button x:Name="ThanhToanButton" Content="Thanh toán" Width="90" Height="30" Click="ThanhToanButton_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <StatusBar Grid.Row="4" Grid.ColumnSpan="2">
+            <StatusBarItem>
+                <ProgressBar x:Name="LoadingProgressBar" Height="20" Width="150" IsIndeterminate="True"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
