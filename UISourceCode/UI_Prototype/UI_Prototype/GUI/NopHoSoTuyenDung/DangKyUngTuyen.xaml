@@ -7,42 +7,45 @@
         mc:Ignorable="d"
         Title="DangKyUngTuyen" Height="450" Width="800">
     <Grid>
-        <Grid>
-            <Label Content="Đăng kí ứng tuyển" Style="{StaticResource titleLable}" Margin="306,3,306,394"/>
-            
+        <Label Content="Đăng kí ứng tuyển" Style="{StaticResource titleLable}" Margin="306,3,306,394"/>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,69,567,0">
+            <Label Content="Họ tên:"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,120,567,0">
+            <Label Content="Ngày sinh:"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,170,567,0">
+            <Label Content="Số điện thoại: "/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,221,567,0">
+            <Label Content="Địa chỉ:"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,271,567,0">
+            <Label Content="Email:"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,323,567,0">
+            <Label Content="CCCD:"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,70,0,0">
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="TenCongTyTextBox"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,120,0,0" >
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="MaSoThueTextBox"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,171,0,0">
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="NguoiDaiDienTextBox"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,221,0,0">
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="DiaChiTextBox"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,272,0,0">
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="EmailTextBox"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,323,0,0">
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="CCCDTextBox"/>
+        </StackPanel>
 
-                <Button Content="Register" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="311,110,0,-100"/>
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,62,650,0">
-                    <Label Content="Tên công ty:"/>
-                </StackPanel>
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,113,650,0">
-                    <Label Content="Mã số thuế:"/>
-                </StackPanel>
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="2" Grid.ColumnSpan="2" Margin="0,163,650,0">
-                    <Label Content="Người đại diện: "/>
-                </StackPanel>
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1" Margin="0,214,650,0">
-                    <Label Content="Địa chỉ:"/>
-                </StackPanel>
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1" Margin="0,264,650,0">
-                    <Label Content="Email:"/>
-                </StackPanel>
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" Margin="180,63,0,0">
-                    <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="TenCongTyTextBox"/>
-                </StackPanel>
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" Margin="180,113,0,0" >
-                    <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="MaSoThueTextBox"/>
-                </StackPanel>
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" Margin="180,164,0,0">
-                    <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="NguoiDaiDienTextBox"/>
-                </StackPanel>
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" Margin="180,214,0,0">
-                    <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="DiaChiTextBox"/>
-                </StackPanel>
-                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" Margin="180,265,0,0">
-                    <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="EmailTextBox"/>
-                </StackPanel>
-            
-        </Grid>
+        <Button x:Name="DangKiButton" Content="Đăng kí" 
+            FontSize="14" Click="HopLeButton_Click" Margin="350,370,350,24"/>
     </Grid>
 </Window>

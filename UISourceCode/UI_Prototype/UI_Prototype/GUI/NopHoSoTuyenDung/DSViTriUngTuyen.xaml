@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="DSViTriUngTuyen" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid d:ItemsSource="{d:SampleData ItemCount=12}" x:Name="TTDoanhNghiepDataGrid" SelectionChanged="TTDoanhNghiepDataGrid_SelectionChanged" Margin="0,62,200,0"/>
+        <Grid Margin="605,76,0,186">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0">
+                <Button x:Name="NopHoSoButton" Content="Nộp hồ sơ" Width="90" Height="30" Click="DangKiButton_Click"/>
+            </StackPanel>
+        </Grid>
+        <Label Content="Các vị trí ứng tuyển đang mở:" Margin="10,31,190,377"/>
+
     </Grid>
 </Window>

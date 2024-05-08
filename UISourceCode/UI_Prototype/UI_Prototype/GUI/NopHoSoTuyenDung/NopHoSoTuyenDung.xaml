@@ -7,29 +7,27 @@
         mc:Ignorable="d"
         Title="NopHoSoTuyenDung" Height="450" Width="800">
     <Grid>
-        <GroupBox Header="Job Application" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,203,0,0" Height="184" Width="780">
-            <Grid Height="110">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Text="Select Position:" Grid.Row="0" Grid.Column="0" Margin="5"/>
-                <ComboBox Grid.Row="0" Grid.Column="1" Margin="5"/>
-
-                <TextBlock Text="Upload Documents:" Grid.Row="1" Grid.Column="0" Margin="5"/>
-                <Button Content="Browse" Grid.Row="1" Grid.Column="1" Margin="5"/>
-
-
-                <Button Content="Submit Application" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5"/>
-            </Grid>
-        </GroupBox>
+        <TextBlock FontSize="17" Margin="312,10,288,402"><Run Text="NỘP HỒ SƠ TUYỂN DỤNG"/><LineBreak/><Run/></TextBlock>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,124,555,0">
+            <Label Content="ID Vị trí ứng tuyển:"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,175,555,0">
+            <Label Content="Tên chứng từ:"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,225,555,0">
+            <Label Content="Tên bằng cấp: "/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="275,125,0,0">
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="TenCongTyTextBox"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="275,175,0,0" >
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="MaSoThueTextBox"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="275,226,0,0">
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="NguoiDaiDienTextBox"/>
+        </StackPanel>
+        <Button x:Name="NopHoSoButton" Content="Nộp hồ sơ" 
+            FontSize="14" Click="HopLeButton_Click" Margin="362,373,338,21"/>
+        <TextBlock Margin="336,38,312,380"><Run Text="Tên "/><Run Language="vi-vn" Text="ứng viên"/><Run Text=": "/><Run Language="vi-vn" Text="Nguyễn Văn A"/></TextBlock>
     </Grid>
 </Window>
