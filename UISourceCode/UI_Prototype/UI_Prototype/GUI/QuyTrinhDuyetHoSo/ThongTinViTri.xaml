@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="QuyTrinhDuyetHoSo.ThongTinViTri"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuyTrinhDuyetHoSo"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" d:Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Center">
+            <Label Content="Tên vị trí: "/>
+            <TextBox Text="{Binding TenViTri}" IsEnabled="False" x:Name="TenViTriTextBox" d:Text="Risk Management Specialist" VerticalContentAlignment="Center" Width="300" Height="25"/>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Center">
+            <Label Content="Tên doanh nghiệp: "/>
+            <TextBox Text="{Binding TenDoanhNghiep}" IsEnabled="False" x:Name="TenDoanhNghiepTextBox" Height="25" d:Text="ABC .Inc" VerticalContentAlignment="Center" Width="300"/>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center">
+            <Label Content="Số lượng tuyển: "/>
+            <TextBox Text="{Binding SoLuongTuyen}" IsEnabled="False" x:Name="SoLuongTuyenTextBox" Height="25" d:Text="4" VerticalContentAlignment="Center" Width="300"/>
+        </StackPanel>
+
+        <WrapPanel VerticalAlignment="Center" Grid.Row="3" HorizontalAlignment="Center" >
+            <Label Content="Yêu cầu ứng viên: "/>
+            <TextBlock Text="{Binding YeuCauUngVien}"  x:Name="YeuCauUngVienTextBlock" d:Text="ABC .Inc" Width="300" Height="100" AllowDrop="True" ScrollViewer.CanContentScroll="True"/>
+        </WrapPanel>
+    </Grid>
+</UserControl>

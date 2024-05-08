@@ -14,9 +14,10 @@
                 <Fluent:Backstage Header="Menu">
                     <Fluent:BackstageTabControl>
                         <Fluent:BackstageTabItem Header="Remember Last Accessed Tab Index">
-                            <TextBlock>
-                            Status: <Run Text="ON" x:Name="StatusTextRun"/>
-                            </TextBlock>
+                            <StackPanel>
+                                <Button Content="Đăng kí tuyển dụng" Height="30" Width="150" x:Name="DangKiTuyenDungButton" Click="DangKiTuyenDungButton_Click"/>
+                                <Button Content="Duyệt hồ sơ" Height="30" Width="150" x:Name="DuyetHoSoButton" Click="DuyetHoSoButton_Click"/>
+                            </StackPanel>
                         </Fluent:BackstageTabItem>
                         <Fluent:BackstageTabItem Header="Log out">
                             <Button Content="Log Out" Click="LogOut_buttonClicked"/>
@@ -43,7 +44,7 @@
                     </Setter>
                 </Style>
             </TabControl.Resources>
-
         </TabControl>
+
     </DockPanel>
 </Fluent:RibbonWindow>

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using UI_Prototype.GUI.DangKiThanhVien;
+using UI_Prototype.GUI.QuyTrinhDuyetHoSo;
 
 namespace UI_Prototype
 {
@@ -54,6 +55,8 @@ namespace UI_Prototype
             var screens = new ObservableCollection<TabItem>()
                 {
                     new TabItem() { Content = new DanhSachDNDangKy(_connection), Header= "Đăng ký thành viên"},
+                    //new TabItem() { Content = new ThongTinDoanhNghiep(), Header= "Đăng kí tuyển dụng"},
+                    //new TabItem() { Content = new QuyTrinhDuyetHoSoMainWindow(), Header= "Duyệt hồ sơ"},
                     //new TabItem() { Content = new ProductManagementScreen(_connection), Header= "Products"},
                     //new TabItem() {Content = new ManufacturerManagementUserControl(_connection), Header = "Manufacturer"},
                     //new TabItem() {Content = new PhoneOrder(_connection), Header = "Order"} ,
@@ -74,6 +77,22 @@ namespace UI_Prototype
         private void LogOut_buttonClicked(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void DuyetHoSoButton_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new QuyTrinhDuyetHoSoMainWindow();
+            this.Hide();
+            screen.ShowDialog();
+            this.Show();
+        }
+
+        private void DangKiTuyenDungButton_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new ThongTinDoanhNghiep();
+            this.Hide();
+            screen.ShowDialog();
+            this.Show();
         }
     }
 }
