@@ -23,5 +23,10 @@ namespace UI_Prototype.GUI.NopHoSoTuyenDung
         {
             InitializeComponent();
         }
+
+        private void HopLeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
