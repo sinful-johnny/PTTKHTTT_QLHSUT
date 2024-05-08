@@ -23,7 +23,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label Content="Đăng kí thành viên" Style="{StaticResource titleLable}"/>
+            <Label Content="Đăng kí thành viên" Style="{StaticResource titleLable}" 
+                   Name="LabelContent"/>
             <TextBlock HorizontalAlignment="Center" x:Name="TenCTTextBlock">
     Tên công ty: <Run Text="{Binding .}" d:Text="ABC" FontWeight="Bold"/>
             </TextBlock>
@@ -32,19 +33,19 @@
             </TextBlock>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1">
-            <Label Content="Tên công ty:"/>
+            <Label Content="Tên công ty:" Name="TenCongTyLabel"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="2">
-            <Label Content="Mã số thuế:"/>
+            <Label Content="Mã số thuế:" Name="MaSoThueLabel"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="3">
-            <Label Content="Người đại diện: "/>
+            <Label Content="Người đại diện:" Name="NguoiDaiDienLabel"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="4">
-            <Label Content="Địa chỉ:"/>
+            <Label Content="Địa chỉ:" Name="DiaCHiLabel"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="5">
-            <Label Content="Email:"/>
+            <Label Content="Email:" Name="EmailLabel"/>
         </StackPanel>
 
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1">
