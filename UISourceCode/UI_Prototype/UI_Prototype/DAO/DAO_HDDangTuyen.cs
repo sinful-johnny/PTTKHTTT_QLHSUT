@@ -53,5 +53,83 @@ namespace UI_Prototype.DAO
             conn.Close();
             return result;
         }
+
+        static public bool createHDDangTuyen(SqlConnection conn, BUS_HDDangTuyen data)
+        {
+            bool result = true;
+
+            string query = """
+                    INSERT INTO HOPDONG_DANGTUYEN (ID_HD_DANGTUYEN,ID_DOANHNGHIEP,NGAYBATDAU,NGAYKETTHUC,HINHTHUCDANGTUYEN,TINHTRANG_DANGTUYEN,HINHTHUC_THANHTOAN,NGAYLAP)
+                    VALUES (@idhddangtuyen,@iddoanhnghiep,@ngaybatdau,@ngayketthuc,@hinhthucdangtuyen,@tinhtrangdangtuyen,@hinhthucthanhtoan,@ngaylap);
+                    output ID_HD_DANGTUYEN;
+                """;
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    cmd.Parameters.Add("@idhddangtuyen", SqlDbType.VarChar).Value = data.IDHDDangTuyen;
+                    cmd.Parameters.Add("@iddoanhnghiep", SqlDbType.VarChar).Value = data.IDDoanhNghiep;
+                    cmd.Parameters.Add("@ngaybatdau", SqlDbType.Date).Value = data.NgayBatDau;
+                    cmd.Parameters.Add("@ngayketthuc", SqlDbType.Date).Value = data.NgayKetThuc;
+                    cmd.Parameters.Add("@hinhthucdangtuyen", SqlDbType.NVarChar).Value = data.HinhThucDangTuyen;
+                    cmd.Parameters.Add("@tinhtrangdangtuyen", SqlDbType.NVarChar).Value = data.TinhTrangDangTuyen;
+                    cmd.Parameters.Add("@hinhthucthanhtoan", SqlDbType.NVarChar).Value = data.HinhThucThanhToan;
+                    cmd.Parameters.Add("@ngaylap", SqlDbType.Date).Value = data.NgayLap;
+
+                    cmd.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    conn.Close();
+                    throw new Exception(ex.ToString());
+                }
+            }
+            conn.Close();
+
+            return result;
+        }
+        static public void updateHDDangTuyen(SqlConnection conn, BUS_HDDangTuyen data)
+        {
+            string query = """
+                    UPDATE HOPDONG_DANGTUYEN set    NGAYBATDAU = @ngaybatdau,
+                                                    NGAYKETTHUC = @ngayketthuc,
+                                                    HINHTHUCDANGTUYEN = @hinhthucdangtuyen,
+                                                    TINHTRANG_DANGTUYEN = @tinhtrangdangtuyen,
+                                                    HINHTHUC_THANHTOAN = @hinhthucthanhtoan,
+                                                    NGAYLAP = @ngaylap
+                    where ID_HD_DANGTUYEN = @idhddangtuyen;
+                """;
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    cmd.Parameters.Add("@idhddangtuyen", SqlDbType.VarChar).Value = data.IDHDDangTuyen;
+                    cmd.Parameters.Add("@ngaybatdau", SqlDbType.Date).Value = data.NgayBatDau;
+                    cmd.Parameters.Add("@ngayketthuc", SqlDbType.Date).Value = data.NgayKetThuc;
+                    cmd.Parameters.Add("@hinhthucdangtuyen", SqlDbType.NVarChar).Value = data.HinhThucDangTuyen;
+                    cmd.Parameters.Add("@tinhtrangdangtuyen", SqlDbType.NVarChar).Value = data.TinhTrangDangTuyen;
+                    cmd.Parameters.Add("@hinhthucthanhtoan", SqlDbType.NVarChar).Value = data.HinhThucThanhToan;
+                    cmd.Parameters.Add("@ngaylap", SqlDbType.Date).Value = data.NgayLap;
+
+                    cmd.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    conn.Close();
+                    throw new Exception(ex.ToString());
+                }
+            }
+            conn.Close();
+        }
     }
 }

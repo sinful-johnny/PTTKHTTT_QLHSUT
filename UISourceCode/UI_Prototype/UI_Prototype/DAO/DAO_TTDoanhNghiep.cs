@@ -65,7 +65,7 @@ namespace UI_Prototype.DAO
         {
             var result = new List<BUS_TTDoanhNghiep>();
             string query = """
-                SELECT * FROM DSDOANHNGHIEP;
+                SELECT * FROM DS_DOANHNGHIEP;
                 """;
             if (conn.State == ConnectionState.Closed)
             {
@@ -100,7 +100,7 @@ namespace UI_Prototype.DAO
             return result;
         }
 
-        static public List<BUS_TTDoanhNghiep> getByName(SqlConnection conn, string TenDN)
+        static public List<BUS_TTDoanhNghiep> getByNameKeywords(SqlConnection conn, string TenDN)
             {
                 var result = new List<BUS_TTDoanhNghiep>();
                 string query = """
