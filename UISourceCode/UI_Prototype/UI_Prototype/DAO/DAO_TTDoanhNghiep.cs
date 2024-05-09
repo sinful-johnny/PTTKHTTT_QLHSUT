@@ -104,7 +104,7 @@ namespace UI_Prototype.DAO
             {
                 var result = new List<BUS_TTDoanhNghiep>();
                 string query = """
-                SELECT * FROM DSDOANHNGHIEP where CONTAINS (TEN_CONGTY,@Keyword);
+                SELECT * FROM DS_DOANHNGHIEP where CONTAINS (TEN_CONGTY,@Keyword);
                 """;
                 if (conn.State == ConnectionState.Closed)
                 {

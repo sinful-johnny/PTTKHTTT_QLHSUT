@@ -25,7 +25,7 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             static public int Insert => 1;
             static public int Update => 2;
         }
-        public BUS_ViTriTuyenDung _originalData;
+        public BUS_ViTriTuyenDung? _originalData;
         public BUS_ViTriTuyenDung _DataContext;
         int _mode = Mode.Insert;
         public ThemSuaViTriDangTuyen(BUS_ViTriTuyenDung data)
@@ -42,6 +42,7 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             InitializeComponent();
             _DataContext = new BUS_ViTriTuyenDung();
             _mode = Mode.Update;
+            DataContext = _DataContext;
         }
         
 
@@ -53,11 +54,6 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
-        }
-
-        private void YeuCauUngVienTextBlock_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
-        {
-
         }
     }
 }

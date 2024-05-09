@@ -29,5 +29,60 @@ namespace UI_Prototype.BUS
         {
             return MemberwiseClone();
         }
+
+        static public bool insertViTriTuyenDung(SqlConnection conn, List<BUS_ViTriTuyenDung> data)
+        {
+            bool result = true;
+
+            try
+            {
+                foreach(var item in data)
+                {
+                    result = DAO_ViTriTuyenDung.insertViTriTuyenDung(conn, item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return result;
+        }
+        static public bool deleteViTriTuyenDung(SqlConnection conn, List<BUS_ViTriTuyenDung> data)
+        {
+            bool result = true;
+
+            try
+            {
+                foreach (var item in data)
+                {
+                    result = DAO_ViTriTuyenDung.deleteViTriTuyenDung(conn,item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return result;
+        }
+        static public bool updateViTriTuyenDung(SqlConnection conn, List<BUS_ViTriTuyenDung> data)
+        {
+            bool result = true;
+
+            try
+            {
+                foreach (var item in data)
+                {
+                    result = DAO_ViTriTuyenDung.updateViTriTuyenDung(conn, item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return result;
+        }
     }
 }
