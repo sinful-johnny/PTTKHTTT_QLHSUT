@@ -1,10 +1,27 @@
---Proc NHANVIEN view DS Doanh Nghiep
+﻿--Proc NHANVIEN view DS Doanh Nghiep
 create or alter proc sp_NV_XemDSDoanhNghiep
 as
 	begin tran
 		select *
 		from V_NV_QLDSTTDOANHNGHIEP
 	commit tran
+go
+
+--Proc NHANVIEN search TT Doanh Nghiep
+create or alter proc sp_NV_SearchTTDoanhNghiep
+					@tencongty nvarchar(100)
+as
+	begin tran
+		select *
+		from V_NV_QLDSTTDOANHNGHIEP
+		where upper(TEN_CONGTY) Like '%' + upper(@tencongty) +'%'
+	commit tran
+go
+
+exec sp_NV_XemDSDoanhNghiep
+go
+
+exec sp_NV_SearchTTDoanhNghiep N'TẬP ĐOÀN XĂNG DẦU VIỆT NAM'
 go
 
 --Proc NHANVIEN update TT Doanh Nghiep
@@ -75,6 +92,11 @@ go
 
 --Proc NHANVIEN view DS Doanh Nghiep
 GRANT EXECUTE ON OBJECT::sp_NV_XemDSDoanhNghiep
+    TO NHANVIEN;  
+GO
+
+--Proc NHANVIEN search TT Doanh Nghiep
+GRANT EXECUTE ON OBJECT::sp_NV_SearchTTDoanhNghiep
     TO NHANVIEN;  
 GO
 

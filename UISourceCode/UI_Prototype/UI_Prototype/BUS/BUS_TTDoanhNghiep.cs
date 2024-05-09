@@ -27,8 +27,32 @@ namespace UI_Prototype.BUS
         {
             var result = new BindingList<BUS_TTDoanhNghiep>();
 
-            var daoTTDN = new DAO_TTDoanhNghiep(connection);
-            var dt = daoTTDN.getDSTTDoanhNghiep();
+            var daoTTDN = new DAO_TTDoanhNghiep();
+            var dt = daoTTDN.getDSTTDoanhNghiep(connection);
+            foreach (DataRow row in dt.Rows)
+            {
+                var newTTDN = new BUS_TTDoanhNghiep
+                {
+                    IDDoanhNghiep = (string)row["ID_DOANHNGHIEP"],
+                    TenCongTy = (string)row["TEN_CONGTY"],
+                    IDThue = (string)row["ID_THUE"],
+                    NguoiDaiDien = (string)row["NGUOIDAIDIEN"],
+                    DiaChi = (string)row["DIACHI"],
+                    Email = (string)row["EMAIL"],
+                    TinhTrangXacThuc = (string)row["TINHTRANG_XACTHUC"]
+                };
+                result.Add(newTTDN);
+            }
+
+            return result;
+        }
+
+        public BindingList<BUS_TTDoanhNghiep> searchByName(SqlConnection connection, string searchName)
+        {
+            var result = new BindingList<BUS_TTDoanhNghiep>();
+
+            var daoTTDN = new DAO_TTDoanhNghiep();
+            var dt = daoTTDN.getByName(connection, searchName);
             foreach (DataRow row in dt.Rows)
             {
                 var newTTDN = new BUS_TTDoanhNghiep

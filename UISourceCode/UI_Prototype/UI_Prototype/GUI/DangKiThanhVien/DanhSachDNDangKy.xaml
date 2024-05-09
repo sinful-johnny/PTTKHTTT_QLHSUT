@@ -32,7 +32,8 @@
             <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" 
                         HorizontalAlignment="Right" Orientation="Horizontal">
                 <TextBox Grid.Row="0" Grid.Column="1" x:Name="SearchTextBox" Width="250" Height="25" 
-                         Style="{StaticResource searchTextBox}" VerticalContentAlignment="Center"/>
+                         Style="{StaticResource searchTextBox}" VerticalContentAlignment="Center"
+                         PreviewKeyDown="EnterClicked"/>
                 <Button x:Name="SearchButton" Content="Tìm" Height="25" Width="50" 
                         Click="SearchButton_Click"/>
             </StackPanel>

@@ -10,24 +10,19 @@ namespace UI_Prototype.DAO
 {
     class DAO_TTDoanhNghiep
     {
-        private SqlConnection _connection;
-        public DAO_TTDoanhNghiep(SqlConnection connection)
-        {
-            _connection = connection;
-        }
-        public DataTable getDSTTDoanhNghiep()
+        public DataTable getDSTTDoanhNghiep(SqlConnection connection)
         {
             DataTable dataTable = new DataTable();
 
             string sql = """
                             exec sp_NV_XemDSDoanhNghiep
                          """;
-            if (_connection.State == ConnectionState.Closed)
+            if (connection.State == ConnectionState.Closed)
             {
-                _connection.Open();
+                connection.Open();
             }
 
-            using (var command = new SqlCommand(sql, _connection))
+            using (var command = new SqlCommand(sql, connection))
             {
                 //_connection.Open();
                 var reader = command.ExecuteReader();
@@ -35,7 +30,36 @@ namespace UI_Prototype.DAO
                 reader.Close();
             }
 
-            _connection.Close();
+            connection.Close();
+
+            var res = dataTable;
+
+            return res;
+        }
+
+        public DataTable getByName(SqlConnection connection, string searchName)
+        {
+            DataTable dataTable = new DataTable();
+
+            string sql = """
+                            exec sp_NV_SearchTTDoanhNghiep @searchName
+                         """;
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+
+            using (var command = new SqlCommand(sql, connection))
+            {
+                //_connection.Open();
+                command.Parameters.Add("@searchName", SqlDbType.NVarChar).Value = searchName;
+
+                var reader = command.ExecuteReader();
+                dataTable.Load(reader);
+                reader.Close();
+            }
+
+            connection.Close();
 
             var res = dataTable;
 
