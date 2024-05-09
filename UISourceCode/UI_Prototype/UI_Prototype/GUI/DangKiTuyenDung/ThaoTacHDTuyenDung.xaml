@@ -66,7 +66,7 @@
 
                 <StackPanel VerticalAlignment="Center" Grid.Row="6" HorizontalAlignment="Center">
                     <Label Content="Giá trị hợp đồng:"/>
-                    <TextBox Text="{Binding GiaTriHopDong}" x:Name="GiaTriHopDongTextBox" d:Text="10000000" VerticalContentAlignment="Center" Width="300" Height="25"/>
+                    <TextBox Text="{Binding SoTienCanTra, UpdateSourceTrigger=PropertyChanged}" x:Name="GiaTriHopDongTextBox" d:Text="10000000" VerticalContentAlignment="Center" Width="300" Height="25"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Grid.Row="5" HorizontalAlignment="Center">
                     <Label Content="Tình trạng đăng tuyển:"/>

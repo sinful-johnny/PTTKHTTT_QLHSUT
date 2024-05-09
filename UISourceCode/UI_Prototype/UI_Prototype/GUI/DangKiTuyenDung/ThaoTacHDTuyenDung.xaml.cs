@@ -26,6 +26,7 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
         SqlConnection _conn;
         int _mode = Modes.Insert;
         BUS_HDDangTuyen? _dataHDDangTuyen;
+        BUS_HoaDon? _dataHoaDon;
         List<BUS_ViTriTuyenDung>? originalDataViTriUngTuyen;
         BindingList<BUS_ViTriTuyenDung>? _dataViTriTuyenDung;
         List<string> HinhThucThanhToanOptions = new List<string>()
@@ -47,6 +48,9 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             _conn = conn;
             _mode = Modes.Insert;
             _dataHDDangTuyen = new BUS_HDDangTuyen();
+            _dataHoaDon = new BUS_HoaDon() { SoTienCanTra = 0 };
+            originalDataViTriUngTuyen = new List<BUS_ViTriTuyenDung>();
+            _dataViTriTuyenDung = new BindingList<BUS_ViTriTuyenDung>();
             _dataHDDangTuyen.NgayBatDau = DateTime.Now;
             _dataHDDangTuyen.NgayKetThuc = DateTime.Now;
 
@@ -66,6 +70,7 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             TTHDDangTuyenGrid.DataContext = _dataHDDangTuyen;
             MainDataGrid.ItemsSource = _dataViTriTuyenDung;
             TinhTrangDangTuyenComboBox.ItemsSource = TinhTrangDangTuyenOptions;
+            GiaTriHopDongTextBox.DataContext = _dataHoaDon;
         }
 
         public ThaoTacHDTuyenDung(SqlConnection conn, BUS_HDDangTuyen data, BUS_TTDoanhNghiep CTY)
@@ -100,6 +105,7 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             MainDataGrid.ItemsSource = _dataViTriTuyenDung;
             HinhThucThanhToanComboBox.ItemsSource = HinhThucThanhToanOptions;
             TinhTrangDangTuyenComboBox.ItemsSource = TinhTrangDangTuyenOptions;
+            GiaTriHopDongTextBox.DataContext = _dataHoaDon;
             try
             {
                 HinhThucThanhToanComboBox.SelectedItem = HinhThucThanhToanOptions.Single(x => x == _dataHDDangTuyen.HinhThucThanhToan);
@@ -107,6 +113,7 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             }
             catch { }
 
+            GiaTriHopDongTextBox.IsEnabled = false;
             IDHDDangTuyenTextBox.IsEnabled = false;
         }
 
@@ -141,11 +148,26 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             var selected = (BUS_ViTriTuyenDung)MainDataGrid.SelectedItem;
             if (_dataViTriTuyenDung != null && selected != null)
             {
-                if (originalDataViTriUngTuyen != null && originalDataViTriUngTuyen.SingleOrDefault(x => x.IDViTriUngTuyen == selected.IDViTriUngTuyen) != null)
+                if (originalDataViTriUngTuyen != null 
+                    && originalDataViTriUngTuyen.SingleOrDefault(x => x.IDViTriUngTuyen == selected.IDViTriUngTuyen) != null)
                 {
                     deleted.Add(selected);
                 }
-                
+                else
+                {
+                    BUS_ViTriTuyenDung? instance = null;
+                    try
+                    {
+                        instance = inserted.SingleOrDefault(x => x.IDViTriUngTuyen == selected.IDViTriUngTuyen);
+                    }
+                    catch { instance = null; }
+
+                    if (instance != null)
+                    {
+                        inserted.Remove(instance);
+                    } 
+                }
+
                 _dataViTriTuyenDung.Remove(selected);
             }
         }
@@ -160,6 +182,19 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
                 if (originalDataViTriUngTuyen != null && originalDataViTriUngTuyen.SingleOrDefault(x => x.IDViTriUngTuyen == data.IDViTriUngTuyen) != null)
                 {
                     updated.Add(data);
+                }
+
+                BUS_ViTriTuyenDung? instance = null;
+                try
+                {
+                    instance = inserted.SingleOrDefault(x => x.IDViTriUngTuyen == data.IDViTriUngTuyen);
+                }
+                catch { instance = null; }
+
+                if (instance != null)
+                {
+                    inserted.Remove(instance);
+                    inserted.Add(data);
                 }
             } else if (result == false && _dataViTriTuyenDung != null && screen._originalData != null)
             {
@@ -181,20 +216,8 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
 
             var result = true;
 
-            if(_dataHDDangTuyen != null && _dataHDDangTuyen.NgayBatDau > _dataHDDangTuyen.NgayKetThuc)
-            {
-                result = false;
-                MessageBox.Show("Ngày bắt đầu không được ở sau ngày kết thúc!", "Thất bại", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }else if (_dataHDDangTuyen != null && _dataHDDangTuyen.NgayBatDau < _dataHDDangTuyen.NgayLap){
-                result = false;
-                MessageBox.Show("Ngày bắt đầu không được ở trước ngày lập hợp đồng!", "Thất bại", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
             if (_mode == Modes.Insert)
-            {
-                
+            { 
                 try
                 {
                     if (_dataHDDangTuyen != null)
@@ -206,16 +229,16 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
                         await Task.Run(() => result = BUS_ViTriTuyenDung.deleteViTriTuyenDung(_conn, deleted));
                         LoadingProgressBar.Value = 70;
                         await Task.Run(() => result = BUS_ViTriTuyenDung.updateViTriTuyenDung(_conn, updated));
+                        if (_dataHDDangTuyen.IDHDDangTuyen != null && _dataHoaDon != null)
+                        {
+                            await Task.Run(() => result = BUS_HoaDon.TaoHoaDon(_conn, _dataHDDangTuyen.IDHDDangTuyen, _dataHoaDon.SoTienCanTra));
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
                     result = false;
                     MessageBox.Show(ex.ToString(), "Thất bại!", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                if (result)
-                {
-                    MessageBox.Show("Thêm hợp đồng thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else if (_mode == Modes.Update)
@@ -224,7 +247,7 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
                 {
                     if (_dataHDDangTuyen != null)
                     {
-                        await Task.Run(() => BUS_HDDangTuyen.updateHDDangTuyen(_conn, _dataHDDangTuyen));
+                        await Task.Run(() => result = BUS_HDDangTuyen.updateHDDangTuyen(_conn, _dataHDDangTuyen));
                         LoadingProgressBar.Value = 50;
                         await Task.Run(() => result = BUS_ViTriTuyenDung.insertViTriTuyenDung(_conn, inserted));
                         LoadingProgressBar.Value = 60;
@@ -238,7 +261,6 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
                     result = false;
                     MessageBox.Show(ex.ToString(), "Thất bại!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
             }
 
             await Task.Run(() => Thread.Sleep(25));

@@ -45,7 +45,7 @@
 
                 <StackPanel VerticalAlignment="Center" Grid.Row="3" HorizontalAlignment="Center">
                     <Label Content="Số lượng tuyển: "/>
-                    <TextBox Text="{Binding SoLuongTuyen}" x:Name="SoLuongTuyenTextBox" Height="25" d:Text="4" VerticalContentAlignment="Center" Width="300"/>
+                    <TextBox Text="{Binding SoLuongTuyen, UpdateSourceTrigger=PropertyChanged}" x:Name="SoLuongTuyenTextBox" Height="25" d:Text="4" VerticalContentAlignment="Center" Width="300"/>
                 </StackPanel>
 
                 <StackPanel VerticalAlignment="Center"  Grid.Row="4" HorizontalAlignment="Center" >
