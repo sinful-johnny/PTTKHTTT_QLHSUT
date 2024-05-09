@@ -2,18 +2,18 @@
 go
 
 --DS_DOANH_NGHIEP
-INSERT INTO DS_DOANHNGHIEP(ID_DOANHNGHIEP, TEN_CONGTY, NGUOIDAIDIEN, DIACHI, EMAIL, TINHTRANG_XACTHUC, TIEMNANG_DN)
+INSERT INTO DS_DOANHNGHIEP(ID_DOANHNGHIEP, TEN_CONGTY, ID_THUE, NGUOIDAIDIEN, DIACHI, EMAIL, TINHTRANG_XACTHUC, TIEMNANG_DN)
 VALUES
-  ('DN001', N'TẬP ĐOÀN XĂNG DẦU VIỆT NAM', N'Nguyễn Gia Khánh', N'95 Ngô Gia Tự', 'nguyengiakhanh@gmail.com', null, null),
-  ('DN002', N'CÔNG TY CỔ PHẦN TẬP ĐOÀN HÒA PHÁT', N'Lê Quang Dài', N'99 Lê Văn Sỹ', 'lequangdai@gmail.com', null, null),
-  ('DN003', N'TẬP ĐOÀN VINGROUP - CTCP', N'Nguyễn Hi Hữu', N'74/35 Cao Thắng', 'nguyenhihuu@gmail.com', null, null),
-  ('DN004', N'TỔNG CÔNG TY KHÍ VIỆT NAM', N'Trần Hoàng Duy', N'45 Hồng Bàng', 'tranhoangduy@gmail.com', null, null),
-  ('DN005', N'NGÂN HÀNG TMCP QUÂN ĐỘI', N'Phạm Nhật Vượng', N'666 Trường Chinh', 'phamnhatvuong@gmail.com', null, null),
-  ('DN006', N'CÔNG TY CỔ PHẦN TẬP ĐOÀN THÀNH CÔNG', N'Lê Bảo Châu', N'35 Lý Chính Thắng', 'lebaochau@gmail.com', null, null),
-  ('DN007', N'NGÂN HÀNG TMCP Á CHÂU', N'Nguyễn Bá Khá', N'43 Lý Thường Kiệt', 'nguyenbakha@gmail.com', null, null),
-  ('DN008', N'NGÂN HÀNG TMCP ĐÔNG NAM Á', N'JassMin', N'12 Thành Thái', 'jassmin@gmail.com', null, null),
-  ('DN009', N'CÔNG TY TNHH HÀO HƯNG', N'Kyle Ken', N'10 Ngô Thời Nhiệm', 'kyleken@gmail.com', null, null),
-  ('DN010', N'CÔNG TY CỔ PHẦN PVI', N'Nguyễn Huỳnh Phúc', N'30 3 tháng 2', 'nguyenhuynhphuc@gmail.com', null, null);
+  ('DN001', N'TẬP ĐOÀN XĂNG DẦU VIỆT NAM', 'T0001', N'Nguyễn Gia Khánh', N'95 Ngô Gia Tự', 'nguyengiakhanh@gmail.com', null, null),
+  ('DN002', N'CÔNG TY CỔ PHẦN TẬP ĐOÀN HÒA PHÁT', 'T0002', N'Lê Quang Dài', N'99 Lê Văn Sỹ', 'lequangdai@gmail.com', null, null),
+  ('DN003', N'TẬP ĐOÀN VINGROUP - CTCP', 'T0003', N'Nguyễn Hi Hữu', N'74/35 Cao Thắng', 'nguyenhihuu@gmail.com', null, null),
+  ('DN004', N'TỔNG CÔNG TY KHÍ VIỆT NAM', 'T0004', N'Trần Hoàng Duy', N'45 Hồng Bàng', 'tranhoangduy@gmail.com', null, null),
+  ('DN005', N'NGÂN HÀNG TMCP QUÂN ĐỘI', 'T0005', N'Phạm Nhật Vượng', N'666 Trường Chinh', 'phamnhatvuong@gmail.com', null, null),
+  ('DN006', N'CÔNG TY CỔ PHẦN TẬP ĐOÀN THÀNH CÔNG', 'T0006', N'Lê Bảo Châu', N'35 Lý Chính Thắng', 'lebaochau@gmail.com', null, null),
+  ('DN007', N'NGÂN HÀNG TMCP Á CHÂU', 'T0007', N'Nguyễn Bá Khá', N'43 Lý Thường Kiệt', 'nguyenbakha@gmail.com', null, null),
+  ('DN008', N'NGÂN HÀNG TMCP ĐÔNG NAM Á', 'T0008', N'JassMin', N'12 Thành Thái', 'jassmin@gmail.com', null, null),
+  ('DN009', N'CÔNG TY TNHH HÀO HƯNG', 'T0009', N'Kyle Ken', N'10 Ngô Thời Nhiệm', 'kyleken@gmail.com', null, null),
+  ('DN010', N'CÔNG TY CỔ PHẦN PVI', 'T0010', N'Nguyễn Huỳnh Phúc', N'30 3 tháng 2', 'nguyenhuynhphuc@gmail.com', null, null);
 
 
 --CHINHSACH_UUDAI
