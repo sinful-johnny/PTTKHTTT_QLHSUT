@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UI_Prototype.BUS;
+using UI_Prototype.GUI.DangKiTuyenDung;
 
 namespace UI_Prototype
 {
@@ -46,6 +48,29 @@ namespace UI_Prototype
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ThemButton_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new ThemSuaViTriDangTuyen();
+            screen.ShowDialog();
+        }
+
+        private void XoaButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SuaButton_Click(object sender, RoutedEventArgs e)
+        {
+            var data = new BUS_ViTriTuyenDung();
+            var screen = new ThemSuaViTriDangTuyen(data);
+            screen.ShowDialog();
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

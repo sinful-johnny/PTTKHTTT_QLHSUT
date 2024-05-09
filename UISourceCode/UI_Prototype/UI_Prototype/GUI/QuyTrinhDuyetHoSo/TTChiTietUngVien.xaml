@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="QuyTrinhDuyetHoSo.TTChiTietUngVien"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuyTrinhDuyetHoSo"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="300" Background="White">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Center">
+            <Label Content="Họ tên ứng viên: "/>
+            <TextBox Text="{Binding HoTenUngVien}" IsEnabled="False" x:Name="HoTenUngVienTextBox" d:Text="Nguyễn Văn A" VerticalContentAlignment="Center" Width="200" Height="25"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Center">
+            <Label Content="Ngày sinh: "/>
+            <DatePicker Text="{Binding NgaySinh}" IsEnabled="False" x:Name="NgaySinhDatePicker" d:Text="5/7/2024" VerticalContentAlignment="Center" Width="200" Height="25"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center">
+            <Label Content="Địa chỉ: "/>
+            <TextBox Text="{Binding DiaChi}" IsEnabled="False" x:Name="DiaChiTextBox" d:Text="St. James Infirmary" VerticalContentAlignment="Center" Width="200" Height="25"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Grid.Row="3" HorizontalAlignment="Center">
+            <Label Content="Số điện thoại: "/>
+            <TextBox Text="{Binding SDT}" IsEnabled="False" x:Name="SDTTextBox" d:Text="036" VerticalContentAlignment="Center" Width="200" Height="25"/>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Center" Grid.Row="4" HorizontalAlignment="Center">
+            <Label Content="Email: "/>
+            <TextBox Text="{Binding Email}" IsEnabled="False" x:Name="EmailTextBox" d:Text="ngvana@gmail.com" VerticalContentAlignment="Center" Width="200" Height="25"/>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Center" Grid.Row="5" HorizontalAlignment="Center">
+            <Label Content="Căn cước công dân: "/>
+            <TextBox Text="{Binding CCCD}" IsEnabled="False" x:Name="CCCDTextBox" d:Text="060203003521" VerticalContentAlignment="Center" Width="200" Height="25"/>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Center" Orientation="Vertical" Grid.Row="6" HorizontalAlignment="Center" >
+            <Label Content="Danh sách chứng từ: "/>
+            <DataGrid x:Name="DSChungTuDataGrid" Width="300" Height="100" IsReadOnly="True" d:ItemsSource="{d:SampleData}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tên chứng từ" />
+                </DataGrid.Columns>
+                <DataGrid.Items>
+                    
+                </DataGrid.Items>
+            </DataGrid>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Center" Orientation="Vertical" Grid.Row="7" HorizontalAlignment="Center" >
+            <Label Content="Danh sách hồ sơ: "/>
+            <DataGrid x:Name="DSBangCapDataGrid" Width="300" Height="100" IsReadOnly="True" d:ItemsSource="{d:SampleData}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Tên bằng cấp" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

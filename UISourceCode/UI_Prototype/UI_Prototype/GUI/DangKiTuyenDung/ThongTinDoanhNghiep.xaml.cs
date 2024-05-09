@@ -62,7 +62,7 @@ namespace UI_Prototype
 
         private void ChinhSuaHDButton_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new ChinhSuaHDTuyenDung();
+            var screen = new TaoHDTuyenDung();
             var result = screen.ShowDialog();
             if (result == true)
             {

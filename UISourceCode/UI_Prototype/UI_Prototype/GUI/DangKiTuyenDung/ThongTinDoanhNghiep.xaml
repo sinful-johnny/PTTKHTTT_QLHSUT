@@ -26,7 +26,15 @@
             <TextBox x:Name="SearchBox" Text="Tên doanh nghiệp" Width="250" Height="25" VerticalContentAlignment="Center"/>
             <Button x:Name="SearchButton" Content="Tìm" Height="25" Width="50" Click="SearchButton_Click"/>
         </StackPanel>
-        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="TTDoanhNghiepDataGrid" SelectionChanged="TTDoanhNghiepDataGrid_SelectionChanged"/>
+        <DataGrid Grid.Row="1" IsReadOnly="True" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="TTDoanhNghiepDataGrid" SelectionChanged="TTDoanhNghiepDataGrid_SelectionChanged" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tên công ty" Binding="{Binding TenCongTy}"/>
+                <DataGridTextColumn Header="Người đại diện" Binding="{Binding NguoiDaiDien}"/>
+                <DataGridTextColumn Header="Địa chỉ" Binding="{Binding DiaChi}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                <DataGridTextColumn Header="Tình trạng xác thực" Binding="{Binding TinhTrangXacThuc}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -40,10 +48,21 @@
 
         <StackPanel Grid.Row="2" VerticalAlignment="Center">
             <TextBlock>
-                Thông tin các hợp đồng của doanh nghiệp: <Run d:Text="Thọ Phát" FontWeight="Bold"/>
+                Thông tin các hợp đồng của doanh nghiệp: <Run d:Text="Thọ Phát" Text="{Binding ElementName=TTDoanhNghiepDataGrid, Path=SelectedItem.TenCongTy}" FontWeight="Bold"/>
             </TextBlock>
         </StackPanel>
-        <DataGrid Grid.Row="3" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="HDTuyenDungDataGrid"/>
+        <DataGrid Grid.Row="3" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="HDTuyenDungDataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mã hợp đồng" Binding="{Binding IDHDDangTuyen}"/>
+                <DataGridTextColumn Header="Ngày lập" Binding="{Binding NgayLap}"/>
+                <DataGridTextColumn Header="Hình thức đăng tuyển" Binding="{Binding HinhThucDangTuyen}"/>
+                <DataGridTextColumn Header="Ngày bắt đầu" Binding="{Binding NgayBatDau}"/>
+                <DataGridTextColumn Header="Ngày kết thúc" Binding="{Binding NgayKetThuc}"/>
+                <DataGridTextColumn Header="Tình trạng đăng tuyển" Binding="{Binding TinhTrangDangTuyen}"/>
+                <DataGridTextColumn Header="Hình thức thanh toán" Binding="{Binding HinhThucThanhToan}"/>
+                
+            </DataGrid.Columns>
+        </DataGrid>
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>

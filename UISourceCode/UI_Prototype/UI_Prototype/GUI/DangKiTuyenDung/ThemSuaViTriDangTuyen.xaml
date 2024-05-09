@@ -1,0 +1,80 @@
+﻿<Window x:Class="UI_Prototype.GUI.DangKiTuyenDung.ThemSuaViTriDangTuyen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI_Prototype.GUI.DangKiTuyenDung"
+        mc:Ignorable="d"
+        Title="ThemSuaViTriDangTuyen" Height="550" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="THÔNG TIN VỊ TRÍ ĐĂNG TUYỂN" FontSize="17"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <Grid Height="600" Width="500">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <StackPanel VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Center">
+                    <Label Content="Mã vị trí: "/>
+                    <TextBox Text="{Binding IDViTriUngTuyen}" x:Name="IDViTriTextBox" d:Text="VT001" VerticalContentAlignment="Center" Width="300" Height="25"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Center">
+                    <Label Content="Tên vị trí: "/>
+                    <TextBox Text="{Binding TenViTri}" x:Name="TenViTriTextBox" d:Text="Risk Management Specialist" VerticalContentAlignment="Center" Width="300" Height="25"/>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center">
+                    <Label Content="Tên doanh nghiệp: "/>
+                    <TextBox Text="{Binding TenDoanhNghiep}" x:Name="TenDoanhNghiepTextBox" Height="25" d:Text="ABC .Inc" VerticalContentAlignment="Center" Width="300"/>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Center" Grid.Row="3" HorizontalAlignment="Center">
+                    <Label Content="Số lượng tuyển: "/>
+                    <TextBox Text="{Binding SoLuongTuyen}" x:Name="SoLuongTuyenTextBox" Height="25" d:Text="4" VerticalContentAlignment="Center" Width="300"/>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Center"  Grid.Row="4" HorizontalAlignment="Center" >
+                    <Label Content="Yêu cầu ứng viên: "/>
+                    <Border BorderBrush="Black" BorderThickness="0.5">
+                        <TextBlock Text="{Binding YeuCauUngVien}"  x:Name="YeuCauUngVienTextBlock" d:Text="ABC .Inc" Width="300" Height="100" AllowDrop="True" ScrollViewer.CanContentScroll="True"/>
+                    </Border>
+                </StackPanel>
+
+            </Grid>
+        </ScrollViewer>
+        
+        
+        <Grid Grid.Row="2" Grid.ColumnSpan="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <Button x:Name="CancelButton" Content="Huỷ" Width="80" Height="40" FontSize="14"/>
+            </StackPanel>
+            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                <Button x:Name="SaveButton" Content="Lưu" Width="80" Height="40" FontSize="14"/>
+            </StackPanel>
+        </Grid>
+
+        <StatusBar Grid.Row="3" Grid.ColumnSpan="1">
+            <StatusBarItem>
+                <ProgressBar x:Name="LoadingProgressBar" Height="20" Width="150" IsIndeterminate="True"/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

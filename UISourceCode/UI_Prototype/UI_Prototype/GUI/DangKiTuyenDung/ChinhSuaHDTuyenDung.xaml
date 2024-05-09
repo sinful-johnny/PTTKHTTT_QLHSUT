@@ -17,7 +17,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
@@ -38,13 +38,13 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="2">
             <Label Content="Số lượng tuyển dụng:"/>
         </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="3">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="5">
             <Label Content="Yêu cầu ứng viên: "/>
         </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="4">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="3">
             <Label Content="Thời gian đăng tuyển:"/>
         </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="5">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="4">
             <Label Content="Hình thức đăng tuyển:"/>
         </StackPanel>
 
@@ -54,16 +54,16 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" >
             <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="SLTuyenDungTextBox"/>
         </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="YCUngVienTextBox"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
             <DatePicker Width="150" Height="25" x:Name="TGBatDauDatePicker"/>
             <TextBlock Text="đến" Margin="25,0,25,0" VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Center"/>
             <DatePicker Width="150" Height="25" x:Name="TGKetThucDatePicker"/>
         </StackPanel>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="1">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1">
             <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="HTDangTuyenTextBox"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="1">
+            <TextBlock Width="400" Height="100" AllowDrop="True" x:Name="YCUngVienTextBox"/>
         </StackPanel>
 
         <Grid Grid.Row="6" Grid.ColumnSpan="2">
