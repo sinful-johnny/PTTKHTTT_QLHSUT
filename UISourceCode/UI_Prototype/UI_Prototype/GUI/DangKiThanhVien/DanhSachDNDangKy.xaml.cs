@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UI_Prototype.BUS;
 using System.Windows;
 using System.Windows.Controls;
 using System.Data.SqlClient;
@@ -22,7 +18,10 @@ namespace UI_Prototype.GUI.DangKiThanhVien
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
+            var busTTDN = new BUS_TTDoanhNghiep();
+            TTDoanhNghiepDataGrid.ItemsSource = busTTDN.LoadDSDoanhNghiep(_connection);
+            TTDoanhNghiepDataGrid.Columns[7].Visibility = Visibility.Collapsed;
+            TTDoanhNghiepDataGrid.Columns[8].Visibility = Visibility.Collapsed;
         }
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {

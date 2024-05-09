@@ -14,7 +14,8 @@ create or alter proc sp_KH_SuaTTDoanhNghiep
 					@idthue varchar(5),
 					@nguoidaidien nvarchar(50),
 					@diachi nvarchar(200),
-					@email nvarchar(50)
+					@email nvarchar(50),
+					@tinhtrangxacthuc nvarchar(50)
 as
 	begin tran
 		if	@tencongty is null
@@ -52,6 +53,13 @@ as
 			where ID_DOANHNGHIEP = @iddoanhnghiep
 		end
 
+		if	@tinhtrangxacthuc is null
+		begin
+			update V_NV_QLDSTTDOANHNGHIEP
+			set TINHTRANG_XACTHUC = @tinhtrangxacthuc
+			where ID_DOANHNGHIEP = @iddoanhnghiep
+		end
+
 	commit tran
 go
 
@@ -79,3 +87,5 @@ GO
 GRANT EXECUTE ON OBJECT::sp_KH_XoaTTDoanhNghiep
     TO NHANVIEN;  
 GO
+
+exec sp_NV_XemDSDoanhNghiep;

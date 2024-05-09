@@ -4,31 +4,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converter="clr-namespace:UI_Prototype.GUI.Converters"
-             mc:Ignorable="d" 
-             Height="400" Width="800" 
-             Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded">
+             mc:Ignorable="d"
+             d:DesignHeight="400" d:DesignWidth="800"
+             Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded"
+             Background="Transparent">
     <UserControl.Resources>
         <converter:RelativeToAbsoluteConveter x:Key="absoluteConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="0.075*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="0.075*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="0.25*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0">
-            <Label Content="Danh sách doanh nghiệp đăng kí" Name="LabelContent"/>
-        </StackPanel>
-        <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
-            <TextBox x:Name="SearchTextBox" Text="Tên doanh nghiệp" Width="250" Height="25" VerticalContentAlignment="Center"/>
-            <Button x:Name="SearchButton" Content="Tìm" Height="25" Width="50" Click="SearchButton_Click"/>
-        </StackPanel>
-        <DataGrid Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=10}" x:Name="TTDoanhNghiepDataGrid" SelectionChanged="TTDoanhNghiepDataGrid_SelectionChanged"/>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Danh sách doanh nghiệp đăng kí" Name="LabelContent"/>
+            <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" 
+                        HorizontalAlignment="Right" Orientation="Horizontal">
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="SearchTextBox" Width="250" Height="25" 
+                         Style="{StaticResource searchTextBox}" VerticalContentAlignment="Center"/>
+                <Button x:Name="SearchButton" Content="Tìm" Height="25" Width="50" 
+                        Click="SearchButton_Click"/>
+            </StackPanel>
+            
+        </Grid>
+        
+        <DataGrid Grid.Row="1" Grid.Column="0" d:ItemsSource="{d:SampleData ItemCount=10}" 
+                  x:Name="TTDoanhNghiepDataGrid" 
+                  SelectionChanged="TTDoanhNghiepDataGrid_SelectionChanged"/>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -44,7 +57,7 @@
             </StackPanel>
         </Grid>
 
-        <StatusBar Grid.Row="4" Grid.ColumnSpan="2">
+        <StatusBar Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0">
             <StatusBarItem>
                 <ProgressBar x:Name="LoadingProgressBar" Height="20" Width="150" IsIndeterminate="True"/>
             </StatusBarItem>
