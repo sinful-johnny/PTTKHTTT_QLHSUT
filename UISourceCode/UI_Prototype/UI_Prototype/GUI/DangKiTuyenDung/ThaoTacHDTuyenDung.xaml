@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UI_Prototype.GUI.DangKiTuyenDung"
         mc:Ignorable="d"
         Title="Tạo hợp đồng tuyển dụng" Height="450" Width="800" Loaded="Window_Loaded">
-    <Grid>
+    <Grid x:Name="RootGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>

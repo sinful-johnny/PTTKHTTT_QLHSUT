@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UI_Prototype.BUS;
+using UI_Prototype.DAO;
 
 namespace UI_Prototype.GUI.DangKiTuyenDung
 {
@@ -36,7 +37,7 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             "Ngung tuyen", "Dang tuyen", "Tam ngung"
         };
         DateTime _ngayLap = DateTime.Now;
-        string _tenCTY;
+        string? _tenCTY;
         List<BUS_ViTriTuyenDung> inserted = new List<BUS_ViTriTuyenDung>();
         List<BUS_ViTriTuyenDung> updated = new List<BUS_ViTriTuyenDung>();
         List<BUS_ViTriTuyenDung> deleted = new List<BUS_ViTriTuyenDung>();
@@ -59,7 +60,6 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
                 _dataHDDangTuyen.IDDoanhNghiep = CTY.IDDoanhNghiep;
             }
             
-
             HinhThucThanhToanComboBox.ItemsSource = HinhThucThanhToanOptions;
             NgayLapTextBlock.DataContext = _ngayLap;
             TenCTYTextBlock.DataContext = _tenCTY;
@@ -115,21 +115,6 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             DialogResult = false;
         }
 
-        private async void CreateButton_Click(object sender, RoutedEventArgs e)
-        {
-            LoadingProgressBar.IsIndeterminate = false;
-            LoadingProgressBar.Value = 10;
-            await Task.Run(() => Thread.Sleep(10));
-            LoadingProgressBar.Value = 40;
-            await Task.Run(() => Thread.Sleep(25));
-            LoadingProgressBar.Value = 80;
-            await Task.Run(() => Thread.Sleep(50));
-            LoadingProgressBar.Value = 100;
-            await Task.Run(() => Thread.Sleep(25));
-            MessageBox.Show("Tạo hợp đồng thành công!", "Thành công", MessageBoxButton.OK);
-            DialogResult = true;
-        }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -141,8 +126,9 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             var result = screen.ShowDialog();
             if (result == true && _dataViTriTuyenDung != null)
             {
-                if (originalDataViTriUngTuyen != null && originalDataViTriUngTuyen.Contains(screen._DataContext) == true)
+                if (_dataHDDangTuyen != null && originalDataViTriUngTuyen != null && originalDataViTriUngTuyen.Contains(screen._DataContext) != true)
                 {
+                    screen._DataContext.IDHDDangTuyen = _dataHDDangTuyen.IDHDDangTuyen;
                     inserted.Add(screen._DataContext);
                 }
                 
@@ -155,7 +141,7 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             var selected = (BUS_ViTriTuyenDung)MainDataGrid.SelectedItem;
             if (_dataViTriTuyenDung != null && selected != null)
             {
-                if (originalDataViTriUngTuyen != null && originalDataViTriUngTuyen.Contains(selected) == true)
+                if (originalDataViTriUngTuyen != null && originalDataViTriUngTuyen.SingleOrDefault(x => x.IDViTriUngTuyen == selected.IDViTriUngTuyen) != null)
                 {
                     deleted.Add(selected);
                 }
@@ -171,11 +157,11 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             var result = screen.ShowDialog();
             if (result == true && _dataViTriTuyenDung != null)
             {
-                if (originalDataViTriUngTuyen != null && originalDataViTriUngTuyen.Contains(data) == true)
+                if (originalDataViTriUngTuyen != null && originalDataViTriUngTuyen.SingleOrDefault(x => x.IDViTriUngTuyen == data.IDViTriUngTuyen) != null)
                 {
                     updated.Add(data);
                 }
-            }else if(result == false && _dataViTriTuyenDung != null)
+            } else if (result == false && _dataViTriTuyenDung != null && screen._originalData != null)
             {
                 data.IDViTriUngTuyen = screen._originalData.IDViTriUngTuyen;
                 data.YeuCauUngVien = screen._originalData.YeuCauUngVien;
@@ -185,35 +171,41 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             }
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private async void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if(_mode == Modes.Insert)
+            RootGrid.IsEnabled = false;
+            LoadingProgressBar.IsIndeterminate = false;
+            LoadingProgressBar.Value = 10;
+            await Task.Run(() => Thread.Sleep(10));
+            LoadingProgressBar.Value = 40;
+
+            var result = true;
+
+            if(_dataHDDangTuyen != null && _dataHDDangTuyen.NgayBatDau > _dataHDDangTuyen.NgayKetThuc)
             {
-                var result = true;
-                try
-                {
-                    if (_dataHDDangTuyen != null)
-                    {
-                        result = BUS_HDDangTuyen.createHDDangTuyen(_conn, _dataHDDangTuyen);
-                    }
-                }catch (Exception ex)
-                {
-                    result = false;
-                    MessageBox.Show(ex.ToString(),"Thất bại!", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                if (result)
-                {
-                    MessageBox.Show("Thêm hợp đồng thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
+                result = false;
+                MessageBox.Show("Ngày bắt đầu không được ở sau ngày kết thúc!", "Thất bại", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }else if (_dataHDDangTuyen != null && _dataHDDangTuyen.NgayBatDau < _dataHDDangTuyen.NgayLap){
+                result = false;
+                MessageBox.Show("Ngày bắt đầu không được ở trước ngày lập hợp đồng!", "Thất bại", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
             }
-            else if(_mode == Modes.Update)
+
+            if (_mode == Modes.Insert)
             {
-                var result = true;
+                
                 try
                 {
                     if (_dataHDDangTuyen != null)
                     {
-                        BUS_HDDangTuyen.updateHDDangTuyen(_conn, _dataHDDangTuyen);
+                        await Task.Run(() => result = BUS_HDDangTuyen.createHDDangTuyen(_conn, _dataHDDangTuyen));
+                        LoadingProgressBar.Value = 50;
+                        await Task.Run(() => result = BUS_ViTriTuyenDung.insertViTriTuyenDung(_conn, inserted));
+                        LoadingProgressBar.Value = 60;
+                        await Task.Run(() => result = BUS_ViTriTuyenDung.deleteViTriTuyenDung(_conn, deleted));
+                        LoadingProgressBar.Value = 70;
+                        await Task.Run(() => result = BUS_ViTriTuyenDung.updateViTriTuyenDung(_conn, updated));
                     }
                 }
                 catch (Exception ex)
@@ -223,10 +215,46 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
                 }
                 if (result)
                 {
-                    MessageBox.Show("Sửa hợp đồng thành công!","Thành công",MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Thêm hợp đồng thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
-            DialogResult = true;
+            else if (_mode == Modes.Update)
+            {
+                try
+                {
+                    if (_dataHDDangTuyen != null)
+                    {
+                        await Task.Run(() => BUS_HDDangTuyen.updateHDDangTuyen(_conn, _dataHDDangTuyen));
+                        LoadingProgressBar.Value = 50;
+                        await Task.Run(() => result = BUS_ViTriTuyenDung.insertViTriTuyenDung(_conn, inserted));
+                        LoadingProgressBar.Value = 60;
+                        await Task.Run(() => result = BUS_ViTriTuyenDung.deleteViTriTuyenDung(_conn, deleted));
+                        LoadingProgressBar.Value = 70;
+                        await Task.Run(() => result = BUS_ViTriTuyenDung.updateViTriTuyenDung(_conn, updated));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    result = false;
+                    MessageBox.Show(ex.ToString(), "Thất bại!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                
+            }
+
+            await Task.Run(() => Thread.Sleep(25));
+            LoadingProgressBar.Value = 80;
+            await Task.Run(() => Thread.Sleep(50));
+            LoadingProgressBar.Value = 100;
+            await Task.Run(() => Thread.Sleep(25));
+            RootGrid.IsEnabled = true;
+            LoadingProgressBar.IsIndeterminate = true;
+
+            if (result)
+            {
+                MessageBox.Show("Sửa hợp đồng thành công!", "Thành công", MessageBoxButton.OK, MessageBoxImage.Information);
+                DialogResult = true;
+            }
+
         }
 
         internal class Modes
