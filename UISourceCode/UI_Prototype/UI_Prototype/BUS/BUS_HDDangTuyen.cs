@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UI_Prototype.DAO;
 
 namespace UI_Prototype.BUS
 {
-    internal class BUS_HDDangTuyen
+    public class BUS_HDDangTuyen : INotifyPropertyChanged
     {
         public string? IDDoanhNghiep { get; set; }
         public string? IDHDDangTuyen { get; set; }
@@ -17,6 +20,11 @@ namespace UI_Prototype.BUS
         public string? HinhThucThanhToan { get; set; }
         public DateTime NgayLap { get; set; }
 
+        public event PropertyChangedEventHandler? PropertyChanged;
 
+        static public List<BUS_HDDangTuyen> LoadHDTuyenDung(SqlConnection conn, string IDDoanhNghiep)
+        {
+            return DAO_HDDangTuyen.getHDDangTuyen(conn, IDDoanhNghiep);
+        }
     }
 }

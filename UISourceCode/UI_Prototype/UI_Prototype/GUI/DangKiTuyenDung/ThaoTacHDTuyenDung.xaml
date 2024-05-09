@@ -1,9 +1,9 @@
-﻿<Window x:Class="UI_Prototype.TaoHDTuyenDung"
+﻿<Window x:Class="UI_Prototype.GUI.DangKiTuyenDung.ThaoTacHDTuyenDung"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UI_Prototype" xmlns:local1="clr-namespace:UI_Prototype.GUI.DangKiTuyenDung"
+        xmlns:local="clr-namespace:UI_Prototype.GUI.DangKiTuyenDung"
         mc:Ignorable="d"
         Title="Tạo hợp đồng tuyển dụng" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
@@ -20,17 +20,17 @@
 
         <StackPanel Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="THÔNG TIN ĐĂNG KÍ TUYỂN DỤNG" FontSize="17"/>
-            <TextBlock HorizontalAlignment="Center">
-                Tên doanh nghiệp: <Run Text="{Binding .}" d:Text="Thọ Phát" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Center" x:Name="TenCTYTextBlock">
+         Tên doanh nghiệp: <Run Text="{Binding .}" d:Text="Thọ Phát" FontWeight="Bold"/>
             </TextBlock>
             <TextBlock HorizontalAlignment="Center" x:Name="NgayLapTextBlock">
-                Ngày lập: <Run Text="{Binding .}" d:Text="6/4/2024" FontWeight="Bold"/>
+         Ngày lập: <Run Text="{Binding .}" d:Text="6/4/2024" FontWeight="Bold"/>
             </TextBlock>
         </StackPanel>
 
         <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="1"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
-            <Grid Height="400">
+            <Grid Height="400" x:Name="TTHDDangTuyenGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -73,7 +73,7 @@
             <Border BorderBrush="Black" BorderThickness="0.5" Grid.RowSpan="3"/>
             <Label Content="Danh sách vị trí ứng tuyển" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-            <DataGrid x:Name="MainDataGrid" Grid.Row="2">
+            <DataGrid x:Name="MainDataGrid" Grid.Row="2" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID vị trí ứng tuyển" Binding="{Binding IDViTriUngTuyen}"/>
                     <DataGridTextColumn Header="Tên vị trí" Binding="{Binding TenViTri}"/>
@@ -89,17 +89,17 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Button x:Name="ThemButton" Content="Thêm" Width="50" Height="30" Grid.Column="0" Click="ThemButton_Click"/>
                 <Button x:Name="XoaButton" Content="Xoá" Width="50" Height="30" Grid.Column="1" Click="XoaButton_Click"/>
                 <Button x:Name="SuaButton" Content="Sửa" Width="50" Height="30" Grid.Column="2" Click="SuaButton_Click"/>
             </Grid>
 
-            
+
 
         </Grid>
 
-        
+
 
         <Grid Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>

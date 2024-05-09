@@ -21,16 +21,24 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
     public partial class ThemSuaViTriDangTuyen : Window
     {
         BUS_ViTriTuyenDung _DataContext;
+        int _mode = 1;
         public ThemSuaViTriDangTuyen(BUS_ViTriTuyenDung data)
         {
             InitializeComponent();
             _DataContext = data;
             IDViTriTextBox.IsEnabled = false;
+            _mode = Mode.Update;
         }
         public ThemSuaViTriDangTuyen()
         {
             InitializeComponent();
             _DataContext = new BUS_ViTriTuyenDung();
+            _mode = Mode.Update;
+        }
+        internal class Mode
+        {
+            static public int Insert => 1;
+            static public int Update => 2;
         }
     }
 }
