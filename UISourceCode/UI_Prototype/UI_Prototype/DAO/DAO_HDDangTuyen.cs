@@ -61,7 +61,6 @@ namespace UI_Prototype.DAO
             string query = """
                     INSERT INTO HOPDONG_DANGTUYEN (ID_HD_DANGTUYEN,ID_DOANHNGHIEP,NGAYBATDAU,NGAYKETTHUC,HINHTHUCDANGTUYEN,TINHTRANG_DANGTUYEN,HINHTHUC_THANHTOAN,NGAYLAP)
                     VALUES (@idhddangtuyen,@iddoanhnghiep,@ngaybatdau,@ngayketthuc,@hinhthucdangtuyen,@tinhtrangdangtuyen,@hinhthucthanhtoan,@ngaylap);
-                    output ID_HD_DANGTUYEN;
                 """;
             if (conn.State == ConnectionState.Closed)
             {
@@ -80,8 +79,11 @@ namespace UI_Prototype.DAO
                     cmd.Parameters.Add("@hinhthucthanhtoan", SqlDbType.NVarChar).Value = data.HinhThucThanhToan;
                     cmd.Parameters.Add("@ngaylap", SqlDbType.Date).Value = data.NgayLap;
 
-                    cmd.ExecuteNonQuery();
-
+                    var count = cmd.ExecuteNonQuery();
+                    if(count <= 0)
+                    {
+                        result = false;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -93,8 +95,9 @@ namespace UI_Prototype.DAO
 
             return result;
         }
-        static public void updateHDDangTuyen(SqlConnection conn, BUS_HDDangTuyen data)
+        static public bool updateHDDangTuyen(SqlConnection conn, BUS_HDDangTuyen data)
         {
+            var result = true;
             string query = """
                     UPDATE HOPDONG_DANGTUYEN set    NGAYBATDAU = @ngaybatdau,
                                                     NGAYKETTHUC = @ngayketthuc,
@@ -120,8 +123,11 @@ namespace UI_Prototype.DAO
                     cmd.Parameters.Add("@hinhthucthanhtoan", SqlDbType.NVarChar).Value = data.HinhThucThanhToan;
                     cmd.Parameters.Add("@ngaylap", SqlDbType.Date).Value = data.NgayLap;
 
-                    cmd.ExecuteNonQuery();
-
+                    var count = cmd.ExecuteNonQuery();
+                    if(count > 0)
+                    {
+                        result = false;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -130,6 +136,7 @@ namespace UI_Prototype.DAO
                 }
             }
             conn.Close();
+            return result;
         }
     }
 }

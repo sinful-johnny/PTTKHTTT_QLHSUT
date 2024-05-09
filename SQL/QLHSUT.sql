@@ -106,7 +106,7 @@ create table UNGVIEN_BANGCAP(
 );
 
 create table HOADON(
-	ID_HOADON varchar(5),
+	ID_HOADON varchar(255),
 	ID_HD_DANGTUYEN varchar(5) not null,
 	SOTIENCANTRA int,
 	SOTIENDATRA int,

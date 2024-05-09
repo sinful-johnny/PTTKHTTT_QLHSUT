@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using UI_Prototype.DAO;
 
 namespace UI_Prototype.BUS
@@ -35,15 +36,29 @@ namespace UI_Prototype.BUS
         static public bool createHDDangTuyen(SqlConnection conn, BUS_HDDangTuyen data)
         {
             bool result = false;
-
-            result = DAO_HDDangTuyen.createHDDangTuyen(conn, data);
-
+            if(data != null)
+            {
+                if (data.NgayBatDau > data.NgayKetThuc)
+                {
+                    result = false;
+                    throw new Exception("Ngày bắt đầu không được ở sau ngày kết thúc!");
+                }
+                else if (data.NgayBatDau < data.NgayLap)
+                {
+                    result = false;
+                    throw new Exception("Ngày bắt đầu không được ở trước ngày lập hợp đồng!");
+                }
+                else
+                {
+                    result = DAO_HDDangTuyen.createHDDangTuyen(conn, data);
+                }
+            }
             return result;
         }
 
-        static public void updateHDDangTuyen(SqlConnection conn, BUS_HDDangTuyen data)
+        static public bool updateHDDangTuyen(SqlConnection conn, BUS_HDDangTuyen data)
         {
-            DAO_HDDangTuyen.updateHDDangTuyen(conn, data);
+            return DAO_HDDangTuyen.updateHDDangTuyen(conn, data);
         }
     }
 }
