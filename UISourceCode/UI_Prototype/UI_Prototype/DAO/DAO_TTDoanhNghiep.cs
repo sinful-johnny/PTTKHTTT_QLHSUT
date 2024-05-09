@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Data;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Data;
 using System.Data.SqlClient;
+using UI_Prototype.BUS;
 
 namespace UI_Prototype.DAO
 {
@@ -41,5 +37,84 @@ namespace UI_Prototype.DAO
 
             return res;
         }
+        static public List<BUS_TTDoanhNghiep> getTTDoanhNghiep(SqlConnection conn)
+        {
+            var result = new List<BUS_TTDoanhNghiep>();
+            string query = """
+                SELECT * FROM DSDOANHNGHIEP;
+                """;
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var record = new BUS_TTDoanhNghiep();
+                        record.IDDoanhNghiep = (string)reader["ID_DOANHNGHIEP"];
+                        record.TenCongTy = reader["TEN_CONGTY"] != DBNull.Value ? (string)reader["TEN_CONGTY"] : null;
+                        record.NguoiDaiDien = reader["NGUOIDAIDIEN"] != DBNull.Value ? (string)reader["NGUOIDAIDIEN"] : null;
+                        record.DiaChi = reader["DIACHI"] != DBNull.Value ? (string)reader["DIACHI"] : null;
+                        record.Email = reader["EMAIL"] != DBNull.Value ? (string)reader["EMAIL"] : null;
+                        record.TinhTrangXacThuc = reader["TINHTRANG_XACTHUC"] != DBNull.Value ? (string)reader["TINHTRANG_XACTHUC"] : null;
+                        record.TiemNangDoanhNghiep = reader["TIEMNANG_DN"] != DBNull.Value ? (string)reader["TIEMNANG_DN"] : null;
+
+                        result.Add(record);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    conn.Close();
+                    throw new Exception(ex.ToString());
+                }
+            }
+            conn.Close();
+            return result;
+        }
+
+        static public List<BUS_TTDoanhNghiep> getByName(SqlConnection conn, string TenDN)
+            {
+                var result = new List<BUS_TTDoanhNghiep>();
+                string query = """
+                SELECT * FROM DSDOANHNGHIEP where CONTAINS (TEN_CONGTY,@Keyword);
+                """;
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                using (var cmd = new SqlCommand(query, conn))
+                {
+                    try
+                    {
+                        cmd.Parameters.Add("@Keyword", SqlDbType.NVarChar).Value = TenDN;
+
+                        var reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            var record = new BUS_TTDoanhNghiep();
+                            record.IDDoanhNghiep = (string)reader["ID_DOANHNGHIEP"];
+                            record.TenCongTy = reader["TEN_CONGTY"] != DBNull.Value ? (string)reader["TEN_CONGTY"] : null;
+                            record.NguoiDaiDien = reader["NGUOIDAIDIEN"] != DBNull.Value ? (string)reader["NGUOIDAIDIEN"] : null;
+                            record.DiaChi = reader["DIACHI"] != DBNull.Value ? (string)reader["DIACHI"] : null;
+                            record.Email = reader["EMAIL"] != DBNull.Value ? (string)reader["EMAIL"] : null;
+                            record.TinhTrangXacThuc = reader["TINHTRANG_XACTHUC"] != DBNull.Value ? (string)reader["TINHTRANG_XACTHUC"] : null;
+                            record.TiemNangDoanhNghiep = reader["TIEMNANG_DN"] != DBNull.Value ? (string)reader["TIEMNANG_DN"] : null;
+
+                            result.Add(record);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        conn.Close();
+                        throw new Exception(ex.ToString());
+                    }
+                }
+                conn.Close();
+                return result;
+            }
+        }
     }
-}

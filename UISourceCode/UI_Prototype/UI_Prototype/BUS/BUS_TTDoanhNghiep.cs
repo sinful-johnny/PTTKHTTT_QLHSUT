@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Data;
-using System.Windows;
-using System.Windows.Controls;
-using System.Data.SqlClient;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using UI_Prototype.DAO;
 using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UI_Prototype.DAO;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UI_Prototype.BUS
 {
@@ -23,6 +24,17 @@ namespace UI_Prototype.BUS
         public string? TiemNangDoanhNghiep { get; set; }
         public string? ChinhSachUuDai { get; set; }
 
+        static public List<BUS_TTDoanhNghiep> LoadData(SqlConnection conn)
+        {
+            return DAO_TTDoanhNghiep.getTTDoanhNghiep(conn);
+        }
+        static public List<BUS_TTDoanhNghiep> searchByName(SqlConnection conn,string TenDN)
+        {
+            if(TenDN == null || TenDN == "" || TenDN == " ") {  
+                return DAO_TTDoanhNghiep.getTTDoanhNghiep(conn);
+            }
+            return DAO_TTDoanhNghiep.getByName(conn, TenDN);
+        }
         public BindingList<BUS_TTDoanhNghiep> LoadDSDoanhNghiep(SqlConnection connection)
         {
             var result = new BindingList<BUS_TTDoanhNghiep>();

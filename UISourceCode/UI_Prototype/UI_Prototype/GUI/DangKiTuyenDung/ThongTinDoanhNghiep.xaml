@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UI_Prototype"
         mc:Ignorable="d"
         Title="Thông tin doanh nghiệp" Height="450" Width="800" Loaded="Window_Loaded">
-    <Grid>
+    <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
@@ -26,7 +26,7 @@
             <TextBox x:Name="SearchBox" Text="Tên doanh nghiệp" Width="250" Height="25" VerticalContentAlignment="Center"/>
             <Button x:Name="SearchButton" Content="Tìm" Height="25" Width="50" Click="SearchButton_Click"/>
         </StackPanel>
-        <DataGrid Grid.Row="1" IsReadOnly="True" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="TTDoanhNghiepDataGrid" SelectionChanged="TTDoanhNghiepDataGrid_SelectionChanged" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" SelectionMode="Single" IsReadOnly="True" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="TTDoanhNghiepDataGrid" SelectionChanged="TTDoanhNghiepDataGrid_SelectionChanged" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tên công ty" Binding="{Binding TenCongTy}"/>
                 <DataGridTextColumn Header="Người đại diện" Binding="{Binding NguoiDaiDien}"/>
@@ -51,7 +51,11 @@
                 Thông tin các hợp đồng của doanh nghiệp: <Run d:Text="Thọ Phát" Text="{Binding ElementName=TTDoanhNghiepDataGrid, Path=SelectedItem.TenCongTy}" FontWeight="Bold"/>
             </TextBlock>
         </StackPanel>
-        <DataGrid Grid.Row="3" d:ItemsSource="{d:SampleData ItemCount=5}" x:Name="HDTuyenDungDataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid Grid.Row="3" SelectionMode="Single" 
+                  d:ItemsSource="{d:SampleData ItemCount=5}" 
+                  x:Name="HDTuyenDungDataGrid" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Mã hợp đồng" Binding="{Binding IDHDDangTuyen}"/>
                 <DataGridTextColumn Header="Ngày lập" Binding="{Binding NgayLap}"/>
