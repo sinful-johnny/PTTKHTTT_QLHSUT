@@ -9,7 +9,7 @@ using UI_Prototype.DAO;
 
 namespace UI_Prototype.BUS
 {
-    public class BUS_ViTriTuyenDung : INotifyPropertyChanged
+    public class BUS_ViTriTuyenDung : INotifyPropertyChanged, ICloneable
     {
         public string? IDViTriUngTuyen  { get; set; }
         public string? TenViTri { get; set; }
@@ -23,6 +23,11 @@ namespace UI_Prototype.BUS
         static public List<BUS_ViTriTuyenDung> getViTriTuyenDung(SqlConnection conn, string IDHD)
         {
             return DAO_ViTriTuyenDung.getViTriTuyenDung(conn, IDHD);
+        }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
         }
     }
 }

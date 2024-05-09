@@ -20,14 +20,22 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
     /// </summary>
     public partial class ThemSuaViTriDangTuyen : Window
     {
-        BUS_ViTriTuyenDung _DataContext;
-        int _mode = 1;
+        internal class Mode
+        {
+            static public int Insert => 1;
+            static public int Update => 2;
+        }
+        public BUS_ViTriTuyenDung _originalData;
+        public BUS_ViTriTuyenDung _DataContext;
+        int _mode = Mode.Insert;
         public ThemSuaViTriDangTuyen(BUS_ViTriTuyenDung data)
         {
             InitializeComponent();
+            _originalData = (BUS_ViTriTuyenDung)data.Clone();
             _DataContext = data;
             IDViTriTextBox.IsEnabled = false;
             _mode = Mode.Update;
+            DataContext = _DataContext;
         }
         public ThemSuaViTriDangTuyen()
         {
@@ -35,10 +43,21 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             _DataContext = new BUS_ViTriTuyenDung();
             _mode = Mode.Update;
         }
-        internal class Mode
+        
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            static public int Insert => 1;
-            static public int Update => 2;
+            DialogResult = true;
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
+
+        private void YeuCauUngVienTextBlock_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
         }
     }
 }

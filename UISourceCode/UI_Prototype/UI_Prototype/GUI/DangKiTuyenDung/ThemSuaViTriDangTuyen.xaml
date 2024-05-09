@@ -19,6 +19,7 @@
             <TextBlock Text="THÔNG TIN VỊ TRÍ ĐĂNG TUYỂN" FontSize="17"/>
         </StackPanel>
 
+        <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="1"/>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <Grid Height="600" Width="500">
                 <Grid.RowDefinitions >
@@ -38,8 +39,8 @@
                 </StackPanel>
 
                 <StackPanel VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center">
-                    <Label Content="Tên doanh nghiệp: "/>
-                    <TextBox Text="{Binding TenDoanhNghiep}" x:Name="TenDoanhNghiepTextBox" Height="25" d:Text="ABC .Inc" VerticalContentAlignment="Center" Width="300"/>
+                    <Label Content="Tình trạng ứng tuyển: "/>
+                    <TextBox Text="{Binding TinhTrangUngTuyen}" x:Name="TenDoanhNghiepTextBox" Height="25" d:Text="Dang tuyen" VerticalContentAlignment="Center" Width="300"/>
                 </StackPanel>
 
                 <StackPanel VerticalAlignment="Center" Grid.Row="3" HorizontalAlignment="Center">
@@ -50,7 +51,11 @@
                 <StackPanel VerticalAlignment="Center"  Grid.Row="4" HorizontalAlignment="Center" >
                     <Label Content="Yêu cầu ứng viên: "/>
                     <Border BorderBrush="Black" BorderThickness="0.5">
-                        <TextBlock Text="{Binding YeuCauUngVien}"  x:Name="YeuCauUngVienTextBlock" d:Text="ABC .Inc" Width="300" Height="100" AllowDrop="True" ScrollViewer.CanContentScroll="True"/>
+                        <TextBox Text="{Binding YeuCauUngVien}" TextWrapping="Wrap" 
+                                 AcceptsReturn="True" x:Name="YeuCauUngVienTextBlock" 
+                                 d:Text="ABC .Inc" Width="300" Height="100" 
+                                 AllowDrop="True" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                 ScrollViewer.CanContentScroll="True"/>
                     </Border>
                 </StackPanel>
 
@@ -64,10 +69,10 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                <Button x:Name="CancelButton" Content="Huỷ" Width="80" Height="40" FontSize="14"/>
+                <Button x:Name="CancelButton" Content="Huỷ" Width="80" Height="40" FontSize="14" Click="CancelButton_Click"/>
             </StackPanel>
             <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                <Button x:Name="SaveButton" Content="Lưu" Width="80" Height="40" FontSize="14"/>
+                <Button x:Name="SaveButton" Content="Lưu" Width="80" Height="40" FontSize="14" Click="SaveButton_Click"/>
             </StackPanel>
         </Grid>
 

@@ -30,8 +30,10 @@
 
         <Border BorderBrush="Black" BorderThickness="0.5" Grid.Row="1"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
-            <Grid Height="400" x:Name="TTHDDangTuyenGrid">
+            <Grid Height="500" x:Name="TTHDDangTuyenGrid">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -40,26 +42,35 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel VerticalAlignment="Center" Grid.Row="0" HorizontalAlignment="Center">
+                    <Label Content="Mã hợp đồng:"/>
+                    <TextBox Text="{Binding IDHDDangTuyen}" x:Name="IDHDDangTuyenTextBox" d:Text="HD001" VerticalContentAlignment="Center" Width="300" Height="25"/>
+                </StackPanel>
+
+                <StackPanel VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Center">
                     <Label Content="Hình thức đăng tuyển:"/>
                     <TextBox Text="{Binding HinhThucDangTuyen}" x:Name="HinhThucDangTuyenTextBox" d:Text="Tờ rơi" VerticalContentAlignment="Center" Width="300" Height="25"/>
                 </StackPanel>
-                <StackPanel VerticalAlignment="Center" Grid.Row="1" HorizontalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center">
                     <Label Content="Thời gian bắt đầu đăng tuyển:"/>
                     <DatePicker Text="{Binding NgayBatDau}" x:Name="NgayBatDauDatePicker" d:Text="2024/5/9" VerticalContentAlignment="Center" Width="300" Height="25"/>
                 </StackPanel>
-                <StackPanel VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" Grid.Row="3" HorizontalAlignment="Center">
                     <Label Content="Thời gian kết thúc đăng tuyển:"/>
                     <DatePicker Text="{Binding NgayKetThuc}" x:Name="NgayKetThucDatePicker" d:Text="2024/5/9" VerticalContentAlignment="Center" Width="300" Height="25"/>
                 </StackPanel>
 
-                <StackPanel VerticalAlignment="Center" Grid.Row="3" HorizontalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" Grid.Row="4" HorizontalAlignment="Center">
                     <Label Content="Hình thức thanh toán:"/>
                     <ComboBox x:Name="HinhThucThanhToanComboBox" Text="{Binding HinhThucThanhToan}" VerticalContentAlignment="Center" Width="300" Height="25"/>
                 </StackPanel>
 
-                <StackPanel VerticalAlignment="Center" Grid.Row="4" HorizontalAlignment="Center">
+                <StackPanel VerticalAlignment="Center" Grid.Row="6" HorizontalAlignment="Center">
                     <Label Content="Giá trị hợp đồng:"/>
                     <TextBox Text="{Binding GiaTriHopDong}" x:Name="GiaTriHopDongTextBox" d:Text="10000000" VerticalContentAlignment="Center" Width="300" Height="25"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center" Grid.Row="5" HorizontalAlignment="Center">
+                    <Label Content="Tình trạng đăng tuyển:"/>
+                    <ComboBox Text="{Binding TinhTrangDangTuyen}" x:Name="TinhTrangDangTuyenComboBox" d:Text="10000000" VerticalContentAlignment="Center" Width="300" Height="25"/>
                 </StackPanel>
             </Grid>
         </ScrollViewer>

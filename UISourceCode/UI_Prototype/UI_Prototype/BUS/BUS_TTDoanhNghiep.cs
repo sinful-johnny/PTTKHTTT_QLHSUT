@@ -28,12 +28,12 @@ namespace UI_Prototype.BUS
         {
             return DAO_TTDoanhNghiep.getTTDoanhNghiep(conn);
         }
-        static public List<BUS_TTDoanhNghiep> searchByName(SqlConnection conn,string TenDN)
+        static public List<BUS_TTDoanhNghiep> searchByNameKeywords(SqlConnection conn,string TenDN)
         {
             if(TenDN == null || TenDN == "" || TenDN == " ") {  
                 return DAO_TTDoanhNghiep.getTTDoanhNghiep(conn);
             }
-            return DAO_TTDoanhNghiep.getByName(conn, TenDN);
+            return DAO_TTDoanhNghiep.getByNameKeywords(conn, TenDN);
         }
         public BindingList<BUS_TTDoanhNghiep> LoadDSDoanhNghiep(SqlConnection connection)
         {

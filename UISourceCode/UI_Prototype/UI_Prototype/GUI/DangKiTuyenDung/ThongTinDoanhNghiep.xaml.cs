@@ -31,9 +31,31 @@ namespace UI_Prototype
             _conn = connection;
         }
 
-        void LoadData()
+        async void LoadData()
         {
+            BUS_TTDoanhNghiep selectedDoanhNghiep = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
 
+            RootGrid.IsEnabled = false;
+            LoadingProgressBar.IsIndeterminate = false;
+            LoadingProgressBar.Value = 10;
+            await Task.Run(() => Thread.Sleep(10));
+            LoadingProgressBar.Value = 40;
+
+            if (selectedDoanhNghiep != null && selectedDoanhNghiep.IDDoanhNghiep != null)
+            {
+                await Task.Run(() => dataHDDangTuyen = BUS_HDDangTuyen.LoadHDTuyenDung(_conn, selectedDoanhNghiep.IDDoanhNghiep));
+
+                HDTuyenDungDataGrid.ItemsSource = dataHDDangTuyen;
+            }
+
+            await Task.Run(() => Thread.Sleep(25));
+            LoadingProgressBar.Value = 80;
+            await Task.Run(() => Thread.Sleep(50));
+            LoadingProgressBar.Value = 100;
+            await Task.Run(() => Thread.Sleep(25));
+
+            LoadingProgressBar.IsIndeterminate = true;
+            RootGrid.IsEnabled = true;
         }
 
         private void HDTuyenDungDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -76,7 +98,7 @@ namespace UI_Prototype
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string keyword = SearchBox.Text;
-            dataDoanhNghiep = BUS_TTDoanhNghiep.searchByName(_conn, keyword);
+            dataDoanhNghiep = BUS_TTDoanhNghiep.searchByNameKeywords(_conn, keyword);
             TTDoanhNghiepDataGrid.ItemsSource = dataDoanhNghiep;
         }
 
@@ -85,7 +107,7 @@ namespace UI_Prototype
             var selectedDoanhNghiep = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
             if(selectedDoanhNghiep != null && selectedDoanhNghiep.TenCongTy != null)
             {
-                var screen = new ThaoTacHDTuyenDung(_conn, selectedDoanhNghiep.TenCongTy);
+                var screen = new ThaoTacHDTuyenDung(_conn, selectedDoanhNghiep);
                 var result = screen.ShowDialog();
                 if (result == true)
                 {
@@ -99,9 +121,9 @@ namespace UI_Prototype
             var selectedHDTuyenDung = (BUS_HDDangTuyen)HDTuyenDungDataGrid.SelectedItem;
             var selectedDoanhNghiep = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
 
-            if (selectedDoanhNghiep != null && selectedDoanhNghiep.TenCongTy != null)
+            if (selectedHDTuyenDung != null && selectedDoanhNghiep != null && selectedDoanhNghiep.TenCongTy != null)
             {
-                var screen = new ThaoTacHDTuyenDung(_conn, selectedHDTuyenDung, selectedDoanhNghiep.TenCongTy);
+                var screen = new ThaoTacHDTuyenDung(_conn, selectedHDTuyenDung, selectedDoanhNghiep);
                 var result = screen.ShowDialog();
                 if (result == true)
                 {
