@@ -73,6 +73,7 @@ namespace UI_Prototype
         }
         private void LogOut_buttonClicked(object sender, RoutedEventArgs e)
         {
+            _connection.Close();
             this.Close();
         }
     }
