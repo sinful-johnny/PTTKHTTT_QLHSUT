@@ -57,6 +57,12 @@
                 <Setter Property="Foreground" Value="#fb6161"/>
             </Style>
 
+            <Style x:Key="verifyLable" TargetType="Label">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="Foreground" Value="#fb7154"/>
+                <Setter Property="Foreground" Value="#fb6161"/>
+            </Style>
+
             <Style x:Key="whiteBorder" TargetType="Border">
                 <Setter Property="Background" Value="#ffffff"/>
                 <Setter Property="CornerRadius" Value="15"/>

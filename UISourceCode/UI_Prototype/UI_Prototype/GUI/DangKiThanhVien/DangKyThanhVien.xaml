@@ -32,6 +32,12 @@
     Ngày lập: <Run Text="{Binding .}" d:Text="7/5/2024" FontWeight="Bold"/>
             </TextBlock>
         </StackPanel>
+        
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <Label Content="Chưa xác thực" Name="verifyLabel"
+                   Style="{StaticResource verifyLable}"/>
+        </StackPanel>
+        
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1">
             <Label Content="Tên công ty:" Name="TenCongTyLabel"/>
         </StackPanel>
@@ -49,19 +55,24 @@
         </StackPanel>
 
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="TenCongTyTextBox"/>
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" 
+                     x:Name="TenCongTyTextBox" TextChanged="TenCongTyTextBox_TextChanged"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" >
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="MaSoThueTextBox"/>
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" 
+                     x:Name="MaSoThueTextBox" TextChanged="MaSoThueTextBox_TextChanged"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="NguoiDaiDienTextBox"/>
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" 
+                     x:Name="NguoiDaiDienTextBox" TextChanged="NguoiDaiDienTextBox_TextChanged"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="DiaChiTextBox"/>
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" 
+                     x:Name="DiaChiTextBox" TextChanged="DiaChiTextBox_TextChanged"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="1">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="EmailTextBox"/>
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" 
+                     x:Name="EmailTextBox" TextChanged="EmailTextBox_TextChanged"/>
         </StackPanel>
 
         <Grid Grid.Row="6" Grid.ColumnSpan="2">

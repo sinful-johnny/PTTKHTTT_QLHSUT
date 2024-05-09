@@ -25,7 +25,7 @@ exec sp_NV_SearchTTDoanhNghiep N'TẬP ĐOÀN XĂNG DẦU VIỆT NAM'
 go
 
 --Proc NHANVIEN update TT Doanh Nghiep
-create or alter proc sp_KH_SuaTTDoanhNghiep
+create or alter proc sp_NV_SuaTTDoanhNghiep
 					@iddoanhnghiep varchar(5),
 					@tencongty nvarchar(100),
 					@idthue varchar(5),
@@ -35,53 +35,20 @@ create or alter proc sp_KH_SuaTTDoanhNghiep
 					@tinhtrangxacthuc nvarchar(50)
 as
 	begin tran
-		if	@tencongty is null
-		begin
-			update V_NV_QLDSTTDOANHNGHIEP
-			set TEN_CONGTY = @tencongty
+		update V_NV_QLDSTTDOANHNGHIEP
+			set TEN_CONGTY = @tencongty,
+				ID_THUE = @idthue,
+				NGUOIDAIDIEN = @nguoidaidien,
+				DIACHI = @diachi,
+				EMAIL = @email,
+				TINHTRANG_XACTHUC = @tinhtrangxacthuc
 			where ID_DOANHNGHIEP = @iddoanhnghiep
-		end
-
-		if	@idthue is null
-		begin
-			update V_NV_QLDSTTDOANHNGHIEP
-			set ID_THUE = @idthue
-			where ID_DOANHNGHIEP = @iddoanhnghiep
-		end
-
-		if	@nguoidaidien is null
-		begin
-			update V_NV_QLDSTTDOANHNGHIEP
-			set NGUOIDAIDIEN = @nguoidaidien
-			where ID_DOANHNGHIEP = @iddoanhnghiep
-		end
-
-		if	@diachi is null
-		begin
-			update V_NV_QLDSTTDOANHNGHIEP
-			set DIACHI = @diachi
-			where ID_DOANHNGHIEP = @iddoanhnghiep
-		end
-
-		if	@email is null
-		begin
-			update V_NV_QLDSTTDOANHNGHIEP
-			set EMAIL = @email
-			where ID_DOANHNGHIEP = @iddoanhnghiep
-		end
-
-		if	@tinhtrangxacthuc is null
-		begin
-			update V_NV_QLDSTTDOANHNGHIEP
-			set TINHTRANG_XACTHUC = @tinhtrangxacthuc
-			where ID_DOANHNGHIEP = @iddoanhnghiep
-		end
 
 	commit tran
 go
 
 --Proc NHANVIEN delete TT Doanh Nghiep
-create or alter proc sp_KH_XoaTTDoanhNghiep
+create or alter proc sp_NV_XoaTTDoanhNghiep
 					@iddoanhnghiep varchar(5)
 as
 	begin tran
@@ -101,12 +68,12 @@ GRANT EXECUTE ON OBJECT::sp_NV_SearchTTDoanhNghiep
 GO
 
 --Proc NHANVIEN update TT Doanh Nghiep
-GRANT EXECUTE ON OBJECT::sp_KH_SuaTTDoanhNghiep
+GRANT EXECUTE ON OBJECT::sp_NV_SuaTTDoanhNghiep
     TO NHANVIEN;  
 GO
 
 --Proc NHANVIEN delete TT Doanh Nghiep
-GRANT EXECUTE ON OBJECT::sp_KH_XoaTTDoanhNghiep
+GRANT EXECUTE ON OBJECT::sp_NV_XoaTTDoanhNghiep
     TO NHANVIEN;  
 GO
 

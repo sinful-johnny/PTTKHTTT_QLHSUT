@@ -39,10 +39,21 @@
             </StackPanel>
             
         </Grid>
-        
+
         <DataGrid Grid.Row="1" Grid.Column="0" d:ItemsSource="{d:SampleData ItemCount=10}" 
-                  x:Name="TTDoanhNghiepDataGrid" 
-                  SelectionChanged="TTDoanhNghiepDataGrid_SelectionChanged"/>
+                  x:Name="TTDoanhNghiepDataGrid">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <EventSetter Event="MouseDoubleClick" Handler="HienThiDNButton_Click"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Hiển thị thông tin" Click="HienThiDNButton_Click" x:Name="HienThiButton" />
+                    <MenuItem Header="Xóa thông tin" Click="XoaDNButton_Click" x:Name="XoaButton"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>

@@ -83,5 +83,17 @@ namespace UI_Prototype.BUS
             return result;
         }
 
+        public void deleteDNList(SqlConnection connection, List<string> IdDoanhNghiepList)
+        {
+            var daoTTDN = new DAO_TTDoanhNghiep();
+            daoTTDN.deleteTTDoanhNghiep(connection, IdDoanhNghiepList);
+        }
+
+        public void updateDNSelected(SqlConnection connection, BUS_TTDoanhNghiep dataDoanhNghiep)
+        {
+            var daoTTDN = new DAO_TTDoanhNghiep();
+            daoTTDN.updateTTDoanhNghiep(connection, dataDoanhNghiep);
+        }
+
     }
 }

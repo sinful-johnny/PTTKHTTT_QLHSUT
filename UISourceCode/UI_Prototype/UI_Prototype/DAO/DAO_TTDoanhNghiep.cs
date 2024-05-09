@@ -61,6 +61,7 @@ namespace UI_Prototype.DAO
 
             return res;
         }
+<<<<<<< Updated upstream
         static public List<BUS_TTDoanhNghiep> getTTDoanhNghiep(SqlConnection conn)
         {
             var result = new List<BUS_TTDoanhNghiep>();
@@ -140,5 +141,67 @@ namespace UI_Prototype.DAO
                 conn.Close();
                 return result;
             }
+=======
+
+        public void deleteTTDoanhNghiep(SqlConnection connection, List<string> IdDoanhNghiepList)
+        {
+            string sql = """
+                            exec sp_NV_XoaTTDoanhNghiep @IDDoanhNghiep
+                         """;
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            foreach (string IdDoanNghiep in IdDoanhNghiepList) 
+            {
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    //_connection.Open();
+                    command.Parameters.Add("@IDDoanhNghiep", SqlDbType.VarChar).Value = IdDoanNghiep;
+
+                    command.ExecuteNonQuery();
+                }
+            }
+            connection.Close();
+        }
+
+        public void updateTTDoanhNghiep(SqlConnection connection, BUS_TTDoanhNghiep dataDoanhNghiep)
+        {
+            string iddoanhnghiep = dataDoanhNghiep.IDDoanhNghiep;
+            string tencongty = dataDoanhNghiep.TenCongTy;
+            string idthue = dataDoanhNghiep.IDThue;
+            string nguoidaidien = dataDoanhNghiep.NguoiDaiDien;
+            string diachi = dataDoanhNghiep.DiaChi;
+            string email = dataDoanhNghiep.Email;
+            string tinhtrangxacthuc = dataDoanhNghiep.TinhTrangXacThuc;
+
+            string sql = """
+                            exec sp_NV_SuaTTDoanhNghiep @iddoanhnghiep,
+                                                        @tencongty,
+                                                        @idthue,
+                                                        @nguoidaidien,
+                                                        @diachi,
+                                                        @email,
+                                                        @tinhtrangxacthuc
+                         """;
+            if (connection.State == ConnectionState.Closed)
+            {
+                connection.Open();
+            }
+            using (var command = new SqlCommand(sql, connection))
+            {
+                //_connection.Open();
+                command.Parameters.Add("@iddoanhnghiep", SqlDbType.VarChar).Value = iddoanhnghiep;
+                command.Parameters.Add("@tencongty", SqlDbType.NVarChar).Value = tencongty;
+                command.Parameters.Add("@idthue", SqlDbType.VarChar).Value = idthue;
+                command.Parameters.Add("@nguoidaidien", SqlDbType.NVarChar).Value = nguoidaidien;
+                command.Parameters.Add("@diachi", SqlDbType.NVarChar).Value = diachi;
+                command.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+                command.Parameters.Add("@tinhtrangxacthuc", SqlDbType.NVarChar).Value = tinhtrangxacthuc;
+
+                command.ExecuteNonQuery();
+            }
+            connection.Close();
+>>>>>>> Stashed changes
         }
     }
