@@ -1,0 +1,56 @@
+﻿<Window x:Class="ContractRenewalApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Contract Renewal App" Height="600" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Grid.RowSpan="2">
+            <ListBox x:Name="TTDoanhNghiepListBox" ItemsSource="{Binding TTDoanhNghiepList}" SelectedItem="{Binding SelectedTTDoanhNghiep}" SelectionMode="Single"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="300"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="Thông tin chi tiết:"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" Multiline="True" IsReadOnly="True"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="Chính sách doanh nghiệp:"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" Multiline="True"/>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+
+            <ComboBox x:Name="PotentialTypeComboBox" Grid.Row="0" ItemsSource="{Binding PotentialTypeList}" SelectedItem="{Binding SelectedPotentialType}" DisplayMemberPath="Name"/>
+
+            <Button x:Name="RenewButton" Grid.Row="1" Content="Gia hạn" Click="RenewButton_Click"/>
+            <Button x:Name="DoNotRenewButton" Grid.Row="2" Content="Không gia hạn" Click="DoNotRenewButton_Click"/>
+        </Grid>
+    </Grid>
+</Window>
