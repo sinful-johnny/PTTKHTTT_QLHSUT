@@ -61,7 +61,6 @@ namespace UI_Prototype.DAO
 
             return res;
         }
-<<<<<<< Updated upstream
         static public List<BUS_TTDoanhNghiep> getTTDoanhNghiep(SqlConnection conn)
         {
             var result = new List<BUS_TTDoanhNghiep>();
@@ -102,46 +101,45 @@ namespace UI_Prototype.DAO
         }
 
         static public List<BUS_TTDoanhNghiep> getByNameKeywords(SqlConnection conn, string TenDN)
-            {
-                var result = new List<BUS_TTDoanhNghiep>();
-                string query = """
+        {
+            var result = new List<BUS_TTDoanhNghiep>();
+            string query = """
                 SELECT * FROM DS_DOANHNGHIEP where CONTAINS (TEN_CONGTY,@Keyword);
                 """;
-                if (conn.State == ConnectionState.Closed)
-                {
-                    conn.Open();
-                }
-                using (var cmd = new SqlCommand(query, conn))
-                {
-                    try
-                    {
-                        cmd.Parameters.Add("@Keyword", SqlDbType.NVarChar).Value = TenDN;
-
-                        var reader = cmd.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            var record = new BUS_TTDoanhNghiep();
-                            record.IDDoanhNghiep = (string)reader["ID_DOANHNGHIEP"];
-                            record.TenCongTy = reader["TEN_CONGTY"] != DBNull.Value ? (string)reader["TEN_CONGTY"] : null;
-                            record.NguoiDaiDien = reader["NGUOIDAIDIEN"] != DBNull.Value ? (string)reader["NGUOIDAIDIEN"] : null;
-                            record.DiaChi = reader["DIACHI"] != DBNull.Value ? (string)reader["DIACHI"] : null;
-                            record.Email = reader["EMAIL"] != DBNull.Value ? (string)reader["EMAIL"] : null;
-                            record.TinhTrangXacThuc = reader["TINHTRANG_XACTHUC"] != DBNull.Value ? (string)reader["TINHTRANG_XACTHUC"] : null;
-                            record.TiemNangDoanhNghiep = reader["TIEMNANG_DN"] != DBNull.Value ? (string)reader["TIEMNANG_DN"] : null;
-
-                            result.Add(record);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        conn.Close();
-                        throw new Exception(ex.ToString());
-                    }
-                }
-                conn.Close();
-                return result;
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
             }
-=======
+            using (var cmd = new SqlCommand(query, conn))
+            {
+                try
+                {
+                    cmd.Parameters.Add("@Keyword", SqlDbType.NVarChar).Value = TenDN;
+
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var record = new BUS_TTDoanhNghiep();
+                        record.IDDoanhNghiep = (string)reader["ID_DOANHNGHIEP"];
+                        record.TenCongTy = reader["TEN_CONGTY"] != DBNull.Value ? (string)reader["TEN_CONGTY"] : null;
+                        record.NguoiDaiDien = reader["NGUOIDAIDIEN"] != DBNull.Value ? (string)reader["NGUOIDAIDIEN"] : null;
+                        record.DiaChi = reader["DIACHI"] != DBNull.Value ? (string)reader["DIACHI"] : null;
+                        record.Email = reader["EMAIL"] != DBNull.Value ? (string)reader["EMAIL"] : null;
+                        record.TinhTrangXacThuc = reader["TINHTRANG_XACTHUC"] != DBNull.Value ? (string)reader["TINHTRANG_XACTHUC"] : null;
+                        record.TiemNangDoanhNghiep = reader["TIEMNANG_DN"] != DBNull.Value ? (string)reader["TIEMNANG_DN"] : null;
+
+                        result.Add(record);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    conn.Close();
+                    throw new Exception(ex.ToString());
+                }
+            }
+            conn.Close();
+            return result;
+        }
 
         public void deleteTTDoanhNghiep(SqlConnection connection, List<string> IdDoanhNghiepList)
         {
@@ -152,7 +150,7 @@ namespace UI_Prototype.DAO
             {
                 connection.Open();
             }
-            foreach (string IdDoanNghiep in IdDoanhNghiepList) 
+            foreach (string IdDoanNghiep in IdDoanhNghiepList)
             {
                 using (var command = new SqlCommand(sql, connection))
                 {
@@ -202,6 +200,6 @@ namespace UI_Prototype.DAO
                 command.ExecuteNonQuery();
             }
             connection.Close();
->>>>>>> Stashed changes
         }
     }
+}

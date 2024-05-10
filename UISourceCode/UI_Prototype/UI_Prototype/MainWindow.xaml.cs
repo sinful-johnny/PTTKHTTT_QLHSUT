@@ -90,7 +90,7 @@ namespace UI_Prototype
 
         private void DangKiTuyenDungButton_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new ThongTinDoanhNghiep();
+            var screen = new ThongTinDoanhNghiep(_connection);
             this.Hide();
             screen.ShowDialog();
             this.Show();
