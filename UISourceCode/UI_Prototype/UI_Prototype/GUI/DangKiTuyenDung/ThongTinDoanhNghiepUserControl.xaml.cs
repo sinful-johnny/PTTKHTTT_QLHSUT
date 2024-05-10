@@ -11,21 +11,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI_Prototype.BUS;
-using UI_Prototype.GUI.DangKiTuyenDung;
 
-namespace UI_Prototype
+namespace UI_Prototype.GUI.DangKiTuyenDung
 {
     /// <summary>
-    /// Interaction logic for ThongTinDoanhNghiep.xaml
+    /// Interaction logic for ThongTinDoanhNghiepUserControl.xaml
     /// </summary>
-    public partial class ThongTinDoanhNghiep : Window
+    public partial class ThongTinDoanhNghiepUserControl : UserControl
     {
         SqlConnection _conn;
         List<BUS_TTDoanhNghiep>? dataDoanhNghiep;
         List<BUS_HDDangTuyen>? dataHDDangTuyen;
-        public ThongTinDoanhNghiep(SqlConnection connection)
+        public ThongTinDoanhNghiepUserControl(SqlConnection connection)
         {
             InitializeComponent();
             _conn = connection;
@@ -46,11 +46,12 @@ namespace UI_Prototype
                 try
                 {
                     await Task.Run(() => dataHDDangTuyen = BUS_HDDangTuyen.LoadHDTuyenDung(_conn, selectedDoanhNghiep.IDDoanhNghiep));
-                }catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
+
 
                 HDTuyenDungDataGrid.ItemsSource = dataHDDangTuyen;
             }
@@ -90,8 +91,8 @@ namespace UI_Prototype
                 {
                     MessageBox.Show(ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
-                
+
+
                 HDTuyenDungDataGrid.ItemsSource = dataHDDangTuyen;
             }
 
@@ -115,9 +116,9 @@ namespace UI_Prototype
         private void TaoMoiHDButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedDoanhNghiep = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
-            if(selectedDoanhNghiep != null && selectedDoanhNghiep.TenCongTy != null)
+            if (selectedDoanhNghiep != null && selectedDoanhNghiep.TenCongTy != null)
             {
-                if(selectedDoanhNghiep.TinhTrangXacThuc != "Chua xac thuc")
+                if (selectedDoanhNghiep.TinhTrangXacThuc != "Chua xac thuc")
                 {
                     var screen = new ThaoTacHDTuyenDung(_conn, selectedDoanhNghiep);
                     var result = screen.ShowDialog();
@@ -128,7 +129,7 @@ namespace UI_Prototype
                 }
                 else
                 {
-                    MessageBox.Show("Doanh nghiệp chưa xác thực!","Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Doanh nghiệp chưa xác thực!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
