@@ -27,13 +27,13 @@
             <Label Content="CCCD:"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,70,0,0">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="TenCongTyTextBox"/>
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="HoTenTextBox"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,120,0,0" >
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="MaSoThueTextBox"/>
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="NgaySinhTextBox"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,171,0,0">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="NguoiDaiDienTextBox"/>
+            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="SDTTextBox"/>
         </StackPanel>
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,221,0,0">
             <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="DiaChiTextBox"/>
