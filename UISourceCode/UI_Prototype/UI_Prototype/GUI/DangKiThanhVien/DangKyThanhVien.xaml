@@ -28,9 +28,6 @@
             <TextBlock HorizontalAlignment="Center" x:Name="TenCTTextBlock">
     Mã doanh nghiệp: <Run Text="{Binding IDDoanhNghiep}" d:Text="ABC" FontWeight="Bold"/>
             </TextBlock>
-            <TextBlock HorizontalAlignment="Center" x:Name="NgayLapTextBlock">
-    Ngày lập: <Run Text="{Binding .}" d:Text="7/5/2024" FontWeight="Bold"/>
-            </TextBlock>
         </StackPanel>
         
         <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">

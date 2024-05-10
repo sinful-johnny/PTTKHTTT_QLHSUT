@@ -26,6 +26,7 @@ namespace UI_Prototype.GUI
         public XacThucDonDangKy(SqlConnection connection, BUS_TTDoanhNghiep dataDoanhNghiep)
         {
             InitializeComponent();
+
             _connection = connection;
             _dataDoanhNghiep = dataDoanhNghiep;
             TenCongTyTextBox.IsReadOnly = true;
@@ -33,6 +34,8 @@ namespace UI_Prototype.GUI
             NguoiDaiDienTextBox.IsReadOnly = true;
             DiaChiTextBox.IsReadOnly = true;
             EmailTextBox.IsReadOnly = true;
+
+            this.DataContext = dataDoanhNghiep;
         }
 
         private async void KhongHopLeButton_Click(object sender, RoutedEventArgs e)
