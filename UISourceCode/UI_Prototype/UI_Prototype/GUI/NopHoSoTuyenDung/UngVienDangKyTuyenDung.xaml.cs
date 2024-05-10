@@ -10,27 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using UI_Prototype.GUI.DangKiThanhVien;
 
 namespace UI_Prototype.GUI.NopHoSoTuyenDung
 {
     /// <summary>
-    /// Interaction logic for NopHoSoTuyenDung.xaml
+    /// Interaction logic for UngVienDangKyTuyenDung.xaml
     /// </summary>
-    public partial class NopHoSoTuyenDung : Window
+    public partial class UngVienDangKyTuyenDung : UserControl
     {
         private SqlConnection _connection;
-        public NopHoSoTuyenDung(SqlConnection con)
+        public UngVienDangKyTuyenDung(SqlConnection con)
         {
             InitializeComponent();
-
-        _connection = con;
+            _connection = con;
         }
-
-        private void HopLeButton_Click(object sender, RoutedEventArgs e)
+        private void DangKiButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var screen = new DSViTriUngTuyen(_connection);
+            var result = screen.ShowDialog();
         }
     }
 }
