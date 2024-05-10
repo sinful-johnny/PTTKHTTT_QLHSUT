@@ -1,39 +1,15 @@
-﻿<Fluent:RibbonWindow x:Class="UI_Prototype.MainWindow"
+﻿<Window x:Class="UI_Prototype.MainWindow"
         xmlns:Fluent="urn:fluent-ribbon"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_Prototype"
-        mc:Ignorable="d"
-        Height="465" Width="800" 
-        Loaded="RibbonWindow_Loaded" Closing="RibbonWindow_Closing">
-    <DockPanel LastChildFill="True">
-        <Fluent:Ribbon DockPanel.Dock="Top" x:Name="ribbon" Height="31">
-            <Fluent:Ribbon.Menu>
-                <Fluent:Backstage Header="Menu">
-                    <Fluent:BackstageTabControl>
-                        <Fluent:BackstageTabItem Header="Remember Last Accessed Tab Index">
-                            <StackPanel>
-                                <Button Content="Đăng kí tuyển dụng" Height="30" Width="150" x:Name="DangKiTuyenDungButton" Click="DangKiTuyenDungButton_Click"/>
-                                <Button Content="Duyệt hồ sơ" Height="30" Width="150" x:Name="DuyetHoSoButton" Click="DuyetHoSoButton_Click"/>
-                            </StackPanel>
-                        </Fluent:BackstageTabItem>
-                        <Fluent:BackstageTabItem Header="Log out">
-                            <Button Content="Log Out" Click="LogOut_buttonClicked"/>
-                        </Fluent:BackstageTabItem>
-                    </Fluent:BackstageTabControl>
-                </Fluent:Backstage>
-            </Fluent:Ribbon.Menu>
-
-            <Fluent:RibbonTabItem Header="Đăng ký thành viên"/>
-
-            <Fluent:RibbonTabItem Header="Đăng ký tuyển dụng"/>
-            
-        </Fluent:Ribbon>
-
-        <TabControl Name="tabs" BorderThickness="0"
-            SelectedIndex="{Binding ElementName=ribbon, Path=SelectedTabIndex}">
+        mc:Ignorable="d" Title="HỆ THỐNG QUẢN LÝ HỒ SƠ ỨNG TUYỂN CỦA CÔNG TY ABC"
+        Height="465" Width="800"
+        Loaded="Window_Loaded">
+    <Grid>
+        <TabControl Name="tabs" BorderThickness="0">
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
@@ -45,6 +21,5 @@
                 </Style>
             </TabControl.Resources>
         </TabControl>
-
-    </DockPanel>
-</Fluent:RibbonWindow>
+    </Grid>
+</Window>

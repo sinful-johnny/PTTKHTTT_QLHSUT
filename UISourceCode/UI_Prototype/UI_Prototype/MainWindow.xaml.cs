@@ -14,7 +14,7 @@ namespace UI_Prototype
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Fluent.RibbonWindow
+    public partial class MainWindow : Window
     {
         //public MainWindow()
         //{
@@ -36,12 +36,11 @@ namespace UI_Prototype
         }
 
 
-        private void RibbonWindow_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Hide();
             LoginScreen loginScreen = new LoginScreen();
             var result = loginScreen.ShowDialog();
-            int lastAccessedTabIndex = loginScreen.lastAccessedTabIndex;
             if (result == true)
             {
                 _connection = loginScreen._connection;
@@ -55,7 +54,7 @@ namespace UI_Prototype
             var screens = new ObservableCollection<TabItem>()
                 {
                     new TabItem() { Content = new DanhSachDNDangKy(_connection), Header= "Đăng ký thành viên"},
-                    //new TabItem() { Content = new ThongTinDoanhNghiep(), Header= "Đăng kí tuyển dụng"},
+                    //new TabItem() { Content = new ThongTinDoanhNghiep(_connection), Header= "Đăng kí tuyển dụng"},
                     //new TabItem() { Content = new QuyTrinhDuyetHoSoMainWindow(), Header= "Duyệt hồ sơ"},
                     //new TabItem() { Content = new ProductManagementScreen(_connection), Header= "Products"},
                     //new TabItem() {Content = new ManufacturerManagementUserControl(_connection), Header = "Manufacturer"},
@@ -64,21 +63,21 @@ namespace UI_Prototype
                     //new TabItem() {Content = new PromoManagementUserControl(_connection), Header = "Promotions"}
                 };
             tabs.ItemsSource = screens;
-            tabs.SelectedIndex = lastAccessedTabIndex;
+            tabs.SelectedIndex = 0;
         }
 
 
-        private void RibbonWindow_Closing(object sender, CancelEventArgs e)
-        {
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings["LastAccessedTabIndex"].Value = tabs.SelectedIndex.ToString();
-            config.Save(ConfigurationSaveMode.Minimal);
-        }
-        private void LogOut_buttonClicked(object sender, RoutedEventArgs e)
-        {
-            _connection.Close();
-            this.Close();
-        }
+        //private void RibbonWindow_Closing(object sender, CancelEventArgs e)
+        //{
+        //    var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        //    config.AppSettings.Settings["LastAccessedTabIndex"].Value = tabs.SelectedIndex.ToString();
+        //    config.Save(ConfigurationSaveMode.Minimal);
+        //}
+        //private void LogOut_buttonClicked(object sender, RoutedEventArgs e)
+        //{
+        //    _connection.Close();
+        //    this.Close();
+        //}
 
         private void DuyetHoSoButton_Click(object sender, RoutedEventArgs e)
         {

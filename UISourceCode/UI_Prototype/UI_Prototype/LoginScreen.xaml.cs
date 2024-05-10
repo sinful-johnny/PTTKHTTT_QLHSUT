@@ -17,8 +17,6 @@ namespace UI_Prototype
         {
             InitializeComponent();
         }
-
-        public int lastAccessedTabIndex = 0;
         public SqlConnection _connection;
         void Encrypt(string password, string username)
         {
@@ -45,7 +43,6 @@ namespace UI_Prototype
             string username = UsernameTextBox.Text;
             string server = ConfigurationManager.AppSettings["Server"];
             string Database = ConfigurationManager.AppSettings["Database"];
-            lastAccessedTabIndex = int.Parse(ConfigurationManager.AppSettings["LastAccessedTabIndex"]);
 
             string connectionString = $"""
                                               Server={server};
