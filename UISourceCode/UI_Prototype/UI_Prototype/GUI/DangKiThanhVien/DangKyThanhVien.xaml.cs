@@ -36,6 +36,8 @@ namespace UI_Prototype.GUI.DangKiThanhVien
             _newNguoiDaiDien = _dataDoanhNghiep.NguoiDaiDien;
             _newDiaChi = _dataDoanhNghiep.DiaChi;
             _newEmail = _dataDoanhNghiep.Email;
+
+            this.DataContext = dataDoanhNghiep;
         }                 
 
         private void HuyButton_Click(object sender, RoutedEventArgs e)
