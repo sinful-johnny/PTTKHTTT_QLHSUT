@@ -38,6 +38,27 @@ namespace UI_Prototype.GUI.DangKiThanhVien
             try
             {
                 var row = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
+
+
+                var screen = new DangKyThanhVien(_connection, row);
+                var result = screen.ShowDialog();
+                if (result == true)
+                {
+                    loadDataDN();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+        }
+
+        private void CapNhatDNButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var row = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
                 if (row.TinhTrangXacThuc != "Hợp lệ")
                 {
                     var screen = new DangKyThanhVien(_connection, row);

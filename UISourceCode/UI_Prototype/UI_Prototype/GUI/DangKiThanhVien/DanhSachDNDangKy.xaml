@@ -58,14 +58,21 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
-                <Button x:Name="XoaDNButton" Content="Xóa DN"
-                Width="147" Height="49" Click="XoaDNButton_Click"/>
-            </StackPanel>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0">
-                <Button x:Name="HienThiDNButton" Content="Hiển thị thông tin DN"
+                <Button x:Name="HienThiDNButton" Content="Xác thực thông tin DN"
                 Width="147" Height="49" Click="HienThiDNButton_Click"/>
+            </StackPanel>
+            
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1">
+                <Button x:Name="CapNhatDNButton" Content="Cập nhật thông tin DN"
+                Width="147" Height="49" Click="CapNhatDNButton_Click"/>
+            </StackPanel>
+            
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2">
+                <Button x:Name="XoaDNButton" Content="Xóa đơn đăng ký DN"
+                Width="147" Height="49" Click="XoaDNButton_Click"/>
             </StackPanel>
         </Grid>
 
