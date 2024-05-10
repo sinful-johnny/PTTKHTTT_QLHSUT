@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Drawing;
+using UI_Prototype.BUS;
+using UI_Prototype.DAO;
 
 namespace UI_Prototype.GUI.NopHoSoTuyenDung
 {
@@ -19,14 +23,21 @@ namespace UI_Prototype.GUI.NopHoSoTuyenDung
     /// </summary>
     public partial class DSViTriUngTuyen : Window
     {
-        public DSViTriUngTuyen()
+        private SqlConnection _connection;
+        public DSViTriUngTuyen(SqlConnection con)
         {
             InitializeComponent();
+            _connection = con;
         }
 
-        private void DangKiButton_Click(object sender, RoutedEventArgs e)
+        private void XemDSButton_Click(object sender, RoutedEventArgs e)
         {
-
+            DSVITRIUNGTUYENDataGrid.ItemsSource = BUS_DSVITRIUNGTUYEN.LoadData(_connection);
+        }
+        private void NopHoSoButton_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new NopHoSoTuyenDung(_connection);
+            var result = screen.ShowDialog();
         }
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
 
 namespace UI_Prototype.GUI.NopHoSoTuyenDung
 {
@@ -19,9 +20,12 @@ namespace UI_Prototype.GUI.NopHoSoTuyenDung
     /// </summary>
     public partial class NopHoSoTuyenDung : Window
     {
-        public NopHoSoTuyenDung()
+        private SqlConnection _connection;
+        public NopHoSoTuyenDung(SqlConnection con)
         {
             InitializeComponent();
+
+        _connection = con;
         }
 
         private void HopLeButton_Click(object sender, RoutedEventArgs e)

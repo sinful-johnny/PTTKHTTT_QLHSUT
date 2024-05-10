@@ -56,7 +56,7 @@ namespace UI_Prototype
             this.Show();
             var screens = new ObservableCollection<TabItem>()
                 {
-                    new TabItem() { Content = new DanhSachDNDangKy(_connection), Header= "Đăng ký thành viên"},
+                    //new TabItem() { Content = new DanhSachDNDangKy(_connection), Header= "Đăng ký thành viên"},
                     //new TabItem() { Content = new ThongTinDoanhNghiepUserControl(_connection), Header= "Đăng kí tuyển dụng"},
 
                     new TabItem() { Content = new UngVienDangKyTuyenDung(_connection), Header= "Đăng ký thành viên"},

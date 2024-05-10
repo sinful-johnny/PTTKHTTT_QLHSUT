@@ -13,8 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
-using System.Windows;
-using System.Windows.Controls;
+using UI_Prototype.GUI.DangKiThanhVien;
 
 namespace UI_Prototype.GUI.NopHoSoTuyenDung
 {
@@ -31,7 +30,8 @@ namespace UI_Prototype.GUI.NopHoSoTuyenDung
         }
         private void DangKiButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var screen = new DSViTriUngTuyen(_connection);
+            var result = screen.ShowDialog();
         }
     }
 }

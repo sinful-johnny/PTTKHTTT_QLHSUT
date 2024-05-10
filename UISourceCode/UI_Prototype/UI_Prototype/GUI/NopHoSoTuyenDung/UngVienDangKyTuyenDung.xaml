@@ -7,45 +7,43 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="Đăng kí ứng tuyển" Style="{StaticResource titleLable}" Margin="306,3,306,394"/>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,69,567,0">
-            <Label Content="Họ tên:"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,120,567,0">
-            <Label Content="Ngày sinh:"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,170,567,0">
-            <Label Content="Số điện thoại: "/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,221,567,0">
-            <Label Content="Địa chỉ:"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,271,567,0">
-            <Label Content="Email:"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,323,567,0">
-            <Label Content="CCCD:"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,70,0,0">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="HoTenTextBox"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,120,0,0" >
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="NgaySinhTextBox"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,171,0,0">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="SDTTextBox"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,221,0,0">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="DiaChiTextBox"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,272,0,0">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="EmailTextBox"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="263,323,0,0">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="CCCDTextBox"/>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Button x:Name="DangKiButton" Content="Đăng kí" 
-        FontSize="14" Click="DangKiButton_Click" Margin="350,370,350,24"/>
+        <Label Content="Đăng kí ứng tuyển" Style="{StaticResource titleLable}" Margin="0,3,0,10" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+
+
+        <Label Content="Họ tên:" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="1" Margin="0,5,5,5"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Width="400" Height="25" VerticalContentAlignment="Center" x:Name="HoTenTextBox" Margin="0,5,0,5"/>
+
+        <Label Content="Ngày sinh:" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="2" Margin="0,5,5,5"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Width="400" Height="25" VerticalContentAlignment="Center" x:Name="NgaySinhTextBox" Margin="0,5,0,5"/>
+
+        <Label Content="Số điện thoại:" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="3" Margin="0,5,5,5"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Width="400" Height="25" VerticalContentAlignment="Center" x:Name="SDTTextBox" Margin="0,5,0,5"/>
+
+        <Label Content="Địa chỉ:" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="4" Margin="0,5,5,5"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Width="400" Height="25" VerticalContentAlignment="Center" x:Name="DiaChiTextBox" Margin="0,5,0,5"/>
+
+        <Label Content="Email:" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="5" Margin="0,5,5,5"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Width="400" Height="25" VerticalContentAlignment="Center" x:Name="EmailTextBox" Margin="0,5,0,5"/>
+
+        <Label Content="CCCD:" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Row="6" Margin="0,5,5,5"/>
+        <TextBox Grid.Column="1" Grid.Row="6" Width="400" Height="25" VerticalContentAlignment="Center" x:Name="CCCDTextBox" Margin="0,5,0,5"/>
+
+        <Button x:Name="DangKiButton" Content="Đăng kí" FontSize="14" Click="DangKiButton_Click" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" Width="100"/>
+
     </Grid>
 </UserControl>
