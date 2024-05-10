@@ -10,16 +10,6 @@
         Loaded="Window_Loaded">
     <Grid>
         <TabControl Name="tabs" BorderThickness="0">
-            <TabControl.Resources>
-                <Style TargetType="TabItem">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="TabItem">
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </TabControl.Resources>
         </TabControl>
     </Grid>
 </Window>
