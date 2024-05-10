@@ -1,3 +1,6 @@
+use QLHSUT
+go
+
 INSERT INTO DS_DOANHNGHIEP (ID_DOANHNGHIEP,TEN_CONGTY,NGUOIDAIDIEN,DIACHI,EMAIL,TINHTRANG_XACTHUC)
 VALUES
   ('DN001','Nam Nulla Magna Corp.','Rylee Harrison','Ap #129-8060 Phasellus Rd.','libero.nec@icloud.edu','Chua xac thuc'),
@@ -9,7 +12,7 @@ VALUES
   ('DN007','Posuere Vulputate Lacus Ltd','Travis Thompson','Ap #431-3051 Libero St.','nulla.ante@outlook.net','Chua xac thuc'),
   ('DN008','Eu Neque LLP','Merrill Terrell','539-3364 Cursus Street','imperdiet.ullamcorper.duis@icloud.ca','Da xac thuc'),
   ('DN009','Vel Convallis In LLC','Clarke Villarreal','Ap #134-717 Id, St.','mollis@google.org','Da xac thuc');
-
+go
 --delete from DS_DOANHNGHIEP;
 
 INSERT INTO HOPDONG_DANGTUYEN (ID_HD_DANGTUYEN,ID_DOANHNGHIEP,NGAYBATDAU,NGAYKETTHUC,HINHTHUCDANGTUYEN,TINHTRANG_DANGTUYEN,HINHTHUC_THANHTOAN,NGAYLAP)

@@ -52,11 +52,11 @@
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center">
                     <Label Content="Thời gian bắt đầu đăng tuyển:"/>
-                    <DatePicker Text="{Binding NgayBatDau}" x:Name="NgayBatDauDatePicker" d:Text="2024/5/9" VerticalContentAlignment="Center" Width="300" Height="25"/>
+                    <DatePicker Text="{Binding NgayBatDau, UpdateSourceTrigger=PropertyChanged}" x:Name="NgayBatDauDatePicker" d:Text="2024/5/9" VerticalContentAlignment="Center" Width="300" Height="25"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Grid.Row="3" HorizontalAlignment="Center">
                     <Label Content="Thời gian kết thúc đăng tuyển:"/>
-                    <DatePicker Text="{Binding NgayKetThuc}" x:Name="NgayKetThucDatePicker" d:Text="2024/5/9" VerticalContentAlignment="Center" Width="300" Height="25"/>
+                    <DatePicker Text="{Binding NgayKetThuc, UpdateSourceTrigger=PropertyChanged}" x:Name="NgayKetThucDatePicker" d:Text="2024/5/9" VerticalContentAlignment="Center" Width="300" Height="25"/>
                 </StackPanel>
 
                 <StackPanel VerticalAlignment="Center" Grid.Row="4" HorizontalAlignment="Center">
@@ -66,7 +66,7 @@
 
                 <StackPanel VerticalAlignment="Center" Grid.Row="6" HorizontalAlignment="Center">
                     <Label Content="Giá trị hợp đồng:"/>
-                    <TextBox Text="{Binding SoTienCanTra, UpdateSourceTrigger=PropertyChanged}" x:Name="GiaTriHopDongTextBox" d:Text="10000000" VerticalContentAlignment="Center" Width="300" Height="25"/>
+                    <TextBox Text="{Binding TongSoTien, UpdateSourceTrigger=PropertyChanged}" x:Name="GiaTriHopDongTextBox" d:Text="10000000" VerticalContentAlignment="Center" Width="300" Height="25"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Grid.Row="5" HorizontalAlignment="Center">
                     <Label Content="Tình trạng đăng tuyển:"/>

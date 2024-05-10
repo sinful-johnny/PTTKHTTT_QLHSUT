@@ -90,11 +90,6 @@ namespace UI_Prototype
             RootGrid.IsEnabled = true;
         }
 
-        private void DangKiButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string keyword = SearchBox.Text;
@@ -107,12 +102,23 @@ namespace UI_Prototype
             var selectedDoanhNghiep = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
             if(selectedDoanhNghiep != null && selectedDoanhNghiep.TenCongTy != null)
             {
-                var screen = new ThaoTacHDTuyenDung(_conn, selectedDoanhNghiep);
-                var result = screen.ShowDialog();
-                if (result == true)
+                if(selectedDoanhNghiep.TinhTrangXacThuc != "Chua xac thuc")
                 {
-                    LoadData();
+                    var screen = new ThaoTacHDTuyenDung(_conn, selectedDoanhNghiep);
+                    var result = screen.ShowDialog();
+                    if (result == true)
+                    {
+                        LoadData();
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Doanh nghiệp chưa xác thực!","Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chọn một doanh nghiệp!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -123,25 +129,53 @@ namespace UI_Prototype
 
             if (selectedHDTuyenDung != null && selectedDoanhNghiep != null && selectedDoanhNghiep.TenCongTy != null)
             {
-                var screen = new ThaoTacHDTuyenDung(_conn, selectedHDTuyenDung, selectedDoanhNghiep);
-                var result = screen.ShowDialog();
-                if (result == true)
+                if (selectedDoanhNghiep.TinhTrangXacThuc != "Chua xac thuc")
                 {
-                    LoadData();
+                    var screen = new ThaoTacHDTuyenDung(_conn, selectedHDTuyenDung, selectedDoanhNghiep);
+                    var result = screen.ShowDialog();
+                    if (result == true)
+                    {
+                        LoadData();
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Doanh nghiệp chưa xác thực!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chọn một doanh nghiệp và hơp đồng để chỉnh sửa!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void ThanhToanButton_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new ThanhToan();
-            var result = screen.ShowDialog();
-            if (result == true)
+
+            var selectedHDTuyenDung = (BUS_HDDangTuyen)HDTuyenDungDataGrid.SelectedItem;
+            var selectedDoanhNghiep = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
+
+            if (selectedHDTuyenDung != null && selectedDoanhNghiep != null && selectedDoanhNghiep.TenCongTy != null)
             {
-                LoadData();
+                if (selectedDoanhNghiep.TinhTrangXacThuc == "Chua xac thuc")
+                {
+                    MessageBox.Show("Doanh nghiệp chưa xác thực!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    var screen = new ThanhToan(_conn, selectedHDTuyenDung, selectedDoanhNghiep.TenCongTy);
+                    var result = screen.ShowDialog();
+                    if (result == true)
+                    {
+                        LoadData();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chọn một doanh nghiệp và hợp đồng để thanh toán!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             RootGrid.IsEnabled = false;
@@ -161,6 +195,11 @@ namespace UI_Prototype
 
             LoadingProgressBar.IsIndeterminate = true;
             RootGrid.IsEnabled = true;
+        }
+
+        private void DangKiButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
