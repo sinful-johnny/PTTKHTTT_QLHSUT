@@ -10,6 +10,7 @@
         Loaded="Window_Loaded">
     <Grid>
         <TabControl Name="tabs" BorderThickness="0">
+
         </TabControl>
     </Grid>
 </Window>
