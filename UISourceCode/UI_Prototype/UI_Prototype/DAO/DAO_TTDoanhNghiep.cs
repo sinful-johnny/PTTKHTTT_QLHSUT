@@ -6,7 +6,7 @@ namespace UI_Prototype.DAO
 {
     class DAO_TTDoanhNghiep
     {
-        public DataTable getDSTTDoanhNghiep(SqlConnection connection)
+        static public DataTable getDSTTDoanhNghiep(SqlConnection connection)
         {
             DataTable dataTable = new DataTable();
 
@@ -33,7 +33,7 @@ namespace UI_Prototype.DAO
             return res;
         }
 
-        public DataTable getByName(SqlConnection connection, string searchName)
+        static public DataTable getByName(SqlConnection connection, string searchName)
         {
             DataTable dataTable = new DataTable();
 
@@ -141,7 +141,7 @@ namespace UI_Prototype.DAO
             return result;
         }
 
-        public void deleteTTDoanhNghiep(SqlConnection connection, List<string> IdDoanhNghiepList)
+        static public void deleteTTDoanhNghiep(SqlConnection connection, List<string> IdDoanhNghiepList)
         {
             string sql = """
                             exec sp_NV_XoaTTDoanhNghiep @IDDoanhNghiep
@@ -163,7 +163,7 @@ namespace UI_Prototype.DAO
             connection.Close();
         }
 
-        public void updateTTDoanhNghiep(SqlConnection connection, BUS_TTDoanhNghiep dataDoanhNghiep)
+       static public void updateTTDoanhNghiep(SqlConnection connection, BUS_TTDoanhNghiep dataDoanhNghiep)
         {
             string iddoanhnghiep = dataDoanhNghiep.IDDoanhNghiep;
             string tencongty = dataDoanhNghiep.TenCongTy;

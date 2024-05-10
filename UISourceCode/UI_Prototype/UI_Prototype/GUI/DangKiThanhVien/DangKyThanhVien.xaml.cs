@@ -38,24 +38,16 @@ namespace UI_Prototype.GUI.DangKiThanhVien
             _newEmail = _dataDoanhNghiep.Email;
         }                 
 
-        private void KhongHopLeButton_Click(object sender, RoutedEventArgs e)
+        private void HuyButton_Click(object sender, RoutedEventArgs e)
         {
-            string State = "Chưa hợp lệ";
-            var newdataDoanhNghiep = new BUS_TTDoanhNghiep();
-            newdataDoanhNghiep.IDDoanhNghiep = _idDoanhNghiep;
-            newdataDoanhNghiep.TenCongTy = _newTenCongTy;
-            newdataDoanhNghiep.IDThue = _newMaSoThue;
-            newdataDoanhNghiep.NguoiDaiDien = _newNguoiDaiDien;
-            newdataDoanhNghiep.DiaChi = _newDiaChi;
-            newdataDoanhNghiep.Email = _newEmail;
-            newdataDoanhNghiep.TinhTrangXacThuc = State;
-
-            var busTTDN = new BUS_TTDoanhNghiep();
-            busTTDN.updateDNSelected(_connection, newdataDoanhNghiep);
-            DialogResult = true;
+            MessageBox.Show($"Hủy cập nhật thông tin đăng ký cho doanh nghiệp {_newTenCongTy}!", 
+                "Hủy", MessageBoxButton.OK);
+            DialogResult = false;
+            this.Close();
+            
         }
 
-        private async void HopLeButton_Click(object sender, RoutedEventArgs e)
+        private async void CapNhatButton_Click(object sender, RoutedEventArgs e)
         {
 
             LoadingProgressBar.IsIndeterminate = false;
@@ -64,7 +56,6 @@ namespace UI_Prototype.GUI.DangKiThanhVien
             LoadingProgressBar.Value = 40;
             await Task.Run(() => {
 
-                string State = "Hợp lệ";
                 var newdataDoanhNghiep = new BUS_TTDoanhNghiep();
                 newdataDoanhNghiep.IDDoanhNghiep = _idDoanhNghiep;
                 newdataDoanhNghiep.TenCongTy = _newTenCongTy;
@@ -72,11 +63,10 @@ namespace UI_Prototype.GUI.DangKiThanhVien
                 newdataDoanhNghiep.NguoiDaiDien = _newNguoiDaiDien;
                 newdataDoanhNghiep.DiaChi = _newDiaChi;
                 newdataDoanhNghiep.Email = _newEmail;
-                newdataDoanhNghiep.TinhTrangXacThuc = State;
+                newdataDoanhNghiep.TinhTrangXacThuc = _dataDoanhNghiep.TinhTrangXacThuc;
 
 
-                var busTTDN = new BUS_TTDoanhNghiep();
-                busTTDN.updateDNSelected(_connection, newdataDoanhNghiep);
+                BUS_TTDoanhNghiep.updateDNSelected(_connection, newdataDoanhNghiep);
             });
             await Task.Run(() => Thread.Sleep(25));
             LoadingProgressBar.Value = 80;

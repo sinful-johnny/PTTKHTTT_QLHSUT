@@ -44,12 +44,13 @@
                   x:Name="TTDoanhNghiepDataGrid">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridCell}">
-                    <EventSetter Event="MouseDoubleClick" Handler="HienThiDNButton_Click"/>
+                    <EventSetter Event="MouseDoubleClick" Handler="CapNhatDNButton_Click"/>
                 </Style>
             </DataGrid.Resources>
             <DataGrid.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Hiển thị thông tin" Click="HienThiDNButton_Click" x:Name="HienThiButton" />
+                    <MenuItem Header="Xác thực thông tin" Click="HienThiDNButton_Click" x:Name="HienThiButton"/>
+                    <MenuItem Header="Cập nhật thông tin" Click="CapNhatDNButton_Click" x:Name="CapNhatButton"/>
                     <MenuItem Header="Xóa thông tin" Click="XoaDNButton_Click" x:Name="XoaButton"/>
                 </ContextMenu>
             </DataGrid.ContextMenu>
