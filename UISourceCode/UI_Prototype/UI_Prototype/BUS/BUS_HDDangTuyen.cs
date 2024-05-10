@@ -40,12 +40,10 @@ namespace UI_Prototype.BUS
             {
                 if (data.NgayBatDau > data.NgayKetThuc)
                 {
-                    result = false;
                     throw new Exception("Ngày bắt đầu không được ở sau ngày kết thúc!");
                 }
                 else if (data.NgayBatDau < data.NgayLap)
                 {
-                    result = false;
                     throw new Exception("Ngày bắt đầu không được ở trước ngày lập hợp đồng!");
                 }
                 else
@@ -58,7 +56,18 @@ namespace UI_Prototype.BUS
 
         static public bool updateHDDangTuyen(SqlConnection conn, BUS_HDDangTuyen data)
         {
-            return DAO_HDDangTuyen.updateHDDangTuyen(conn, data);
+            if (data.NgayBatDau > data.NgayKetThuc)
+            {
+                throw new Exception("Ngày bắt đầu không được ở sau ngày kết thúc!");
+            }
+            else if (data.NgayBatDau < data.NgayLap)
+            {
+                throw new Exception("Ngày bắt đầu không được ở trước ngày lập hợp đồng!");
+            }
+            else
+            {
+                return DAO_HDDangTuyen.updateHDDangTuyen(conn, data);
+            }
         }
     }
 }

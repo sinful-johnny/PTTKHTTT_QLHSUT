@@ -106,8 +106,8 @@ create table UNGVIEN_BANGCAP(
 );
 
 create table HOADON(
-	ID_HOADON varchar(255),
 	ID_HD_DANGTUYEN varchar(5) not null,
+	TONGSOTIEN int,
 	SOTIENCANTRA int,
 	SOTIENDATRA int,
 	NGAYLAP date,
@@ -115,7 +115,7 @@ create table HOADON(
 	DOT_THANHTOAN int,
 	TINHTRANG_THANHTOAN nvarchar(50)
 
-	constraint PK_HOADON primary key(ID_HOADON)
+	constraint PK_HOADON primary key(DOT_THANHTOAN,ID_HD_DANGTUYEN)
 	constraint FK_HOADON_HOPDONG_DANGTUYEN foreign key (ID_HD_DANGTUYEN) references HOPDONG_DANGTUYEN(ID_HD_DANGTUYEN)
 );
 
