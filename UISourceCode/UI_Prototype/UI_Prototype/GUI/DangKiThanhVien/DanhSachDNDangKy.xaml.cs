@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Windows.Input;
 using System.Data;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace UI_Prototype.GUI.DangKiThanhVien
 {
@@ -20,8 +21,7 @@ namespace UI_Prototype.GUI.DangKiThanhVien
         }
         private void loadDataDN()
         {
-            var busTTDN = new BUS_TTDoanhNghiep();
-            TTDoanhNghiepDataGrid.ItemsSource = busTTDN.LoadDSDoanhNghiep(_connection);
+            TTDoanhNghiepDataGrid.ItemsSource = BUS_TTDoanhNghiep.LoadDSDoanhNghiep(_connection);
             TTDoanhNghiepDataGrid.Columns[7].Visibility = Visibility.Collapsed;
             TTDoanhNghiepDataGrid.Columns[8].Visibility = Visibility.Collapsed;
         }
@@ -40,7 +40,7 @@ namespace UI_Prototype.GUI.DangKiThanhVien
                 var row = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
 
 
-                var screen = new DangKyThanhVien(_connection, row);
+                var screen = new XacThucDonDangKy(_connection, row);
                 var result = screen.ShowDialog();
                 if (result == true)
                 {
@@ -59,6 +59,11 @@ namespace UI_Prototype.GUI.DangKiThanhVien
             try
             {
                 var row = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
+                if (row.TinhTrangXacThuc == null)
+                {
+                    MessageBox.Show("Ô này trống không thể cập nhật", "Lỗi");
+                    return;
+                }
                 if (row.TinhTrangXacThuc != "Hợp lệ")
                 {
                     var screen = new DangKyThanhVien(_connection, row);
@@ -101,8 +106,7 @@ namespace UI_Prototype.GUI.DangKiThanhVien
                 //foreach (int indexSelectedItem in indexSelectedItems)
                 //        TTDoanhNghiepDataGrid.Items.RemoveAt(indexSelectedItem);
 
-                var busTTDN = new BUS_TTDoanhNghiep();
-                busTTDN.deleteDNList(_connection, IdDoanhNghiepList);
+                BUS_TTDoanhNghiep.deleteDNList(_connection, IdDoanhNghiepList);
                 loadDataDN();
 
                 // Clear selected items 
@@ -119,7 +123,9 @@ namespace UI_Prototype.GUI.DangKiThanhVien
             //textname from search textbox
             string searchName = SearchTextBox.Text;
 
-            loadDataDN();
+            TTDoanhNghiepDataGrid.ItemsSource = BUS_TTDoanhNghiep.searchByName(_connection, searchName);
+            TTDoanhNghiepDataGrid.Columns[7].Visibility = Visibility.Collapsed;
+            TTDoanhNghiepDataGrid.Columns[8].Visibility = Visibility.Collapsed;
         }
 
         void EnterClicked(object sender, KeyEventArgs e)
@@ -128,7 +134,9 @@ namespace UI_Prototype.GUI.DangKiThanhVien
             {
                 string searchName = SearchTextBox.Text;
 
-                loadDataDN();
+                TTDoanhNghiepDataGrid.ItemsSource = BUS_TTDoanhNghiep.searchByName(_connection, searchName);
+                TTDoanhNghiepDataGrid.Columns[7].Visibility = Visibility.Collapsed;
+                TTDoanhNghiepDataGrid.Columns[8].Visibility = Visibility.Collapsed;
 
                 e.Handled = true;
             }

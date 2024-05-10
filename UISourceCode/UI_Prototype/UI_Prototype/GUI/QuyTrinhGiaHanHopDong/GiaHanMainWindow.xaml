@@ -1,4 +1,4 @@
-﻿<Window x:Class="ContractRenewalApp.MainWindow"
+﻿<Window x:Class="UI_Prototype.GUI.QuyTrinhGiaHanHopDong.GiaHanMainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Contract Renewal App" Height="600" Width="1200">
@@ -26,7 +26,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0" Content="Thông tin chi tiết:"/>
-                <TextBox Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" Multiline="True" IsReadOnly="True"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True"/>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -36,7 +36,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0" Content="Chính sách doanh nghiệp:"/>
-                <TextBox Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" Multiline="True"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top"/>
             </Grid>
         </Grid>
 

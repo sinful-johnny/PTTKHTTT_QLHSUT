@@ -35,12 +35,11 @@ namespace UI_Prototype.BUS
             }
             return DAO_TTDoanhNghiep.getByNameKeywords(conn, TenDN);
         }
-        public BindingList<BUS_TTDoanhNghiep> LoadDSDoanhNghiep(SqlConnection connection)
+        static public BindingList<BUS_TTDoanhNghiep> LoadDSDoanhNghiep(SqlConnection connection)
         {
             var result = new BindingList<BUS_TTDoanhNghiep>();
 
-            var daoTTDN = new DAO_TTDoanhNghiep();
-            var dt = daoTTDN.getDSTTDoanhNghiep(connection);
+            var dt = DAO_TTDoanhNghiep.getDSTTDoanhNghiep(connection);
             foreach (DataRow row in dt.Rows)
             {
                 var newTTDN = new BUS_TTDoanhNghiep
@@ -59,12 +58,11 @@ namespace UI_Prototype.BUS
             return result;
         }
 
-        public BindingList<BUS_TTDoanhNghiep> searchByName(SqlConnection connection, string searchName)
+        static public BindingList<BUS_TTDoanhNghiep> searchByName(SqlConnection connection, string searchName)
         {
             var result = new BindingList<BUS_TTDoanhNghiep>();
 
-            var daoTTDN = new DAO_TTDoanhNghiep();
-            var dt = daoTTDN.getByName(connection, searchName);
+            var dt = DAO_TTDoanhNghiep.getByName(connection, searchName);
             foreach (DataRow row in dt.Rows)
             {
                 var newTTDN = new BUS_TTDoanhNghiep
@@ -83,16 +81,14 @@ namespace UI_Prototype.BUS
             return result;
         }
 
-        public void deleteDNList(SqlConnection connection, List<string> IdDoanhNghiepList)
+        static public void deleteDNList(SqlConnection connection, List<string> IdDoanhNghiepList)
         {
-            var daoTTDN = new DAO_TTDoanhNghiep();
-            daoTTDN.deleteTTDoanhNghiep(connection, IdDoanhNghiepList);
+            DAO_TTDoanhNghiep.deleteTTDoanhNghiep(connection, IdDoanhNghiepList);
         }
 
-        public void updateDNSelected(SqlConnection connection, BUS_TTDoanhNghiep dataDoanhNghiep)
+        static public void updateDNSelected(SqlConnection connection, BUS_TTDoanhNghiep dataDoanhNghiep)
         {
-            var daoTTDN = new DAO_TTDoanhNghiep();
-            daoTTDN.updateTTDoanhNghiep(connection, dataDoanhNghiep);
+            DAO_TTDoanhNghiep.updateTTDoanhNghiep(connection, dataDoanhNghiep);
         }
 
     }
