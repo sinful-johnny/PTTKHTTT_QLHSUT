@@ -9,17 +9,13 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Row for title -->
             <RowDefinition Height="*"/>
-            <!-- Row for DataGrid -->
             <RowDefinition Height="Auto"/>
-            <!-- Row for buttons -->
         </Grid.RowDefinitions>
+        <Button x:Name="HoSoDaNopButton" Content="Hồ sơ đã nộp" Width="90" Height="30" Click="HoSoDaNopButton_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,10,10"/>
 
-        <!-- Title -->
         <Label Content="Các vị trí ứng tuyển đang mở:" Margin="10,10,10,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-        <!-- DataGrid -->
         <DataGrid d:ItemsSource="{d:SampleData ItemCount=12}" x:Name="DSVITRIUNGTUYENDataGrid" Margin="10,0,10,0" Grid.Row="1"/>
 
         <!-- Nộp hồ sơ button -->

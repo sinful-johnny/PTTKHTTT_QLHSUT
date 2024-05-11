@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UI_Prototype.BUS;
+
 
 namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
 {
@@ -23,8 +25,8 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
     /// </summary>
     public partial class GiaHanMainWindow : Window
     {
-        private ObservableCollection<TTDoanhNghiep> tTDoanhNghiepList;
-        private TTDoanhNghiep selectedTTDoanhNghiep;
+        private ObservableCollection<BUS_TTDoanhNghiep> tTDoanhNghiepList;
+        private BUS_TTDoanhNghiep selectedTTDoanhNghiep;
         private List<PotentialType> potentialTypeList;
         private PotentialType selectedPotentialType;
         private SqlConnection _connection; // Assuming your connection object
@@ -55,16 +57,14 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
 
         private void LoadTTDoanhNghiepList()
         {
-            tTDoanhNghiepList = new ObservableCollection<TTDoanhNghiep>();
+            tTDoanhNghiepList = new ObservableCollection<BUS_TTDoanhNghiep>();
             var busTTDN = new BUS_TTDoanhNghiep();  // Create an instance of BUS_TTDoanhNghiep
 
             try
             {
-                // Call the LoadDSDoanhNghiep method from BUS_TTDoanhNghiep, passing the connection
-                List<TTDoanhNghiep> data = busTTDN.LoadDSDoanhNghiep(_connection)
-                                        .Where(x => x.TiemNangDoanhNghiep == "Đang xét duyệt")
-                                        .ToList(); ;
-                foreach (TTDoanhNghiep item in data)
+                // Call the new LoadDSDoanhNghiepByTiemNang method, passing connection and desired tiemNang value
+                List<BUS_TTDoanhNghiep> data = BUS_TTDoanhNghiep.LoadDSDoanhNghiepByTiemNang(_connection, "Đang xét duyệt");
+                foreach (var item in data)
                 {
                     tTDoanhNghiepList.Add(item);
                 }
@@ -75,28 +75,30 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
             }
         }
 
+
         private void UpdateDetails()
         {
             if (selectedTTDoanhNghiep != null)
             {
-                string details = $"Tên: {selectedTTDoanhNghiep.Ten}\nLoại hình: {selectedTTDoanhNghiep.LoaiHinh}\nTiềm năng: {selectedTTDoanhNghiep.TiềmNang}";
+                string details = $"Tên: {selectedTTDoanhNghiep.TenCongTy}\nID Thuế: {selectedTTDoanhNghiep.IDThue}\nNgười đại diện: {selectedTTDoanhNghiep.NguoiDaiDien}\nĐịa chỉ: {selectedTTDoanhNghiep.DiaChi}\nEmail: {selectedTTDoanhNghiep.Email}\nTình trạng xác thực: {selectedTTDoanhNghiep.TinhTrangXacThuc}\nTềm năng: {selectedTTDoanhNghiep.TiemNangDoanhNghiep}";
                 (FindName("DetailsTextBox") as TextBox).Text = details;
             }
         }
 
         private void RenewButton_Click(object sender, RoutedEventArgs e)
         {
+            BUS_TTDoanhNghiep selectedTTDoanhNghiep = (BUS_TTDoanhNghiep)TTDoanhNghiepListBox.SelectedItem;
             if (selectedTTDoanhNghiep != null)
             {
                 // Update selectedTTDoanhNghiep properties with new potential type and policy (assuming these are bound to UI controls)
-                selectedTTDoanhNghiep.TiemNang = (PotentialTypeComboBox.SelectedItem as PotentialType).Name;
+                selectedTTDoanhNghiep.TiemNangDoanhNghiep = (PotentialTypeComboBox.SelectedItem as PotentialType).Name;
                 selectedTTDoanhNghiep.ChinhSachUuDai = (FindName("PolicyTextBox") as TextBox)?.Text; // Assuming PolicyTextBox is bound to ChinhSachUuDai property
 
                 // Call BUS_TTDoanhNghiep method to update the database with the modified TTDoanhNghiep object
                 var busTTDN = new BUS_TTDoanhNghiep();
                 try
                 {
-                    busTTDN.updateDNSelected(_connection, selectedTTDoanhNghiep);
+                    BUS_TTDoanhNghiep.updateDNSelected(_connection, selectedTTDoanhNghiep);
                     MessageBox.Show("Cập nhật thành công!"); // Show success message
                 }
                 catch (Exception ex)
@@ -105,22 +107,12 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
                 }
             }
         }
+        private void DoNotRenewButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         // Implement RenewButton_Click and DoNotRenewButton_Click logic as needed
-    }
-
-    public class TTDoanhNghiep
-    {
-        public string Ten { get; set; }
-        public string LoaiHinh { get; set; }
-        public string TiềmNang { get; set; }
-
-        public TTDoanhNghiep(string ten, string loaiHinh, string tiềmNang)
-        {
-            Ten = ten;
-            LoaiHinh = loaiHinh;
-            TiềmNang = tiềmNang;
-        }
     }
 
     public class PotentialType
@@ -132,5 +124,4 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
             Name = name;
         }
     }
-    
 }

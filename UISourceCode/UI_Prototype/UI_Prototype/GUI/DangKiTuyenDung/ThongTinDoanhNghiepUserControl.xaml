@@ -41,9 +41,6 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0">
-                <Button x:Name="DangKiButton" Content="Đăng kí DN" Width="90" Height="30" Click="DangKiButton_Click"/>
-            </StackPanel>
         </Grid>
 
         <StackPanel Grid.Row="2" VerticalAlignment="Center">

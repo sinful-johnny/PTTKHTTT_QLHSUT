@@ -82,11 +82,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border BorderBrush="Black" BorderThickness="0.5" Grid.RowSpan="3"/>
-            <Label Content="Danh sách vị trí ứng tuyển" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Label Content="Danh sách vị trí tuyển dụng" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
             <DataGrid x:Name="MainDataGrid" Grid.Row="2" IsReadOnly="True" SelectionMode="Single" AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID vị trí ứng tuyển" Binding="{Binding IDViTriUngTuyen}"/>
+                    <DataGridTextColumn Header="ID vị trí tuyển dụng" Binding="{Binding IDViTriUngTuyen}"/>
                     <DataGridTextColumn Header="Tên vị trí" Binding="{Binding TenViTri}"/>
                     <DataGridTextColumn Header="Tình trạng ứng tuyển" Binding="{Binding TinhTrangUngTuyen}"/>
                     <DataGridTextColumn Header="Số lượng tuyển" Binding="{Binding SoLuongTuyen}"/>

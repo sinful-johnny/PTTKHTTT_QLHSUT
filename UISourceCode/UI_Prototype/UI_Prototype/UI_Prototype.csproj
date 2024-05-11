@@ -9,13 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="GUI\QuyTrinhGiaHanHopDong\**" />
-    <EmbeddedResource Remove="GUI\QuyTrinhGiaHanHopDong\**" />
-    <None Remove="GUI\QuyTrinhGiaHanHopDong\**" />
-    <Page Remove="GUI\QuyTrinhGiaHanHopDong\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Fluent.Ribbon" Version="10.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
     <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />

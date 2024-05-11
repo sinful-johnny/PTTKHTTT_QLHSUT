@@ -36,6 +36,7 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             IDViTriTextBox.IsEnabled = false;
             _mode = Mode.Update;
             DataContext = _DataContext;
+            this.Title = "Sửa vị trí tuyển dụng";
         }
         public ThemSuaViTriDangTuyen()
         {
@@ -43,6 +44,7 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             _DataContext = new BUS_ViTriTuyenDung();
             _mode = Mode.Update;
             DataContext = _DataContext;
+            this.Title = "Thêm vị trí tuyển dụng";
         }
         
 

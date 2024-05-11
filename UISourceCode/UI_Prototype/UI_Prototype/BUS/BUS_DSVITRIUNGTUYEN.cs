@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace UI_Prototype.BUS
 {
-    internal class BUS_DSVITRIUNGTUYEN
+    class BUS_DSVITRIUNGTUYEN
     {
         public string? ID_VITRIUNGTUYEN { get; set; }
         public string? TENVITRI { get; set; }
@@ -21,5 +21,6 @@ namespace UI_Prototype.BUS
         {
             return DAO_DSViTriUngTuyen.getDSVITRIUNGTUYEN(conn);
         }
+
     }
 }

@@ -41,9 +41,9 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0">
-                <Button x:Name="DangKiButton" Content="Đăng kí DN" Width="90" Height="30" Click="DangKiButton_Click"/>
-            </StackPanel>
+            <Button x:Name="DangNhapButton" Content="Đăng nhập" Width="90" Height="30" Click="DangNhapButton_Click"/>
+            <Button x:Name="CanGiaHanButton" Content="Cần gia hạn" Width="90" Height="30" HorizontalAlignment="Left" Margin="50,10,0,0" Grid.Row="1" VerticalAlignment="Top" Click="CanGiaHanButton_Click"/>
+
         </Grid>
 
         <StackPanel Grid.Row="2" VerticalAlignment="Center">
@@ -73,6 +73,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0">
                 <Button x:Name="TaoMoiHDButton" Content="Tạo HD" Width="90" Height="30" Click="TaoMoiHDButton_Click"/>
             </StackPanel>

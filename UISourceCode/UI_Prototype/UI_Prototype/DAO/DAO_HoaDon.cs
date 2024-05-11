@@ -16,8 +16,8 @@ namespace UI_Prototype.DAO
             bool result = true;
 
             string query = """
-                    INSERT INTO HOADON (ID_HD_DANGTUYEN,NGAYLAP,TONGSOTIEN,SOTIENCANTRA,SOTIENDATRA,SOLAN_THANHTOAN,DOT_THANHTOAN,TINHTRANG_THANHTOAN)
-                    VALUES (@idhddangtuyen,@ngaylap,@tongsotien,@sotiencantra,0,0,0,'Chua thanh toan');
+                    INSERT INTO HOADON (ID_HD_DANGTUYEN,NGAYLAP,NGAYBATDAUTHANHTOAN,TONGSOTIEN,SOTIENCANTRA,SOTIENDATRA,SOLAN_THANHTOAN,DOT_THANHTOAN,TINHTRANG_THANHTOAN)
+                    VALUES (@idhddangtuyen,@ngaylap,@ngaybatdau,@tongsotien,@sotiencantra,0,0,0,'Chua thanh toan');
                 """;
             if (conn.State == ConnectionState.Closed)
             {
@@ -29,6 +29,7 @@ namespace UI_Prototype.DAO
                 {
                     cmd.Parameters.Add("@idhddangtuyen", SqlDbType.VarChar).Value = IDHDDangTuyen;
                     cmd.Parameters.Add("@ngaylap", SqlDbType.Date).Value = DateTime.Now;
+                    cmd.Parameters.Add("@ngaybatdau", SqlDbType.Date).Value = DateTime.Now;
                     cmd.Parameters.Add("@sotiencantra", SqlDbType.Int).Value = soTienCanTra;
                     cmd.Parameters.Add("@tongsotien", SqlDbType.Int).Value = soTienCanTra;
 
@@ -81,6 +82,7 @@ namespace UI_Prototype.DAO
                         record.SoLanThanhToan = reader["SOLAN_THANHTOAN"] != DBNull.Value ? (int)reader["SOLAN_THANHTOAN"] : 0;
                         record.DotThanhToan = reader["DOT_THANHTOAN"] != DBNull.Value ? (int)reader["DOT_THANHTOAN"] : 0;
                         record.TinhTrangThanhToan = reader["TINHTRANG_THANHTOAN"] != DBNull.Value ? (string)reader["TINHTRANG_THANHTOAN"] : null;
+                        record.NgayBatDauThanhToan = reader["NGAYBATDAUTHANHTOAN"] != DBNull.Value ? (DateTime)reader["NGAYBATDAUTHANHTOAN"] : new DateTime();
                     }
                     result = record;
                 }
@@ -99,9 +101,8 @@ namespace UI_Prototype.DAO
             bool result = true;
 
             string query = """
-                    INSERT INTO HOADON (ID_HD_DANGTUYEN,NGAYLAP,TONGSOTIEN,SOTIENCANTRA,SOTIENDATRA,SOLAN_THANHTOAN,DOT_THANHTOAN,TINHTRANG_THANHTOAN)
-                    VALUES (@idhddangtuyen,@ngaylap,@tongsotien,@sotiencantra,@sotiendatra,@solanthanhtoan,@dotthanhtoan,@tinhtrangthanhtoan);
-                    UPDATE HOADON SET SOLAN_THANHTOAN = @solanthanhtoan where ID_HD_DANGTUYEN = @idhddangtuyen;
+                    INSERT INTO HOADON (ID_HD_DANGTUYEN,NGAYLAP,NGAYBATDAUTHANHTOAN,TONGSOTIEN,SOTIENCANTRA,SOTIENDATRA,SOLAN_THANHTOAN,DOT_THANHTOAN,TINHTRANG_THANHTOAN)
+                    VALUES (@idhddangtuyen,@ngaylap,@ngaybatdau,@tongsotien,@sotiencantra,@sotiendatra,@solanthanhtoan,@dotthanhtoan,@tinhtrangthanhtoan);
                 """;
             if (conn.State == ConnectionState.Closed)
             {
@@ -119,6 +120,7 @@ namespace UI_Prototype.DAO
                     cmd.Parameters.Add("@dotthanhtoan", SqlDbType.Int).Value = hoaDon.DotThanhToan;
                     cmd.Parameters.Add("@sotiendatra", SqlDbType.Int).Value = hoaDon.SoTienDaTra;
                     cmd.Parameters.Add("@tinhtrangthanhtoan", SqlDbType.NVarChar).Value = hoaDon.TinhTrangThanhToan;
+                    cmd.Parameters.Add("@ngaybatdau", SqlDbType.Date).Value = hoaDon.NgayBatDauThanhToan;
 
 
                     var count = cmd.ExecuteNonQuery();
