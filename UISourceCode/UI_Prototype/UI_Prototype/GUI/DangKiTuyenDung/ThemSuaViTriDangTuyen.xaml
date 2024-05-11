@@ -40,7 +40,7 @@
 
                 <StackPanel VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Center">
                     <Label Content="Tình trạng ứng tuyển: "/>
-                    <TextBox Text="{Binding TinhTrangUngTuyen}" x:Name="TenDoanhNghiepTextBox" Height="25" d:Text="Dang tuyen" VerticalContentAlignment="Center" Width="300"/>
+                    <TextBox Text="{Binding TinhTrangUngTuyen}" x:Name="TinhTrangUngTuyenTextBox" Height="25" d:Text="Dang tuyen" VerticalContentAlignment="Center" Width="300"/>
                 </StackPanel>
 
                 <StackPanel VerticalAlignment="Center" Grid.Row="3" HorizontalAlignment="Center">
@@ -52,7 +52,7 @@
                     <Label Content="Yêu cầu ứng viên: "/>
                     <Border BorderBrush="Black" BorderThickness="0.5">
                         <TextBox Text="{Binding YeuCauUngVien}" TextWrapping="Wrap" 
-                                 AcceptsReturn="True" x:Name="YeuCauUngVienTextBlock" 
+                                 AcceptsReturn="True" x:Name="YeuCauUngVienTextBox" 
                                  d:Text="ABC .Inc" Width="300" Height="100" 
                                  AllowDrop="True" ScrollViewer.VerticalScrollBarVisibility="Auto"
                                  ScrollViewer.CanContentScroll="True"/>

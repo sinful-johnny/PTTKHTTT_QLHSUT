@@ -72,6 +72,8 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             MainDataGrid.ItemsSource = _dataViTriTuyenDung;
             TinhTrangDangTuyenComboBox.ItemsSource = TinhTrangDangTuyenOptions;
             GiaTriHopDongTextBox.DataContext = _dataHoaDon;
+
+            this.Title = "Thêm hợp đồng tuyển dụng";
         }
 
         public ThaoTacHDTuyenDung(SqlConnection conn, BUS_HDDangTuyen data, BUS_TTDoanhNghiep CTY)
@@ -136,6 +138,8 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
 
             GiaTriHopDongTextBox.IsEnabled = false;
             IDHDDangTuyenTextBox.IsEnabled = false;
+
+            this.Title = "Chỉnh sửa hợp đồng tuyển dụng";
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

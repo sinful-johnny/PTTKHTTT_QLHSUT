@@ -70,6 +70,10 @@ namespace UI_Prototype
                 MessageBox.Show("Thanh toán thành công!", "Thành công", MessageBoxButton.OK);
                 DialogResult = true;
             }
+            else
+            {
+                MessageBox.Show("Hợp đồng không có thông tin hoá đơn!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

@@ -16,7 +16,8 @@ namespace UI_Prototype.BUS
         public int SoTienCanTra { get; set; }
 
         public int SoTienDaTra { get; set; }
-        public DateTime? NgayLap { get; set; }
+        public DateTime NgayLap { get; set; }
+        public DateTime NgayBatDauThanhToan { get; set; }
         public int SoLanThanhToan { get; set; }
         public int DotThanhToan { get; set; }
         public string? TinhTrangThanhToan { get; set; }
@@ -66,46 +67,20 @@ namespace UI_Prototype.BUS
 
         static public bool ThanhToanHoaDon(SqlConnection conn, BUS_HoaDon hoaDon, BUS_HDDangTuyen hDDangTuyen)
         {
-            bool result = true;
-
-            if(hoaDon.TinhTrangThanhToan == "Da thanh toan")
-            {
-                throw new Exception("Không thể thanh toán hoá đơn đã được thanh toán xong!");
-            }
-
-            if(hoaDon.SoTienCanTra < hoaDon.SoTienDaTra)
-            {
-                throw new Exception("Số tiền đã trả lớn hơn số tiền cần trả!");
-            }
-
             hoaDon.SoTienCanTra -= hoaDon.SoTienDaTra;
 
-            if(hoaDon.SoTienCanTra == 0)
+            KiemTraTTHoaDon(hoaDon, hDDangTuyen);
+
+            if (hoaDon.SoTienCanTra == 0)
             {
                 hoaDon.TinhTrangThanhToan = "Da thanh toan";
-            }else if(hoaDon.SoTienCanTra > 0)
+            }
+            else if (hoaDon.SoTienCanTra > 0)
             {
                 hoaDon.TinhTrangThanhToan = "Chua thanh toan xong";
             }
 
-            if(hDDangTuyen.HinhThucThanhToan == "Thanh toan nhieu lan" && hoaDon.SoTienDaTra < (hoaDon.TongSoTien * 30 / 100))
-            {
-                throw new Exception("Số tiền đã trả không được nhỏ hơn 30% tổng giá trị hợp đồng!");
-            }else if (hDDangTuyen.HinhThucThanhToan == "Thanh toan mot lan" && hoaDon.SoTienDaTra < hoaDon.TongSoTien)
-            {
-                throw new Exception("Chưa đủ số tiền thanh toán một lần!");
-            }
-
-            TimeSpan? v = (DateTime.Now - hoaDon.NgayLap);
-            if (v != null)
-            {
-                TimeSpan interval = (TimeSpan)v;
-                if (interval.Days > 10)
-                {
-                    throw new Exception("Đã quá hạn 10 ngày thanh toán!");
-                }
-            }
-
+            bool result;
             try
             {
                 result = DAO_HoaDon.ThanhToanHoaDon(conn, hoaDon);
@@ -117,12 +92,45 @@ namespace UI_Prototype.BUS
                 {
                     result = DAO_HoaDon.updateHoaDon(conn, hoaDon);
                 }
-            }catch
+            }
+            catch
             {
                 throw;
             }
 
             return result;
+        }
+
+        private static void KiemTraTTHoaDon(BUS_HoaDon hoaDon, BUS_HDDangTuyen hDDangTuyen)
+        {
+            if (hoaDon.TinhTrangThanhToan == "Da thanh toan")
+            {
+                throw new Exception("Không thể thanh toán hoá đơn đã được thanh toán xong!");
+            }
+
+            if (hoaDon.SoTienCanTra < hoaDon.SoTienDaTra)
+            {
+                throw new Exception("Số tiền đã trả lớn hơn số tiền cần trả!");
+            }
+
+            if (hDDangTuyen.HinhThucThanhToan == "Thanh toan nhieu lan" && hoaDon.SoTienDaTra < (hoaDon.TongSoTien * 30 / 100) && hoaDon.SoTienCanTra > (hoaDon.TongSoTien * 30 / 100))
+            {
+                throw new Exception("Số tiền đã trả không được nhỏ hơn 30% tổng giá trị hợp đồng!");
+            }
+            else if (hDDangTuyen.HinhThucThanhToan == "Thanh toan mot lan" && hoaDon.SoTienDaTra < hoaDon.TongSoTien)
+            {
+                throw new Exception("Chưa đủ số tiền thanh toán một lần!");
+            }
+
+            TimeSpan? v = (DateTime.Now - hoaDon.NgayBatDauThanhToan);
+            if (v != null)
+            {
+                TimeSpan interval = (TimeSpan)v;
+                if (interval.Days > 10)
+                {
+                    throw new Exception("Đã quá hạn 10 ngày thanh toán!");
+                }
+            }
         }
     }
 }
