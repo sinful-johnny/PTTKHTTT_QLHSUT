@@ -19,15 +19,15 @@
         </TextBlock>
 
         <Label Content="ID Vị trí ứng tuyển:" Grid.Row="0" Margin="10,70,0,0" VerticalAlignment="Center"/>
-        <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="TenCongTyTextBox" Grid.Row="0" Margin="10,70,0,0"/>
+        <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="IdViTriTextBox" Grid.Row="0" Margin="10,70,0,0"/>
 
         <Label Content="Tên chứng từ:" Grid.Row="1" Margin="10,20,0,0" VerticalAlignment="Center"/>
-        <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="MaSoThueTextBox" Grid.Row="1" Margin="10,20,0,0"/>
+        <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="TenChungTuTextBox" Grid.Row="1" Margin="10,20,0,0"/>
 
         <Label Content="Tên bằng cấp:" Grid.Row="2" Margin="10,20,0,0" VerticalAlignment="Center"/>
-        <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="NguoiDaiDienTextBox" Grid.Row="2" Margin="10,20,0,0"/>
+        <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="TenBangCapTextBox" Grid.Row="2" Margin="10,20,0,0"/>
 
-        <Button x:Name="NopHoSoButton" Content="Nộp hồ sơ" FontSize="14" Click="HopLeButton_Click" Grid.Row="3" Margin="10,20,0,0" HorizontalAlignment="Center" Height="30"/>
+        <Button x:Name="NopHoSoButton" Content="Nộp hồ sơ" FontSize="14" Click="NopHoSoTuyenDungButton_Click" Grid.Row="3" Margin="10,20,0,0" HorizontalAlignment="Center" Height="30"/>
 
     </Grid>
 </Window>

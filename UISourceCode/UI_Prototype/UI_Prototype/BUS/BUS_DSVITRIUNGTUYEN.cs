@@ -21,5 +21,6 @@ namespace UI_Prototype.BUS
         {
             return DAO_DSViTriUngTuyen.getDSVITRIUNGTUYEN(conn);
         }
+
     }
 }

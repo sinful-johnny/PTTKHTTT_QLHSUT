@@ -18,26 +18,51 @@ using UI_Prototype.DAO;
 
 namespace UI_Prototype.GUI.NopHoSoTuyenDung
 {
-    /// <summary>
-    /// Interaction logic for DSViTriUngTuyen.xaml
-    /// </summary>
     public partial class DSViTriUngTuyen : Window
     {
         private SqlConnection _connection;
-        public DSViTriUngTuyen(SqlConnection con)
+        private string idUV;
+        public DSViTriUngTuyen(SqlConnection con, string idUV)
         {
             InitializeComponent();
             _connection = con;
+            this.idUV = idUV;
+            try
+            {
+                DSVITRIUNGTUYENDataGrid.ItemsSource = BUS_DSVITRIUNGTUYEN.LoadData(_connection);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void XemDSButton_Click(object sender, RoutedEventArgs e)
         {
-            DSVITRIUNGTUYENDataGrid.ItemsSource = BUS_DSVITRIUNGTUYEN.LoadData(_connection);
+            try
+            {
+                DSVITRIUNGTUYENDataGrid.ItemsSource = BUS_DSVITRIUNGTUYEN.LoadData(_connection);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void NopHoSoButton_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new NopHoSoTuyenDung(_connection);
+            var screen = new NopHoSoTuyenDung(_connection,idUV);
             var result = screen.ShowDialog();
+        }
+        private void HoSoDaNopButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DSVITRIUNGTUYENDataGrid.ItemsSource = BUS_DSPhieuDangKyUngTuyen.HoSoDaNop(_connection,idUV);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

@@ -17,9 +17,9 @@ namespace UI_Prototype.BUS
         public string? SDT { get; set; }
         public string? EMAIL { get; set; }
         public string? CCCD { get; set; }
-        static public void DangKiUngVien(SqlConnection connection, BUS_UngVienDangKyTuyenDung dataUngvien)
+        static public string DangKiUngVien(SqlConnection connection, BUS_UngVienDangKyTuyenDung dataUngvien)
         {
-            DAO_UngVienDangKyTuyenDung.DangKiUngVien(connection, dataUngvien);
+            return DAO_UngVienDangKyTuyenDung.DangKiUngVien(connection, dataUngvien);
         }
     }
 }

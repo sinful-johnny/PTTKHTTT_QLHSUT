@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using UI_Prototype.GUI.DangKiThanhVien;
 using UI_Prototype.BUS;
+using System.Globalization;
 
 namespace UI_Prototype.GUI.NopHoSoTuyenDung
 {
@@ -34,98 +35,55 @@ namespace UI_Prototype.GUI.NopHoSoTuyenDung
         }
         private async void DangKiButton_Click(object sender, RoutedEventArgs e)
         {
-            await Task.Run(() => {
+            _HoTenTextBox = HoTenTextBox.Text;
+            _NgaySinhTextBox = NgaySinhTextBox.Text;
+            _SDTTextBox = SDTTextBox.Text;
+            _DiaChiTextBox = DiaChiTextBox.Text;
+            _EmailTextBox = EmailTextBox.Text;
+            _CCCDTextBox = CCCDTextBox.Text;
 
-                var newdataDoanhNghiep = new BUS_UngVienDangKyTuyenDung();
-                newdataDoanhNghiep.HOTEN = _HoTenTextBox;
-                newdataDoanhNghiep.NGAYSINH = _NgaySinhTextBox;
-                newdataDoanhNghiep.SDT = _SDTTextBox;
-                newdataDoanhNghiep.DIACHI = _DiaChiTextBox;
-                newdataDoanhNghiep.EMAIL = _EmailTextBox;
-                newdataDoanhNghiep.CCCD = _CCCDTextBox;
+            string idUV = "error";
+            try
+            {
+                await Task.Run(() =>
+                {
+                    var newdataDoanhNghiep = new BUS_UngVienDangKyTuyenDung();
+                    newdataDoanhNghiep.HOTEN = _HoTenTextBox;
+                    DateTime ngaySinh;
+                    if (DateTime.TryParseExact(_NgaySinhTextBox, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out ngaySinh))
+                    {
+                        newdataDoanhNghiep.NGAYSINH = ngaySinh;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid date format. Please enter date in the format yyyy-MM-dd.");
+                        return;
+                    }
+                    newdataDoanhNghiep.SDT = _SDTTextBox;
+                    newdataDoanhNghiep.DIACHI = _DiaChiTextBox;
+                    newdataDoanhNghiep.EMAIL = _EmailTextBox;
+                    newdataDoanhNghiep.CCCD = _CCCDTextBox;
 
 
-                BUS_UngVienDangKyTuyenDung.DangKiUngVien(_connection, newdataDoanhNghiep);
-            });
+                    idUV = BUS_UngVienDangKyTuyenDung.DangKiUngVien(_connection, newdataDoanhNghiep);
+                    MessageBox.Show(idUV);
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            var screen = new DSViTriUngTuyen(_connection, idUV);
+            var result = screen.ShowDialog();
 
-            var screen = new DSViTriUngTuyen(_connection);
+
+        }
+
+        private void DaDangKiButton_Click(object sender, RoutedEventArgs e)
+        {
+            var screen = new DSViTriUngTuyen(_connection, "UV028");
             var result = screen.ShowDialog();
         }
-        private void HoTenTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                _HoTenTextBox = HoTenTextBox.Text;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Input Wrong format", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-        }
-
-        private void NgaySinhTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                _NgaySinhTextBox = NgaySinhTextBox.Text;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Input Wrong format", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-        }
-
-        private void SDTTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                _SDTTextBox = SDTTextBox.Text;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Input Wrong format", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-        }
-
-        private void DiaChiTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                _DiaChiTextBox = DiaChiTextBox.Text;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Input Wrong format", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-        }
-
-        private void EmailTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                _EmailTextBox = EmailTextBox.Text;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Input Wrong format", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-        }
-        private void CCCDTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                _CCCDTextBox = CCCDTextBox.Text;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Input Wrong format", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-        }
     }
-}
+ }
+
