@@ -57,17 +57,9 @@ namespace UI_Prototype
             var screens = new ObservableCollection<TabItem>()
                 {
                     new TabItem() { Content = new DanhSachDNDangKy(_connection), Header= "Đăng ký thành viên"},
-                    //new TabItem() { Content = new ThongTinDoanhNghiepUserControl(_connection), Header= "Đăng kí tuyển dụng"},
-
+                    new TabItem() { Content = new ThongTinDoanhNghiepUserControl(_connection), Header= "Đăng kí tuyển dụng"},
                     new TabItem() { Content = new UngVienDangKyTuyenDung(_connection), Header= "Đăng ký ứng viên"},
-                    //new TabItem() { Content = new ThongTinDoanhNghiep(_connection), Header= "Đăng kí tuyển dụng"},
-
                     //new TabItem() { Content = new QuyTrinhDuyetHoSoMainWindow(), Header= "Duyệt hồ sơ"},
-                    //new TabItem() { Content = new ProductManagementScreen(_connection), Header= "Products"},
-                    //new TabItem() {Content = new ManufacturerManagementUserControl(_connection), Header = "Manufacturer"},
-                    //new TabItem() {Content = new PhoneOrder(_connection), Header = "Order"} ,
-                    //new TabItem() {Content = new CustomerManagementUserControl(_connection), Header = "Customers"},
-                    //new TabItem() {Content = new PromoManagementUserControl(_connection), Header = "Promotions"}
                 };
             tabs.ItemsSource = screens;
             tabs.SelectedIndex = 0;
