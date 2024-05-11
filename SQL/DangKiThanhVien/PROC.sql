@@ -1,4 +1,11 @@
-﻿--Proc NHANVIEN view DS Doanh Nghiep
+﻿use QLHSUT
+go
+
+--Drop PROCEDURE sp_NV_XemDSDoanhNghiep if exist
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_NV_XemDSDoanhNghiep')
+	DROP PROCEDURE sp_NV_XemDSDoanhNghiep;
+GO
+--Proc NHANVIEN view DS Doanh Nghiep
 create or alter proc sp_NV_XemDSDoanhNghiep
 as
 	begin tran
@@ -7,6 +14,10 @@ as
 	commit tran
 go
 
+--Drop PROCEDURE sp_NV_SearchTTDoanhNghiep if exist
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_NV_SearchTTDoanhNghiep')
+	DROP PROCEDURE sp_NV_SearchTTDoanhNghiep;
+GO
 --Proc NHANVIEN search TT Doanh Nghiep
 create or alter proc sp_NV_SearchTTDoanhNghiep
 					@tencongty nvarchar(100)
@@ -18,12 +29,10 @@ as
 	commit tran
 go
 
-exec sp_NV_XemDSDoanhNghiep
-go
-
-exec sp_NV_SearchTTDoanhNghiep N'TẬP ĐOÀN XĂNG DẦU VIỆT NAM'
-go
-
+--Drop PROCEDURE sp_NV_SuaTTDoanhNghiep if exist
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_NV_SuaTTDoanhNghiep')
+	DROP PROCEDURE sp_NV_SuaTTDoanhNghiep;
+GO
 --Proc NHANVIEN update TT Doanh Nghiep
 create or alter proc sp_NV_SuaTTDoanhNghiep
 					@iddoanhnghiep varchar(5),
@@ -47,6 +56,10 @@ as
 	commit tran
 go
 
+--Drop PROCEDURE sp_NV_XoaTTDoanhNghiep if exist
+IF EXISTS (SELECT * FROM sys.objects WHERE type = 'P' AND name = 'sp_NV_XoaTTDoanhNghiep')
+	DROP PROCEDURE sp_NV_XoaTTDoanhNghiep;
+GO
 --Proc NHANVIEN delete TT Doanh Nghiep
 create or alter proc sp_NV_XoaTTDoanhNghiep
 					@iddoanhnghiep varchar(5)
@@ -76,5 +89,3 @@ GO
 GRANT EXECUTE ON OBJECT::sp_NV_XoaTTDoanhNghiep
     TO NHANVIEN;  
 GO
-
-exec sp_NV_XemDSDoanhNghiep;

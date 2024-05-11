@@ -39,14 +39,19 @@ namespace UI_Prototype.GUI.DangKiThanhVien
             {
                 var row = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
 
-
-                var screen = new XacThucDonDangKy(_connection, row);
-                var result = screen.ShowDialog();
-                if (result == true)
+                if (row.TinhTrangXacThuc != "Hợp lệ")
                 {
-                    loadDataDN();
+                    var screen = new XacThucDonDangKy(_connection, row);
+                    var result = screen.ShowDialog();
+                    if (result == true)
+                    {
+                        loadDataDN();
+                    }
                 }
-
+                else
+                {
+                    MessageBox.Show("Thông tin doanh nghiệp này đã hợp lệ nên không được xác thực nữa", "Thông báo");
+                }
             }
             catch (Exception ex)
             {
@@ -90,6 +95,7 @@ namespace UI_Prototype.GUI.DangKiThanhVien
             try
             {
                 //List<int> indexSelectedItems = new List<int>();
+
                 BUS_TTDoanhNghiep row = new BUS_TTDoanhNghiep();
                 List<string> IdDoanhNghiepList = new List<string>();
                 if (TTDoanhNghiepDataGrid.SelectedIndex >= 0)
@@ -97,10 +103,17 @@ namespace UI_Prototype.GUI.DangKiThanhVien
                     for (int i = 0; i < TTDoanhNghiepDataGrid.SelectedItems.Count; i++)
                     {
                         row = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItems[i];
-                        //indexSelectedItems.Add(TTDoanhNghiepDataGrid.SelectedItems.IndexOf(row));
-                        //TTDoanhNghiepDataGrid.Items.Remove(row);
-                        string IDDoanhNghiep = row.IDDoanhNghiep;
-                        IdDoanhNghiepList.Add(IDDoanhNghiep);
+                        if (row.TinhTrangXacThuc != "Hợp lệ")
+                        {
+                            //indexSelectedItems.Add(TTDoanhNghiepDataGrid.SelectedItems.IndexOf(row));
+                            //TTDoanhNghiepDataGrid.Items.Remove(row);
+                            string IDDoanhNghiep = row.IDDoanhNghiep;
+                            IdDoanhNghiepList.Add(IDDoanhNghiep);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Thông tin doanh nghiệp {row.IDDoanhNghiep} đã hợp lệ nên không được xóa", "Thông báo");
+                        }
                     }
                 }
                 //foreach (int indexSelectedItem in indexSelectedItems)

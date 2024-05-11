@@ -10,7 +10,7 @@ go
 create table DS_DOANHNGHIEP(
 	ID_DOANHNGHIEP varchar(5),
 	TEN_CONGTY nvarchar(100),
-	ID_THUE varchar(5),
+	ID_THUE varchar(15),
 	NGUOIDAIDIEN nvarchar(50),
 	DIACHI nvarchar(200),
 	EMAIL nvarchar(50),
