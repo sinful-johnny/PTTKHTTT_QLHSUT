@@ -61,10 +61,8 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
 
             try
             {
-                // Call the LoadDSDoanhNghiep method from BUS_TTDoanhNghiep, passing the connection
-                List<TTDoanhNghiep> data = busTTDN.LoadDSDoanhNghiep(_connection)
-                                        .Where(x => x.TiemNangDoanhNghiep == "Đang xét duyệt")
-                                        .ToList(); ;
+                // Call the new LoadDSDoanhNghiepByTiemNang method, passing connection and desired tiemNang value
+                List<TTDoanhNghiep> data = busTTDN.LoadDSDoanhNghiepByTiemNang(_connection, "Đang xét duyệt");
                 foreach (TTDoanhNghiep item in data)
                 {
                     tTDoanhNghiepList.Add(item);
@@ -80,7 +78,7 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
         {
             if (selectedTTDoanhNghiep != null)
             {
-                string details = $"Tên: {selectedTTDoanhNghiep.Ten}\nLoại hình: {selectedTTDoanhNghiep.LoaiHinh}\nTiềm năng: {selectedTTDoanhNghiep.TiềmNang}";
+                string details = $"Tên: {selectedTTDoanhNghiep.TenCongTy}\nID Thuế: {selectedTTDoanhNghiep.IDThue}\nNgười đại diện: {selectedTTDoanhNghiep.NguoiDaiDien}\nĐịa chỉ: {selectedTTDoanhNghiep.DiaChi}\nEmail: {selectedTTDoanhNghiep.Email}\nTình trạng xác thực: {selectedTTDoanhNghiep.TinhTrangXacThuc}\nTềm năng: {selectedTTDoanhNghiep.TiemNangDoanhNghiep}";
                 (FindName("DetailsTextBox") as TextBox).Text = details;
             }
         }
@@ -89,11 +87,11 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
         {
             if (selectedTTDoanhNghiep != null)
             {
-                // Update selectedTTDoanhNghiep properties with new potential type and policy (assuming these are bound to UI controls)
-                selectedTTDoanhNghiep.TiemNang = (PotentialTypeComboBox.SelectedItem as PotentialType).Name;
-                selectedTTDoanhNghiep.ChinhSachUuDai = (FindName("PolicyTextBox") as TextBox)?.Text; // Assuming PolicyTextBox is bound to ChinhSachUuDai property
+                // Assuming PotentialTypeComboBox and PolicyTextBox are UI controls bound to corresponding properties
+                selectedTTDoanhNghiep.TiemNangDoanhNghiep = (PotentialTypeComboBox.SelectedItem as PotentialType).Name; // Update potential based on selected item in combobox
+                selectedTTDoanhNghiep.ChinhSachUuDai = (FindName("PolicyTextBox") as TextBox)?.Text; // Update policy based on textbox content
 
-                // Call BUS_TTDoanhNghiep method to update the database with the modified TTDoanhNghiep object
+                // Call BUS_TTDoanhNghiep method to update the database
                 var busTTDN = new BUS_TTDoanhNghiep();
                 try
                 {
@@ -108,30 +106,6 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
         }
 
         // Implement RenewButton_Click and DoNotRenewButton_Click logic as needed
-    }
-
-    public class TTDoanhNghiep
-    {
-        public string Ten { get; set; }
-        public string LoaiHinh { get; set; }
-        public string TiềmNang { get; set; }
-
-        public TTDoanhNghiep(string ten, string loaiHinh, string tiềmNang)
-        {
-            Ten = ten;
-            LoaiHinh = loaiHinh;
-            TiềmNang = tiềmNang;
-        }
-    }
-
-    public class PotentialType
-    {
-        public string Name { get; set; }
-
-        public PotentialType(string name)
-        {
-            Name = name;
-        }
     }
     
 }

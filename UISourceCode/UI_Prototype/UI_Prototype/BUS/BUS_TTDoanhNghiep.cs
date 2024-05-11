@@ -91,5 +91,10 @@ namespace UI_Prototype.BUS
             DAO_TTDoanhNghiep.updateTTDoanhNghiep(connection, dataDoanhNghiep);
         }
 
+        public static List<BUS_TTDoanhNghiep> LoadDSDoanhNghiepByTiemNang(SqlConnection connection, string tiemNang)
+        {
+            return DAO_TTDoanhNghiep.LoadDSDoanhNghiepByTiemNang(connection, tiemNang);
+        }
+
     }
 }

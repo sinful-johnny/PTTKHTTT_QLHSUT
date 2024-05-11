@@ -234,7 +234,8 @@ namespace UI_Prototype
             {
                 try
                 {
-                    BUS_TTDoanhNghiep.UpdateTiemNangDoanhNghiep(_conn, selectedDoanhNghiep.IDDoanhNghiep, "Đang xét duyệt");
+                    selectedDoanhNghiep.TiemNangDoanhNghiep = "Đang xét duyệt";
+                    BUS_TTDoanhNghiep.updateDNSelected(_conn, selectedDoanhNghiep);
                     MessageBox.Show("Đã cập nhật trạng thái cần gia hạn cho doanh nghiệp " + selectedDoanhNghiep.TenCongTy, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
