@@ -10,7 +10,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid Grid.Column="0" Grid.RowSpan="2">
-            <ListBox x:Name="TTDoanhNghiepListBox" ItemsSource="{Binding TTDoanhNghiepList}" SelectedItem="{Binding SelectedTTDoanhNghiep}" SelectionMode="Single"/>
+            <ListBox x:Name="TTDoanhNghiepListBox" ItemsSource="{Binding BUS_TTDoanhNghiep}" SelectedItem="{Binding SelectedTTDoanhNghiep}" SelectionMode="Single"/>
         </Grid>
 
         <Grid Grid.Column="1">

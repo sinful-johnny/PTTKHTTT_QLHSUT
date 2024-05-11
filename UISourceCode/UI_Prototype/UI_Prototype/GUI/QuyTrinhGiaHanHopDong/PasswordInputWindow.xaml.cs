@@ -42,5 +42,6 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
             this.Width = 200;
             this.Height = 100;
         }
+
     }
 }

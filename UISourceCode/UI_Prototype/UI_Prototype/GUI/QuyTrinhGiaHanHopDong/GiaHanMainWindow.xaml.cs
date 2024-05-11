@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI_Prototype.BUS;
 
+
 namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
 {
     /// <summary>
@@ -24,8 +25,8 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
     /// </summary>
     public partial class GiaHanMainWindow : Window
     {
-        private ObservableCollection<TTDoanhNghiep> tTDoanhNghiepList;
-        private TTDoanhNghiep selectedTTDoanhNghiep;
+        private ObservableCollection<BUS_TTDoanhNghiep> tTDoanhNghiepList;
+        private BUS_TTDoanhNghiep selectedTTDoanhNghiep;
         private List<PotentialType> potentialTypeList;
         private PotentialType selectedPotentialType;
         private SqlConnection _connection; // Assuming your connection object
@@ -56,14 +57,14 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
 
         private void LoadTTDoanhNghiepList()
         {
-            tTDoanhNghiepList = new ObservableCollection<TTDoanhNghiep>();
+            tTDoanhNghiepList = new ObservableCollection<BUS_TTDoanhNghiep>();
             var busTTDN = new BUS_TTDoanhNghiep();  // Create an instance of BUS_TTDoanhNghiep
 
             try
             {
                 // Call the new LoadDSDoanhNghiepByTiemNang method, passing connection and desired tiemNang value
-                List<TTDoanhNghiep> data = busTTDN.LoadDSDoanhNghiepByTiemNang(_connection, "Đang xét duyệt");
-                foreach (TTDoanhNghiep item in data)
+                List<BUS_TTDoanhNghiep> data = BUS_TTDoanhNghiep.LoadDSDoanhNghiepByTiemNang(_connection, "Đang xét duyệt");
+                foreach (var item in data)
                 {
                     tTDoanhNghiepList.Add(item);
                 }
@@ -73,6 +74,7 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
                 MessageBox.Show(ex.Message, "Error loading data");
             }
         }
+
 
         private void UpdateDetails()
         {
@@ -85,17 +87,18 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
 
         private void RenewButton_Click(object sender, RoutedEventArgs e)
         {
+            BUS_TTDoanhNghiep selectedTTDoanhNghiep = (BUS_TTDoanhNghiep)TTDoanhNghiepListBox.SelectedItem;
             if (selectedTTDoanhNghiep != null)
             {
-                // Assuming PotentialTypeComboBox and PolicyTextBox are UI controls bound to corresponding properties
-                selectedTTDoanhNghiep.TiemNangDoanhNghiep = (PotentialTypeComboBox.SelectedItem as PotentialType).Name; // Update potential based on selected item in combobox
-                selectedTTDoanhNghiep.ChinhSachUuDai = (FindName("PolicyTextBox") as TextBox)?.Text; // Update policy based on textbox content
+                // Update selectedTTDoanhNghiep properties with new potential type and policy (assuming these are bound to UI controls)
+                selectedTTDoanhNghiep.TiemNangDoanhNghiep = (PotentialTypeComboBox.SelectedItem as PotentialType).Name;
+                selectedTTDoanhNghiep.ChinhSachUuDai = (FindName("PolicyTextBox") as TextBox)?.Text; // Assuming PolicyTextBox is bound to ChinhSachUuDai property
 
-                // Call BUS_TTDoanhNghiep method to update the database
+                // Call BUS_TTDoanhNghiep method to update the database with the modified TTDoanhNghiep object
                 var busTTDN = new BUS_TTDoanhNghiep();
                 try
                 {
-                    busTTDN.updateDNSelected(_connection, selectedTTDoanhNghiep);
+                    BUS_TTDoanhNghiep.updateDNSelected(_connection, selectedTTDoanhNghiep);
                     MessageBox.Show("Cập nhật thành công!"); // Show success message
                 }
                 catch (Exception ex)
@@ -104,8 +107,21 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
                 }
             }
         }
+        private void DoNotRenewButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         // Implement RenewButton_Click and DoNotRenewButton_Click logic as needed
     }
-    
+
+    public class PotentialType
+    {
+        public string Name { get; set; }
+
+        public PotentialType(string name)
+        {
+            Name = name;
+        }
+    }
 }
