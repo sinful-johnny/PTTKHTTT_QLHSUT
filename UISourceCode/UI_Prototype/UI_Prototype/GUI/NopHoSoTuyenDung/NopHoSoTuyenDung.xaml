@@ -7,27 +7,27 @@
         mc:Ignorable="d"
         Title="NopHoSoTuyenDung" Height="450" Width="800">
     <Grid>
-        <TextBlock FontSize="17" Margin="312,10,288,402"><Run Text="NỘP HỒ SƠ TUYỂN DỤNG"/><LineBreak/><Run/></TextBlock>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,124,555,0">
-            <Label Content="ID Vị trí ứng tuyển:"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,175,555,0">
-            <Label Content="Tên chứng từ:"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,225,555,0">
-            <Label Content="Tên bằng cấp: "/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="275,125,0,0">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="TenCongTyTextBox"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="275,175,0,0" >
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="MaSoThueTextBox"/>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="275,226,0,0">
-            <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="NguoiDaiDienTextBox"/>
-        </StackPanel>
-        <Button x:Name="NopHoSoButton" Content="Nộp hồ sơ" 
-            FontSize="14" Click="HopLeButton_Click" Margin="362,373,338,21"/>
-        <TextBlock Margin="336,38,312,380"><Run Text="Tên "/><Run Language="vi-vn" Text="ứng viên"/><Run Text=": "/><Run Language="vi-vn" Text="Nguyễn Văn A"/></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock FontSize="17" Margin="10,10,10,0" HorizontalAlignment="Center">
+            <Run Text="NỘP HỒ SƠ TUYỂN DỤNG"/>
+        </TextBlock>
+
+        <Label Content="ID Vị trí ứng tuyển:" Grid.Row="0" Margin="10,70,0,0" VerticalAlignment="Center"/>
+        <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="TenCongTyTextBox" Grid.Row="0" Margin="10,70,0,0"/>
+
+        <Label Content="Tên chứng từ:" Grid.Row="1" Margin="10,20,0,0" VerticalAlignment="Center"/>
+        <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="MaSoThueTextBox" Grid.Row="1" Margin="10,20,0,0"/>
+
+        <Label Content="Tên bằng cấp:" Grid.Row="2" Margin="10,20,0,0" VerticalAlignment="Center"/>
+        <TextBox Width="400" Height="25" VerticalContentAlignment="Center" x:Name="NguoiDaiDienTextBox" Grid.Row="2" Margin="10,20,0,0"/>
+
+        <Button x:Name="NopHoSoButton" Content="Nộp hồ sơ" FontSize="14" Click="HopLeButton_Click" Grid.Row="3" Margin="10,20,0,0" HorizontalAlignment="Center" Height="30"/>
+
     </Grid>
 </Window>

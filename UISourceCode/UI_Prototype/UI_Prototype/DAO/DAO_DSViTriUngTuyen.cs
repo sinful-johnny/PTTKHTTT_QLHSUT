@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace UI_Prototype.DAO
 {
-    internal class DAO_DSViTriUngTuyen
+    class DAO_DSViTriUngTuyen
     {
         static public List<BUS_DSVITRIUNGTUYEN> getDSVITRIUNGTUYEN(SqlConnection conn)
         {

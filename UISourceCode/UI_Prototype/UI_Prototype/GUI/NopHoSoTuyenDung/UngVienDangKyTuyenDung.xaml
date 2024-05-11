@@ -44,6 +44,6 @@
         <TextBox Grid.Column="1" Grid.Row="6" Width="400" Height="25" VerticalContentAlignment="Center" x:Name="CCCDTextBox" Margin="0,5,0,5"/>
 
         <Button x:Name="DangKiButton" Content="Đăng kí" FontSize="14" Click="DangKiButton_Click" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" Width="100"/>
-
+        
     </Grid>
 </UserControl>
