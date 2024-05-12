@@ -36,6 +36,7 @@ namespace QuyTrinhDuyetHoSo
         private void ChonViTriXetDuyetButton_Click(object sender, RoutedEventArgs e)
         {
             var screen = new ChonViTriXetDuyen(_conn);
+            screen.ShowDialog();
         }
 
         private void DSHoSoUngTuyenDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)

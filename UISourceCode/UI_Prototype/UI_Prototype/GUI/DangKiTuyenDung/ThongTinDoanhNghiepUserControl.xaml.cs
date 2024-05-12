@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI_Prototype.BUS;
+using UI_Prototype.GUI.QuyTrinhGiaHanHopDong;
 
 namespace UI_Prototype.GUI.DangKiTuyenDung
 {
@@ -221,9 +222,45 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             RootGrid.IsEnabled = true;
         }
 
-        private void DangKiButton_Click(object sender, RoutedEventArgs e)
+        private void CanGiaHanButton_Click(object sender, RoutedEventArgs e)
         {
+            BUS_TTDoanhNghiep selectedDoanhNghiep = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
 
+            if (selectedDoanhNghiep != null && selectedDoanhNghiep.IDDoanhNghiep != null)
+            {
+                try
+                {
+                    selectedDoanhNghiep.TiemNangDoanhNghiep = "Đang xét duyệt";
+                    BUS_TTDoanhNghiep.updateDNSelected(_conn, selectedDoanhNghiep);
+                    MessageBox.Show("Đã cập nhật trạng thái cần gia hạn cho doanh nghiệp " + selectedDoanhNghiep.TenCongTy, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một doanh nghiệp để cập nhật!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void DangNhapButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Create a pop-up window for password input
+            var passwordInputWindow = new PasswordInputWindow();
+            passwordInputWindow.ShowDialog();
+
+            // Check if the entered password is correct
+            if (passwordInputWindow.Password == "admin123")
+            {
+                // Open the GiaHanMainWindow
+                var giaHanMainWindow = new GiaHanMainWindow(_conn);
+                giaHanMainWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Mật khẩu không chính xác!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
