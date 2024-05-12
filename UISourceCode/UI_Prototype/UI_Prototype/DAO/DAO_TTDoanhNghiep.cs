@@ -172,6 +172,7 @@ namespace UI_Prototype.DAO
             string diachi = dataDoanhNghiep.DiaChi;
             string email = dataDoanhNghiep.Email;
             string tinhtrangxacthuc = dataDoanhNghiep.TinhTrangXacThuc;
+            string tiemnangdoanhnghiep = dataDoanhNghiep.TiemNangDoanhNghiep;
 
             string sql = """
                             exec sp_NV_SuaTTDoanhNghiep @iddoanhnghiep,
@@ -180,7 +181,8 @@ namespace UI_Prototype.DAO
                                                         @nguoidaidien,
                                                         @diachi,
                                                         @email,
-                                                        @tinhtrangxacthuc
+                                                        @tinhtrangxacthuc,
+                                                        @tiemnangdoanhnghiep
                          """;
             if (connection.State == ConnectionState.Closed)
             {
@@ -196,6 +198,7 @@ namespace UI_Prototype.DAO
                 command.Parameters.Add("@diachi", SqlDbType.NVarChar).Value = diachi;
                 command.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
                 command.Parameters.Add("@tinhtrangxacthuc", SqlDbType.NVarChar).Value = tinhtrangxacthuc;
+                command.Parameters.Add("@tiemnangdoanhnghiep", SqlDbType.NVarChar).Value = tiemnangdoanhnghiep;
 
                 command.ExecuteNonQuery();
             }
