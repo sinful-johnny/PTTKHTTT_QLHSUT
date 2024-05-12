@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,18 +88,23 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
 
         private void RenewButton_Click(object sender, RoutedEventArgs e)
         {
-            BUS_TTDoanhNghiep selectedTTDoanhNghiep = (BUS_TTDoanhNghiep)TTDoanhNghiepListBox.SelectedItem;
+            // Get the selected doanh nghiệp (company) from the ListBox
+            var selectedTTDoanhNghiep = TTDoanhNghiepListBox.SelectedItem as BUS_TTDoanhNghiep;
+
             if (selectedTTDoanhNghiep != null)
             {
-                // Update selectedTTDoanhNghiep properties with new potential type and policy (assuming these are bound to UI controls)
+                // Update properties directly (assuming UI controls are bound correctly)
                 selectedTTDoanhNghiep.TiemNangDoanhNghiep = (PotentialTypeComboBox.SelectedItem as PotentialType).Name;
-                selectedTTDoanhNghiep.ChinhSachUuDai = (FindName("PolicyTextBox") as TextBox)?.Text; // Assuming PolicyTextBox is bound to ChinhSachUuDai property
+                selectedTTDoanhNghiep.ChinhSachUuDai = (FindName("PolicyTextBox") as TextBox)?.Text;
 
-                // Call BUS_TTDoanhNghiep method to update the database with the modified TTDoanhNghiep object
-                var busTTDN = new BUS_TTDoanhNghiep();
                 try
                 {
-                    BUS_TTDoanhNghiep.updateDNSelected(_connection, selectedTTDoanhNghiep);
+                    // Update TIEMNANG_DN and ChinhSachUuDai directly in the database
+                    BUS_TTDoanhNghiep.updateTiemNangDoanhNghiep(_connection, selectedTTDoanhNghiep.IDDoanhNghiep, selectedTTDoanhNghiep.TiemNangDoanhNghiep);
+
+                    // Assuming BUS.updateTiemNangDoanhNghiep also updates ChinhSachUuDai
+                    // If not, call a separate update method for ChinhSachUuDai here
+
                     MessageBox.Show("Cập nhật thành công!"); // Show success message
                 }
                 catch (Exception ex)
@@ -106,10 +112,44 @@ namespace UI_Prototype.GUI.QuyTrinhGiaHanHopDong
                     MessageBox.Show(ex.Message, "Error updating data");
                 }
             }
+            else
+            {
+                // Handle case where no doanh nghiệp is selected (optional)
+                MessageBox.Show("Vui lòng chọn một doanh nghiệp để cập nhật!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
+
         private void DoNotRenewButton_Click(object sender, RoutedEventArgs e)
         {
+            // Get the selected doanh nghiệp (company) from the ListBox
+            var selectedTTDoanhNghiep = TTDoanhNghiepListBox.SelectedItem as BUS_TTDoanhNghiep;
 
+            if (selectedTTDoanhNghiep != null)
+            {
+                // Update properties directly (assuming UI controls are bound correctly)
+                selectedTTDoanhNghiep.TiemNangDoanhNghiep = (PotentialTypeComboBox.SelectedItem as PotentialType).Name;
+                selectedTTDoanhNghiep.ChinhSachUuDai = (FindName("PolicyTextBox") as TextBox)?.Text;
+
+                try
+                {
+                    // Update TIEMNANG_DN and ChinhSachUuDai directly in the database
+                    BUS_TTDoanhNghiep.updateTiemNangDoanhNghiep(_connection, selectedTTDoanhNghiep.IDDoanhNghiep, "Không gia hạn");
+
+                    // Assuming BUS.updateTiemNangDoanhNghiep also updates ChinhSachUuDai
+                    // If not, call a separate update method for ChinhSachUuDai here
+
+                    MessageBox.Show("Cập nhật thành công!"); // Show success message
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error updating data");
+                }
+            }
+            else
+            {
+                // Handle case where no doanh nghiệp is selected (optional)
+                MessageBox.Show("Vui lòng chọn một doanh nghiệp để cập nhật!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         // Implement RenewButton_Click and DoNotRenewButton_Click logic as needed
