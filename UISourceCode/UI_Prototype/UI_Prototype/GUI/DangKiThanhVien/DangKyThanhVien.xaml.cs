@@ -86,7 +86,10 @@ namespace UI_Prototype.GUI.DangKiThanhVien
             NguoiDaiDienTextBox.Text = _dataDoanhNghiep.NguoiDaiDien;
             DiaChiTextBox.Text = _dataDoanhNghiep.DiaChi;
             EmailTextBox.Text = _dataDoanhNghiep.Email;
-            verifyLabel.Content = _dataDoanhNghiep.TinhTrangXacThuc;
+            if (_dataDoanhNghiep.TinhTrangXacThuc == "Chua hop le")
+                verifyLabel.Content = "Chưa hợp lệ";
+            else if (_dataDoanhNghiep.TinhTrangXacThuc == "Chua xac thuc")
+                verifyLabel.Content = "Chưa xác thực";
         }
 
         private void TenCongTyTextBox_TextChanged(object sender, TextChangedEventArgs e)

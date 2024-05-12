@@ -47,7 +47,7 @@ namespace UI_Prototype.GUI
             LoadingProgressBar.Value = 40;
             await Task.Run(() => {
 
-                string State = "Chưa hợp lệ";
+                string State = "Chua hop le";
                 var newdataDoanhNghiep = _dataDoanhNghiep;
                 newdataDoanhNghiep.IDDoanhNghiep = _dataDoanhNghiep.IDDoanhNghiep;
                 newdataDoanhNghiep.TenCongTy = _dataDoanhNghiep.TenCongTy;
@@ -80,7 +80,7 @@ namespace UI_Prototype.GUI
             LoadingProgressBar.Value = 40;
             await Task.Run(() => {
 
-                string State = "Hợp lệ";
+                string State = "Hop le";
                 var newdataDoanhNghiep = _dataDoanhNghiep;
                 newdataDoanhNghiep.IDDoanhNghiep = _dataDoanhNghiep.IDDoanhNghiep;
                 newdataDoanhNghiep.TenCongTy = _dataDoanhNghiep.TenCongTy;
@@ -112,7 +112,10 @@ namespace UI_Prototype.GUI
             NguoiDaiDienTextBox.Text = _dataDoanhNghiep.NguoiDaiDien;
             DiaChiTextBox.Text = _dataDoanhNghiep.DiaChi;
             EmailTextBox.Text = _dataDoanhNghiep.Email;
-            verifyLabel.Content = _dataDoanhNghiep.TinhTrangXacThuc;
+            if (_dataDoanhNghiep.TinhTrangXacThuc == "Chua hop le")
+                verifyLabel.Content = "Chưa hợp lệ";
+            else if (_dataDoanhNghiep.TinhTrangXacThuc == "Chua xac thuc")
+                verifyLabel.Content = "Chưa xác thực";
         }
     }
 }

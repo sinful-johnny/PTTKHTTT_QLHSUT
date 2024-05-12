@@ -39,7 +39,7 @@ namespace UI_Prototype.GUI.DangKiThanhVien
             {
                 var row = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
 
-                if (row.TinhTrangXacThuc != "Hợp lệ")
+                if (row.TinhTrangXacThuc != "Hop le")
                 {
                     var screen = new XacThucDonDangKy(_connection, row);
                     var result = screen.ShowDialog();
@@ -69,7 +69,7 @@ namespace UI_Prototype.GUI.DangKiThanhVien
                     MessageBox.Show("Ô này trống không thể cập nhật", "Lỗi");
                     return;
                 }
-                if (row.TinhTrangXacThuc != "Hợp lệ")
+                if (row.TinhTrangXacThuc != "Hop le")
                 {
                     var screen = new DangKyThanhVien(_connection, row);
                     var result = screen.ShowDialog();
@@ -103,7 +103,7 @@ namespace UI_Prototype.GUI.DangKiThanhVien
                     for (int i = 0; i < TTDoanhNghiepDataGrid.SelectedItems.Count; i++)
                     {
                         row = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItems[i];
-                        if (row.TinhTrangXacThuc != "Hợp lệ")
+                        if (row.TinhTrangXacThuc != "Hop le")
                         {
                             //indexSelectedItems.Add(TTDoanhNghiepDataGrid.SelectedItems.IndexOf(row));
                             //TTDoanhNghiepDataGrid.Items.Remove(row);

@@ -4,14 +4,14 @@ go
 INSERT INTO DS_DOANHNGHIEP (ID_DOANHNGHIEP,TEN_CONGTY, ID_THUE, NGUOIDAIDIEN,DIACHI,EMAIL,TINHTRANG_XACTHUC, TIEMNANG_DN)
 VALUES
   ('DN001','Nam Nulla Magna Corp.','0438947591-066','Rylee Harrison','Ap #129-8060 Phasellus Rd.','libero.nec@icloud.edu', 'Chua xac thuc', null),
-  ('DN002','Dolor Egestas Incorporated','7485396841-183','Alexis Freeman','Ap #768-9364 Arcu. Rd.','magna.duis@yahoo.edu', 'Da xac thuc', null),
+  ('DN002','Dolor Egestas Incorporated','7485396841-183','Alexis Freeman','Ap #768-9364 Arcu. Rd.','magna.duis@yahoo.edu', 'Hop le', null),
   ('DN003','In Condimentum Foundation','4983758374-177','Elijah Payne','P.O. Box 723, 3493 Phasellus Av.','facilisis@protonmail.ca', 'Chua xac thuc', null),
   ('DN004','Sed Molestie Foundation','1748573942-322','Patricia Mendoza','Ap #169-758 Ornare, Rd.','aliquam.fringilla@icloud.ca', 'Chua xac thuc', null),
   ('DN005','Quis Accumsan Company','4539756482-123','Emma Sanford','820-8291 Ridiculus Street','vehicula@aol.edu', 'Chua xac thuc', null),
   ('DN006','Natoque Corporation','4589238579-315','Graiden Hill','403-3292 Nonummy. Rd.','a.odio@aol.com', 'Chua xac thuc', null),
   ('DN007','Posuere Vulputate Lacus Ltd','2459587345-233','Travis Thompson','Ap #431-3051 Libero St.','nulla.ante@outlook.net', 'Chua xac thuc', null),
-  ('DN008','Eu Neque LLP','4539098764-453','Merrill Terrell','539-3364 Cursus Street','imperdiet.ullamcorper.duis@icloud.ca', 'Da xac thuc', null),
-  ('DN009','Vel Convallis In LLC','3458928457-772','Clarke Villarreal','Ap #134-717 Id, St.','mollis@google.org', 'Da xac thuc', null);
+  ('DN008','Eu Neque LLP','4539098764-453','Merrill Terrell','539-3364 Cursus Street','imperdiet.ullamcorper.duis@icloud.ca', 'Hop le', null),
+  ('DN009','Vel Convallis In LLC','3458928457-772','Clarke Villarreal','Ap #134-717 Id, St.','mollis@google.org', 'Hop le', null);
 go
 --delete from DS_DOANHNGHIEP;
 
