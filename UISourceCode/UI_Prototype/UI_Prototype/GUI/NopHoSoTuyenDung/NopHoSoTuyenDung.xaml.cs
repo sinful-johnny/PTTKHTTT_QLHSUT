@@ -50,12 +50,15 @@ namespace UI_Prototype.GUI.NopHoSoTuyenDung
 
 
                 BUS_NopHoSoTuyenDung.NopHoSo(_connection, newdataDoanhNghiep);
-            });
+               
+                });
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            MessageBox.Show("Nộp hồ sơ thành công!");
         }
     }
 }

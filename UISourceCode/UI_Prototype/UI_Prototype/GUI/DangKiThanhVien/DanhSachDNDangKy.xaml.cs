@@ -22,8 +22,8 @@ namespace UI_Prototype.GUI.DangKiThanhVien
         private void loadDataDN()
         {
             TTDoanhNghiepDataGrid.ItemsSource = BUS_TTDoanhNghiep.LoadDSDoanhNghiep(_connection);
-            TTDoanhNghiepDataGrid.Columns[7].Visibility = Visibility.Collapsed;
-            TTDoanhNghiepDataGrid.Columns[8].Visibility = Visibility.Collapsed;
+            //TTDoanhNghiepDataGrid.Columns[7].Visibility = Visibility.Collapsed;
+            //TTDoanhNghiepDataGrid.Columns[8].Visibility = Visibility.Collapsed;
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {

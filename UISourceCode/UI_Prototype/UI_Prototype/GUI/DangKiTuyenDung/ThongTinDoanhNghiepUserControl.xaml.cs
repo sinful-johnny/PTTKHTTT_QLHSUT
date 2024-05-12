@@ -14,8 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using UI_Prototype.BUS;
-using UI_Prototype.GUI.DangKiTuyenDung;
-using UI_Prototype.GUI.QuyTrinhGiaHanHopDong;
 
 namespace UI_Prototype.GUI.DangKiTuyenDung
 {
@@ -223,11 +221,6 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
             RootGrid.IsEnabled = true;
         }
 
-        private void DangKiButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void CanGiaHanButton_Click(object sender, RoutedEventArgs e)
         {
             BUS_TTDoanhNghiep selectedDoanhNghiep = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
@@ -252,22 +245,7 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
         }
         private void DangNhapButton_Click(object sender, RoutedEventArgs e)
         {
-            // Create a pop-up window for password input
-            var passwordInputWindow = new PasswordInputWindow();
-            passwordInputWindow.ShowDialog();
 
-            // Check if the entered password is correct
-            if (passwordInputWindow.Password == "admin123")
-            {
-                // Open the GiaHanMainWindow
-                var giaHanMainWindow = new GiaHanMainWindow(_conn);
-                giaHanMainWindow.Show();
-                //this.Close(); // Close the current window
-            }
-            else
-            {
-                MessageBox.Show("Mật khẩu không chính xác!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
         }
     }
 }

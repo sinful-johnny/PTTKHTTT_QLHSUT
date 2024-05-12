@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using UI_Prototype.BUS;
+using System.Windows;
 
 namespace UI_Prototype.DAO
 {
@@ -44,23 +45,33 @@ namespace UI_Prototype.DAO
                                                                     @ID_CHUNGTU,
                                                                     @ID_BANGCAP
                          """;
+            
             if (connection.State == ConnectionState.Closed)
             {
                 connection.Open();
             }
             using (var command = new SqlCommand(sql, connection))
             {
-                //_connection.Open();
-                command.Parameters.Add("@TEN_CHUNGTU", SqlDbType.VarChar).Value = TEN_CHUNGTU;
-                command.Parameters.Add("@TEN_BANGCAP", SqlDbType.VarChar).Value = TEN_BANGCAP;
-                command.Parameters.Add("@ID_UNGVIEN", SqlDbType.VarChar).Value = ID_UNGVIEN;
-                command.Parameters.Add("@ID_VITRIUNGTUYEN", SqlDbType.NVarChar).Value = ID_VITRIUNGTUYEN;
-                command.Parameters.Add("@ID_CHUNGTU", SqlDbType.NVarChar, 10).Direction = ParameterDirection.Output;
-                command.Parameters.Add("@ID_BANGCAP", SqlDbType.NVarChar, 10).Direction = ParameterDirection.Output;
+                try
+                {
+                    //_connection.Open();
+                    command.Parameters.Add("@TEN_CHUNGTU", SqlDbType.VarChar).Value = TEN_CHUNGTU;
+                    command.Parameters.Add("@TEN_BANGCAP", SqlDbType.VarChar).Value = TEN_BANGCAP;
+                    command.Parameters.Add("@ID_UNGVIEN", SqlDbType.VarChar).Value = ID_UNGVIEN;
+                    command.Parameters.Add("@ID_VITRIUNGTUYEN", SqlDbType.NVarChar).Value = ID_VITRIUNGTUYEN;
+                    command.Parameters.Add("@ID_CHUNGTU", SqlDbType.NVarChar, 10).Direction = ParameterDirection.Output;
+                    command.Parameters.Add("@ID_BANGCAP", SqlDbType.NVarChar, 10).Direction = ParameterDirection.Output;
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             connection.Close();
-        }
-    }
+         }
+            
+     }
 }
+

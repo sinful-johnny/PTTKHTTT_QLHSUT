@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UI_Prototype.GUI.DangKiTuyenDung"
              mc:Ignorable="d" 
-             Height="450" Width="800" Loaded="Window_Loaded">
+             Loaded="Window_Loaded">
     <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -19,9 +19,17 @@
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
 
+        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="DangNhapButton" Content="Đăng nhập" Width="90" Height="30" Click="DangNhapButton_Click"/>
+            <Button x:Name="CanGiaHanButton" Content="Cần gia hạn" Width="90" Height="30" HorizontalAlignment="Left" Margin="0,30,0,0" Grid.Row="1" VerticalAlignment="Top" Click="CanGiaHanButton_Click"/>
+        </StackPanel>
+        
         <StackPanel Grid.Row="0">
             <Label Content="Danh sách doanh nghiệp đã đăng kí: "/>
         </StackPanel>
+        
+        
+        
         <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
             <TextBox x:Name="SearchBox" Text="Tên doanh nghiệp" Width="250" Height="25" VerticalContentAlignment="Center"/>
             <Button x:Name="SearchButton" Content="Tìm" Height="25" Width="50" Click="SearchButton_Click"/>
