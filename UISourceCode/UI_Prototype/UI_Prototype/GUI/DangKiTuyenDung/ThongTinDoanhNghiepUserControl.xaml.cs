@@ -222,30 +222,64 @@ namespace UI_Prototype.GUI.DangKiTuyenDung
         }
 
         private void CanGiaHanButton_Click(object sender, RoutedEventArgs e)
-        {
-            BUS_TTDoanhNghiep selectedDoanhNghiep = (BUS_TTDoanhNghiep)TTDoanhNghiepDataGrid.SelectedItem;
+{
+    // Get the selected doanh nghiệp (company) from the DataGrid
+    var selectedDoanhNghiep = TTDoanhNghiepDataGrid.SelectedItem as BUS_TTDoanhNghiep;
 
-            if (selectedDoanhNghiep != null && selectedDoanhNghiep.IDDoanhNghiep != null)
-            {
-                try
-                {
-                    selectedDoanhNghiep.TiemNangDoanhNghiep = "Đang xét duyệt";
-                    BUS_TTDoanhNghiep.updateDNSelected(_conn, selectedDoanhNghiep);
-                    MessageBox.Show("Đã cập nhật trạng thái cần gia hạn cho doanh nghiệp " + selectedDoanhNghiep.TenCongTy, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn một doanh nghiệp để cập nhật!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-        private void DangNhapButton_Click(object sender, RoutedEventArgs e)
-        {
+    // Check if a doanh nghiệp is selected
+    if (selectedDoanhNghiep == null)
+    {
+        MessageBox.Show("Vui lòng chọn một doanh nghiệp để cập nhật!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+        return;
+    }
 
-        }
+    // Check if the doanh nghiệp has an ID
+    if (string.IsNullOrEmpty(selectedDoanhNghiep.IDDoanhNghiep))
+    {
+        MessageBox.Show("Doanh nghiệp này không có ID hợp lệ. Vui lòng chọn doanh nghiệp khác!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+        return;
+    }
+
+    try
+    {
+        // Update the TIEMNANG_DN field to "Đang xét duyệt"
+        selectedDoanhNghiep.TiemNangDoanhNghiep = "Đang xét duyệt";
+
+        // Update the doanh nghiệp information in the database using updateTiemNangDoanhNghiep
+        BUS_TTDoanhNghiep.updateTiemNangDoanhNghiep(_conn, selectedDoanhNghiep.IDDoanhNghiep, "Đang xét duyệt");
+
+        // Display a success message
+        MessageBox.Show("Đã cập nhật trạng thái cần gia hạn cho doanh nghiệp " + selectedDoanhNghiep.TenCongTy, "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+    catch (Exception ex)
+    {
+        // Handle any exceptions that occur during the update process
+        MessageBox.Show("Lỗi khi cập nhật trạng thái doanh nghiệp: " + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+    }
+}
+
+private void DangNhapButton_Click(object sender, RoutedEventArgs e)
+{
+    // Create a pop-up window for password input
+    var passwordInputWindow = new PasswordInputWindow();
+    passwordInputWindow.ShowDialog();
+
+    // Check if the entered password is correct
+    if (passwordInputWindow.Password == "admin123")
+    {
+        // Open the GiaHanMainWindow
+        var giaHanMainWindow = new GiaHanMainWindow(_conn);
+        giaHanMainWindow.Show();
+        //this.Close(); // Close the current window
+    }
+    else
+    {
+        MessageBox.Show("Mật khẩu không chính xác!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+    }
+    void Button_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+}
     }
 }
