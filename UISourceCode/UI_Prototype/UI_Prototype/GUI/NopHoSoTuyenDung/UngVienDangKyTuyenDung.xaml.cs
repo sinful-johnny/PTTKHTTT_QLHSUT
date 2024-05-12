@@ -81,7 +81,7 @@ namespace UI_Prototype.GUI.NopHoSoTuyenDung
 
         private void DaDangKiButton_Click(object sender, RoutedEventArgs e)
         {
-            var screen = new DSViTriUngTuyen(_connection, "UV028");
+            var screen = new DSViTriUngTuyen(_connection, "UV001");
             var result = screen.ShowDialog();
         }
     }
