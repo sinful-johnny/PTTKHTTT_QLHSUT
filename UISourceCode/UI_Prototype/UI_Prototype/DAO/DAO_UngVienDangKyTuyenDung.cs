@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UI_Prototype.BUS;
 using System.Data.SqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Windows;
 
 namespace UI_Prototype.DAO
 {
@@ -27,20 +28,27 @@ namespace UI_Prototype.DAO
             }
             using (var command = new SqlCommand("sp_UV_InsertHoSoUngvien", connection) { CommandType = CommandType.StoredProcedure})
             {
-                //_connection.Open();
-                command.Parameters.Add("@HOTEN", SqlDbType.VarChar).Value = HOTEN;
-                command.Parameters.Add("@NGAYSINH", SqlDbType.DateTime).Value = NGAYSINH;
-                command.Parameters.Add("@DIACHI", SqlDbType.VarChar).Value = DIACHI;
-                command.Parameters.Add("@SDT", SqlDbType.NVarChar).Value = SDT;
-                command.Parameters.Add("@EMAIL", SqlDbType.NVarChar).Value = email;
-                command.Parameters.Add("@CCCD", SqlDbType.NVarChar).Value = CCCD;
-                SqlParameter outputParam = new SqlParameter("@NewID", SqlDbType.NVarChar, 10);
-                outputParam.Direction = ParameterDirection.Output;
-                command.Parameters.Add(outputParam);
+                try
+                {
+                    //_connection.Open();
+                    command.Parameters.Add("@HOTEN", SqlDbType.VarChar).Value = HOTEN;
+                    command.Parameters.Add("@NGAYSINH", SqlDbType.DateTime).Value = NGAYSINH;
+                    command.Parameters.Add("@DIACHI", SqlDbType.VarChar).Value = DIACHI;
+                    command.Parameters.Add("@SDT", SqlDbType.NVarChar).Value = SDT;
+                    command.Parameters.Add("@EMAIL", SqlDbType.NVarChar).Value = email;
+                    command.Parameters.Add("@CCCD", SqlDbType.NVarChar).Value = CCCD;
+                    SqlParameter outputParam = new SqlParameter("@NewID", SqlDbType.NVarChar, 10);
+                    outputParam.Direction = ParameterDirection.Output;
+                    command.Parameters.Add(outputParam);
 
-                command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
 
-                 newID = command.Parameters["@NewID"].Value.ToString() ?? "Error has occured";
+                    newID = command.Parameters["@NewID"].Value.ToString() ?? "Error has occured";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
 
             }
             connection.Close();

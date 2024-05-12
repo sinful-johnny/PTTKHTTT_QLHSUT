@@ -17,6 +17,7 @@ namespace UI_Prototype.DAO
             string query = """
                 SELECT * FROM PHIEUDANGKI_UNGTUYEN WHERE ID_UNGVIEN = @idUV;
                 """;
+
             if (conn.State == ConnectionState.Closed)
             {
                 conn.Open();

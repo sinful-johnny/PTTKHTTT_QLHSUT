@@ -66,13 +66,15 @@ namespace UI_Prototype.GUI.NopHoSoTuyenDung
 
 
                     idUV = BUS_UngVienDangKyTuyenDung.DangKiUngVien(_connection, newdataDoanhNghiep);
-                    MessageBox.Show(idUV);
+                    
                 });
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            MessageBox.Show("Đăng ký thành công!");
             var screen = new DSViTriUngTuyen(_connection, idUV);
             var result = screen.ShowDialog();
 
