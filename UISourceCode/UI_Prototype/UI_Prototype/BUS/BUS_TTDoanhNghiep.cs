@@ -87,14 +87,30 @@ namespace UI_Prototype.BUS
         }
 
         static public void updateDNSelected(SqlConnection connection, BUS_TTDoanhNghiep dataDoanhNghiep)
-        {
-            DAO_TTDoanhNghiep.updateTTDoanhNghiep(connection, dataDoanhNghiep);
-        }
+{
+    DAO_TTDoanhNghiep.updateTTDoanhNghiep(connection, dataDoanhNghiep);
+}
 
-        public static List<BUS_TTDoanhNghiep> LoadDSDoanhNghiepByTiemNang(SqlConnection connection, string tiemNang)
-        {
-            return DAO_TTDoanhNghiep.LoadDSDoanhNghiepByTiemNang(connection, tiemNang);
-        }
+public static List<BUS_TTDoanhNghiep> LoadDSDoanhNghiepByTiemNang(SqlConnection connection, string tiemNang)
+{
+    return DAO_TTDoanhNghiep.LoadDSDoanhNghiepByTiemNang(connection, tiemNang);
+}
+public static void updateTiemNangDoanhNghiep(SqlConnection connection, string idDoanhNghiep, string tiemNang)
+{
+    if (string.IsNullOrEmpty(idDoanhNghiep) || string.IsNullOrEmpty(tiemNang))
+    {
+        throw new ArgumentException("ID doanh nghiệp and tiềm năng cannot be null or empty");
+    }
+
+    try
+    {
+        DAO_TTDoanhNghiep.updateTiemNangDoanhNghiep(connection, idDoanhNghiep, tiemNang);
+    }
+    catch (Exception ex)
+    {
+        throw new Exception("Failed to update tiềm năng doanh nghiệp: " + ex.Message);
+    }
+}
 
     }
 }
