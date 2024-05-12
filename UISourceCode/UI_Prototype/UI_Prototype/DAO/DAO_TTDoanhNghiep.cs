@@ -204,7 +204,29 @@ namespace UI_Prototype.DAO
             }
             connection.Close();
         }
+    public static void updateTiemNangDoanhNghiep(SqlConnection connection, string idDoanhNghiep, string tiemNang)
+      {
+          string sql = @"
+  UPDATE DS_DOANHNGHIEP
+  SET TIEMNANG_DN = @TiemNang
+  WHERE ID_DOANHNGHIEP = @IDDoanhNghiep;
+";
 
+          if (connection.State == ConnectionState.Closed)
+          {
+              connection.Open();
+          }
+
+          using (var command = new SqlCommand(sql, connection))
+          {
+              command.Parameters.Add("@IDDoanhNghiep", SqlDbType.VarChar).Value = idDoanhNghiep;
+              command.Parameters.Add("@TiemNang", SqlDbType.NVarChar).Value = tiemNang;
+
+              command.ExecuteNonQuery();
+          }
+
+          connection.Close();
+      }
         public static List<BUS_TTDoanhNghiep> LoadDSDoanhNghiepByTiemNang(SqlConnection connection, string tiemNang)
         {
             var result = new List<BUS_TTDoanhNghiep>();
